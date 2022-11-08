@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #151515;
 }
 
 .App-logo {
@@ -35,4 +39,84 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.page-open-welcometxt{
+  width: 280px;
+  margin: auto;
+  
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 40px;
+  margin-top: 5%;
+  
+}
+
+.page-open-subtxt{
+  font-size: 20px;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  line-height: 22px;
+
+}
+.page-aw-h1{
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  
+}
+.page-aw-h2{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 70%;
+  text-align: left;
+}
+
+.btn-blue{
+  padding: 6px 16px;
+  background: #0066CC;
+  border-radius: 3px; 
+  border-style: none;
+  color: white;
+  width: 280px;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.btn-white{
+  padding: 6px 16px;
+  background: white;
+  border-radius: 3px; 
+  border: 1px solid #0066CC;
+  color: #0066CC;;
+  width: 280px;
+  font-size: 16px;
+}
+.btn-next{
+  padding: 6px 16px;
+  background: #0066CC;
+  border-radius: 3px; 
+  border-style: none;
+  color: white;
+  font-size: 16px;
+  margin: 10px;
+}
+.container-next{
+  padding-left: 70%;
+}
+.container{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 7%;
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  /* background-color: #61dafb; */
 }
