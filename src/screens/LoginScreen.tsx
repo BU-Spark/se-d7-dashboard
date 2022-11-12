@@ -1,22 +1,51 @@
-import * as React from "react";
-import { useState } from "react";
+import React, {useState} from 'react';
+// import firebase auth
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
+import { useNavigate } from "react-router-dom";
 
-function Loginscreen() {
+export interface ILoginScreenProps {}
+
+const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  async function Login() {
+  const Login = async () => {
     const user = {
       email,
       password,
-    };
+    }
+    setAuthing(true);
+
+    signInWithEmailAndPassword(auth, user.email, user.password)
+        .then((response) => {
+            console.log(response.user.uid);
+            navigate('/user-profile');
+        })
+        .catch((error) => {
+            alert(error);
+            setAuthing(false);
+        });
+};
+
+  const SignUp = async () => {
+    const user = {
+      email,
+      password,
+    }
 
     console.log(user);
+
     try {
-      //here send the post request
-      console.log("post request");
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 
@@ -69,7 +98,10 @@ function Loginscreen() {
       <div className="center-wrapper">
         <div className="wrapper">
           <label>Don’t have an account?</label>
-          <button className="btn-white">Sign Up</button>
+          <button 
+            className="btn-white"
+            onClick={SignUp}
+          >Sign Up</button>
         </div>
       </div>
     </div>
