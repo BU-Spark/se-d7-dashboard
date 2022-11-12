@@ -15,11 +15,9 @@ jobs:
 
       - name: Run tests
         run: npm test
-        env:
-          CI: ""
     
       - name: Build
-        run: npm run build
+        run: CI=false npm run build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
