@@ -6,6 +6,8 @@ import Openingsreen from './screens/Openingsreen';
 import Addresswarningscreen from './screens/Addresswarningscreen';
 
 import Addressentryscreen from './screens/Addressentryscreen';
+import Loginscreen from './screens/Loginscreen';
+import Userprofilescreen from './screens/Userprofilescreen';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/opening" element={<Openingsreen/>} />
           <Route path="/address-warning" element={<Addresswarningscreen/>} />
           <Route path="/address-entry" element={<Addressentryscreen/>} />
+          <Route path="/login" element={<Loginscreen/>} />
+          <Route path="/user-profile" element={<Userprofilescreen/>} />
         </Routes>
       </BrowserRouter>
     </div>

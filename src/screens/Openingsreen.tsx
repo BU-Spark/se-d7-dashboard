@@ -1,7 +1,7 @@
 import * as React from "react";
 
-class Openingscreen extends React.Component {
-  render() {
+function Openingscreen () {
+  
     return (
       <div >
         <div className="page-open-welcometxt">Welcome to the District 7 Boston Citizen’s App</div>
@@ -11,7 +11,7 @@ class Openingscreen extends React.Component {
         
       </div>
     );
-  }
+  
 }
 
 export default Openingscreen;
