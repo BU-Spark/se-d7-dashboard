@@ -11,6 +11,8 @@ import UserProfileScreen from './screens/UserProfileScreen';
 
 import {initializeApp} from 'firebase/app';
 import {config} from './config/config';
+import '@patternfly/react-core/dist/styles/base.css';
+
 
 initializeApp(config.firebaseConfig);
 
