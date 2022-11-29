@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 // import firebase auth
 import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
 import { useNavigate } from "react-router-dom";
+import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
+import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
 
@@ -50,60 +52,47 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   }
 
   return (
-    <div>
-      <div className="center-wrapper">
-        <div className="wrapper">
-          <div className="page-login-h1">Log In</div>
-
-          <label>Email</label>
-          <input
+    <div className="container">
+              <div className="mb-3 pf-c-title h4 text-start">Log In</div>
+              <div className="text-start">Email</div>
+      
+      <input
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
             type="text"
-            className="input-text"
+            className="input-text mb-3"
             placeholder=""
           />
-
-          <label>Password</label>
+          <div className="text-start">Password</div>
           <input
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
             type="password"
-            className="input-text"
+            className="input-text mb-3"
             placeholder=""
           />
-        </div>
-      </div>
 
-      <div className="center-wrapper">
-        <div className="wrapper">
-          <button
-            className="btn-blue"
-            onClick={Login}
-          >
-            Log In
-          </button>
-        </div>
-      </div>
 
-      <div className="center-wrapper">
+<Button className="px-5 py-1 mb-2" style={{width:"260px"}} variant="primary" onClick={Login}>
+Log In
+        </Button>
+        <div className="center-wrapper">
         <div className="wrapper">
           <div className="page-login-line"></div>
         </div>
       </div>
-      <div className="center-wrapper">
-        <div className="wrapper">
-          <label>Don’t have an account?</label>
-          <button 
-            className="btn-white"
-            onClick={SignUp}
-          >Sign Up</button>
-        </div>
-      </div>
+      <div className="mb-2">Don’t have an account?</div>
+        
+        <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary" onClick={SignUp}>
+        Sign up
+        </Button>
+
+
+      
     </div>
   );
 }
