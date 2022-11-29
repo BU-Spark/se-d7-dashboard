@@ -4,8 +4,15 @@ import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function Addressentryscreen() {
+  const navigate = useNavigate();
+
+  const navigateToNext = () => {
+    navigate('/choose-interest');
+  };
+
   return (
     <div className="container">
 
@@ -54,7 +61,7 @@ function Addressentryscreen() {
       <br></br>
       <AddressCheckBoxLoading></AddressCheckBoxLoading>
       <div className="text-end mt-3">
-        <Button className="px-3 py-1" variant="primary">
+        <Button onClick={navigateToNext} className="px-3 py-1" variant="primary">
           Next
         </Button>
       </div>

@@ -32,6 +32,10 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         });
 };
 
+const navigateToSignUp = () => {
+  navigate('/address-warning');
+};
+
   const SignUp = async () => {
     const user = {
       email,
@@ -87,7 +91,7 @@ Log In
       </div>
       <div className="mb-2">Don’t have an account?</div>
         
-        <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary" onClick={SignUp}>
+        <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary" /*onClick={SignUp}*/ onClick={navigateToSignUp}>
         Sign up
         </Button>
 

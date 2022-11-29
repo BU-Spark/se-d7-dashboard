@@ -23,8 +23,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginScreen/>} />
-          <Route path="/opening" element={<OpeningScreen/>} />
+          <Route path="/login" element={<LoginScreen/>} />
+          <Route path="/" element={<OpeningScreen/>} />
           <Route path="/address-warning" element={<AddressWarningScreen/>} />
           <Route path="/address-entry" element={<AddressEntryScreen/>} />
           <Route path="/login" element={<LoginScreen/>} />
