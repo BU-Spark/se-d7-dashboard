@@ -3,8 +3,16 @@ import ChecklistElement from "../components/ChecklistElement";
 import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
 
 function ChooseInterestScreen() {
+  const navigate = useNavigate();
+
+  const navigateToNext = () => {
+    navigate('/login');
+  };
+
   const [chips, setChips] = useState({
 
     interests:[
@@ -47,7 +55,7 @@ function ChooseInterestScreen() {
 
   return (
     <div className="container">
-      <div className="pf-c-title mb-2">
+      <div className="pf-c-title mb-3 h5">
       Help Us Understand Your Interests
       </div>
       <div className="mb-2">
@@ -63,7 +71,7 @@ function ChooseInterestScreen() {
       })}
 
       
-      <Button className="px-5 py-1 mt-4" variant="primary">
+      <Button onClick={navigateToNext} className="px-5 py-1 mt-4" variant="primary">
       Finish Set Up
         </Button>
     </div>
