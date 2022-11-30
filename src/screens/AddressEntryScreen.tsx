@@ -10,7 +10,7 @@ function Addressentryscreen() {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
-    navigate('/choose-interest');
+    navigate('/signup');
   };
 
   return (
