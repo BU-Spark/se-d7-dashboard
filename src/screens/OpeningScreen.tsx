@@ -1,13 +1,25 @@
 import * as React from "react";
+import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function Openingscreen () {
+  const navigate = useNavigate();
+
+  const navigateToNext = () => {
+    navigate('/login');
+  };
   
     return (
-      <div >
-        <div className="page-open-welcometxt">Welcome to the District 7 Boston Citizen’s App</div>
-        <div className="page-open-subtxt"> Please confirm you are a resident of District 7 </div>
-        <div><button className="btn-blue">I am a resident of D7</button></div>
-        <div><button className="btn-white">Find out</button></div>
+      <div className="container">
+        <div className="mb-5 pf-c-title h1">Welcome to the District 7 Boston Citizen’s App</div>
+        <div className="pt-5 h6 mb-2"> Please confirm you are a resident of District 7 </div>
+        <Button onClick={navigateToNext} className="px-5 py-1 mb-2" style={{width:"260px"}} variant="primary">
+        I am a resident of D7
+        </Button>
+        <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary">
+        Find out
+        </Button>
+        
         
       </div>
     );

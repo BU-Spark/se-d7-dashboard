@@ -135,7 +135,7 @@
   display: block;
 
   padding: 6px 8px;
-  margin: 5px;
+  
   height: 36px;
   width: 260px;
   background: #ffffff;
@@ -169,6 +169,8 @@ label {
 }
 .wrapper {
   /* background-color: red; */
+  
+  
 }
 .page-login-line {
   width: 122px;
@@ -176,4 +178,15 @@ label {
   border: 0.7px solid #000000;
 
   margin: 30% 0 30% 0;
+}
+
+.wrap{
+  background-color: blue;
+  width: 260px;
+ 
+}
+
+.container{
+  width: 280px !important;
+  /* background-color: greenyellow; */
 }
