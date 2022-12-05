@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ChecklistElement from "../components/ChecklistElement";
-import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
+import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {Routes, Route, useNavigate} from 'react-router-dom';
@@ -19,38 +19,39 @@ function ChooseInterestScreen() {
       {
         id: 'a',
         name: 'Vehicles/Parking',
-        isChosen: false,
       },
       {
         id: 'b',
         name: 'Street/Park Damage',
-        isChosen: true,
       },
       {
         id: 'c',
         name: 'Lights',
-        isChosen: false,
       },
       {
         id: 'd',
         name: 'Volunteering',
-        isChosen: false,
       },
       {
         id: 'e',
         name: 'Local Events',
-        isChosen: false,
       },
       {
         id: 'f',
         name: 'Food Access',
-        isChosen: false,
       },
     ]
   });
 
+  // Create an array of strings to store the selected chips
+  const [selectedChips, setSelectedChips] = useState<string[]>([]);
+
   const highlightItem = (id: string) => {
-    // should hightlight the item when it is selected
+    // Delete the chip from chips array
+    const newChips = chips.interests.filter(chip => chip.id !== id);
+    setChips({interests: newChips});
+    console.log(newChips);
+
   };
 
   return (
@@ -64,7 +65,8 @@ function ChooseInterestScreen() {
 
       {chips.interests.map(interest => {
         return (
-          <Chip className='px-3 m-1' onClick={() => highlightItem('readonlychip')} isReadOnly>
+      // Execute highlightItem when the chip is clicked
+      <Chip className='px-3 m-1' onClick={() => highlightItem(interest.id)} >
         {interest.name}
       </Chip>
         )
