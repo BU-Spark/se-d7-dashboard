@@ -19,26 +19,32 @@ function ChooseInterestScreen() {
       {
         id: 'a',
         name: 'Vehicles/Parking',
+        selected: false,
       },
       {
         id: 'b',
         name: 'Street/Park Damage',
+        selected: false,
       },
       {
         id: 'c',
         name: 'Lights',
+        selected: false,
       },
       {
         id: 'd',
         name: 'Volunteering',
+        selected: false,
       },
       {
         id: 'e',
         name: 'Local Events',
+        selected: false,
       },
       {
         id: 'f',
         name: 'Food Access',
+        selected: false,
       },
     ]
   });
@@ -47,11 +53,20 @@ function ChooseInterestScreen() {
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
 
   const highlightItem = (id: string) => {
-    // Delete the chip from chips array
-    const newChips = chips.interests.filter(chip => chip.id !== id);
+    // Flip the chip selected boolean
+    const newChips = chips.interests.map(interest => {
+      if (interest.id === id) {
+        interest.selected = !interest.selected;
+        console.log(interest.selected)
+      }
+      return interest;
+    }
+    );
+    
+    // Update the chips state
     setChips({interests: newChips});
-    console.log(newChips);
 
+    // Set chip html style to style={{backgroundColor: '#004080', color: 'white'}}
   };
 
   return (
@@ -64,18 +79,25 @@ function ChooseInterestScreen() {
       </div>
 
       {chips.interests.map(interest => {
+        // Return a chip that has black text color
         return (
-      // Execute highlightItem when the chip is clicked
-      <Chip className='px-3 m-1' onClick={() => highlightItem(interest.id)} >
-        {interest.name}
-      </Chip>
-        )
+          // Set style to have black text color
+          <Chip 
+            className='px-3 m-1' 
+            onClick={() => highlightItem(interest.id)} 
+            isReadOnly 
+            isOverflowChip
+            style={{ color: interest.selected ? "red" : "black" }}
+            >
+            {interest.name}
+          </Chip>
+        );
       })}
 
       
       <Button onClick={navigateToNext} className="px-5 py-1 mt-4" variant="primary">
       Finish Set Up
-        </Button>
+      </Button>
     </div>
   );
 }
