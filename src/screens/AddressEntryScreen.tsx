@@ -3,6 +3,7 @@ import AddressCheckBox from "../components/AddressCheckBox";
 import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
 import AddressErrorBox from "../components/AddressErrorBox";
 import AddressInvalidBox from "../components/AddressInvalidBox";
+import AddressAPIErrorBox from "../components/AddressAPIErrorBox";
 import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -15,6 +16,7 @@ function Addressentryscreen() {
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [showError, setShowError] = React.useState(false);
   const [showInvalid, setShowInvalid] = React.useState(false);
+  const [showAPIError, setShowAPIError] = React.useState(false);
 
   // Store the address, city, state, and zip in state
   const [address, setAddress] = React.useState("");
@@ -42,57 +44,60 @@ function Addressentryscreen() {
   const submit = () => {
     setShowError(false);
     setShowInvalid(false);
+    setShowAPIError(false);
     setShowLoading(true);
-    console.log("Submitting address");
     const a = {
       address,
       city,
       state,
       zip
     };
-    console.log(a);
 
     if (a.address === "" || a.city === "" || a.state === "" || a.zip === "") {
-      console.log("Missing address information");
       setShowLoading(false);
       setShowInvalid(true);
+    } else if (a.state === "Other") {
+      setShowLoading(false);
+      setShowError(true);
     } else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
-      console.log(url);
+      console.log("url: " + url);
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          if (data.length === 0) {
+          if (!data[0].lon || !data[0].lat) {
             setShowLoading(false);
-            setShowError(true);
-            // console.log("No results found");
+            setShowAPIError(true);
           } else {
             // Store the coordinates in state
-            setLat(data.lat);
-            setLng(data.lon);
-            // print the coordinates
+            setLat(data[0].lat);
+            setLng(data[0].lon);
             console.log("lat: " + lat + " lng: " + lng);
           }
         }).then(() => {
-          // Query ArcGIS Identity API to get the district the address is in
-          const url = "https://boston.maps.arcgis.com/apps/webappviewer/index.html?id=4af2c3a537ca480d80fdb899287e1070/"
-          + "identify" +"?geometryType=esriGeometryPoint&geometry={x:" + lng + ",y:" + lat + "}&layers=all:0&mapExtent=-71.2,42.2,-70.8,42.4&tolerance=3&imageDisplay=600,400,96&returnGeometry=false&f=pjson";
-          fetch(url)
+          // Query ArcGIS Identity API to return all layers that contain the point
+          // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
+          const url = "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Docket%201275%20Committee%20Report/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
+            + "&geometry=" + lng + "%2C" + lat + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects";
+          console.log("url: " + url);
+            fetch(url)
             .then((response) => response.json())
             .then((data) => {
-              if (data.results.length === 0) {
+              if (!data.features[0].properties.DISTRICT) {
                 setShowLoading(false);
-                setShowError(true);
+                setShowAPIError(true);
               } else {
                 // Store the district in state
-                setArcgisResponse(data.results[0].attributes);
+                setArcgisResponse(data.features[0].properties.DISTRICT);
+                console.log("District: " + arcgisResponse);
               }
             }).then(() => {
               // Check if the address is in District 7
-              if (arcgisResponse === "7") {
+              if (arcgisResponse == 7) {
                 setShowLoading(false);
+                setShowSuccess(true);
                 navigateToNext();
               } else {
                 setShowLoading(false);
@@ -157,6 +162,7 @@ function Addressentryscreen() {
       {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
       {showError && <AddressErrorBox></AddressErrorBox>}
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
+      {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
       
       <div className="text-end mt-3">
         <Button
