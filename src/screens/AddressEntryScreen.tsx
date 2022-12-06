@@ -24,13 +24,6 @@ function Addressentryscreen() {
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   const [zip, setZip] = React.useState("")
-  
-  // Store the coordinates in state
-  const [lat, setLat] = React.useState(0);
-  const [lng, setLng] = React.useState(0);
-
-  // Store ArcGIS response in state
-  const [arcgisResponse, setArcgisResponse] = React.useState({});
 
   const navigateToNext = () => {
     setShowLoading(true);
@@ -63,39 +56,49 @@ function Addressentryscreen() {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
-      console.log("url: " + url);
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          if (!data[0].lon || !data[0].lat) {
+          if (!data) {
             setShowLoading(false);
             setShowAPIError(true);
+            return;
           } else {
             // Store the coordinates in state
-            setLat(data[0].lat);
-            setLng(data[0].lon);
-            console.log("lat: " + lat + " lng: " + lng);
+            if (data.length === 0) {
+              setShowInvalid(true);
+              return;
+            }
+            return { lat: data[0].lat, lng: data[0].lon };
           }
-        }).then(() => {
+        }).then((coords) => {
           // Query ArcGIS Identity API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
+          if (!coords) {
+            setShowLoading(false);
+            setShowInvalid(true);
+            return;
+          }
           const url = "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Docket%201275%20Committee%20Report/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-            + "&geometry=" + lng + "%2C" + lat + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects";
-          console.log("url: " + url);
-            fetch(url)
+            + "&geometry=" + coords.lng + "%2C" + coords.lat + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects";
+          fetch(url)
             .then((response) => response.json())
             .then((data) => {
-              if (!data.features[0].properties.DISTRICT) {
+              if (!data) {
                 setShowLoading(false);
                 setShowAPIError(true);
+                return -1;
               } else {
                 // Store the district in state
-                setArcgisResponse(data.features[0].properties.DISTRICT);
-                console.log("District: " + arcgisResponse);
+                return data.features[0].properties.DISTRICT
               }
-            }).then(() => {
+            }).then((arcgisResponse) => {
               // Check if the address is in District 7
-              if (arcgisResponse == 7) {
+              if (arcgisResponse == -1) {
+                setShowLoading(false);
+                setShowAPIError(true);
+              }
+              else if (arcgisResponse == 7) {
                 setShowLoading(false);
                 setShowSuccess(true);
                 navigateToNext();
@@ -120,15 +123,15 @@ function Addressentryscreen() {
           setAddress(e.split(" ").join("+"));
         }}
       />
-      {/* <TextInput
+      <TextInput
         className="mb-2 px-2"
         id="textInput-basic-1"
         type="text"
         placeholder="Apt, suite, unit, building, etc."
-        onChange={(e) => {
-          setAddress2(e);
-        }}
-      /> */}
+        // onChange={(e) => { // We don't actually need this field, its just for appearances lol
+        //   setAddress2(e);
+        // }}
+      />
 
       <div className="mt-3 text-start">City</div>
       <TextInput
