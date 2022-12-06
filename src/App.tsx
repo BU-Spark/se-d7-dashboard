@@ -9,7 +9,7 @@ import AddressEntryScreen from './screens/AddressEntryScreen';
 import LoginScreen from './screens/LoginScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 import ChooseInterestScreen from './screens/ChooseInterestScreen';
-
+import CalendarScreen from './screens/CalendarScreen';
 import {initializeApp} from 'firebase/app';
 import {config} from './config/config';
 import '@patternfly/react-core/dist/styles/base.css';
@@ -25,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginScreen/>} />
           <Route path="/signup" element={<SignUpScreen/>} />
+          <Route path="/calendar" element={<CalendarScreen/>} />
           <Route path="/" element={<OpeningScreen/>} />
           <Route path="/address-warning" element={<AddressWarningScreen/>} />
           <Route path="/address-entry" element={<AddressEntryScreen/>} />
