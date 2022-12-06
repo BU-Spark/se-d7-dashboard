@@ -1,41 +1,40 @@
 import * as React from 'react';
 import { Select, SelectOption } from '@patternfly/react-core';
+  
+function StateSelection({ state, setState }: any) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState(state);
 
-class StateSelection extends React.Component {
-  state = {
-    selected: '',
-    isExpanded: false
+  const onSelect = (event: any, selection: any) => {
+    setSelected(selection);
+    setState(selection);
+    setIsOpen(false);
   };
 
-  onSelect = (event: any, selection: string) => {
-    this.setState({
-      selected: selection,
-      isExpanded: false
-    });
+  const onToggle = (isExpanded: boolean) => {
+    setIsOpen(isExpanded);
   };
 
-  onToggle = () => {
-    this.setState({ isExpanded: !this.state.isExpanded });
-  };
+  const options = [
+    <SelectOption key="MA" value="MA" />,
+    <SelectOption key="Other" value="Other" />
+  ];
 
-  render() {
-    const { selected, isExpanded } = this.state;
+  return (
+    <Select
+      id="select"
+      onToggle={onToggle}
+      isOpen={isOpen}
+      placeholderText="Select a value"
+      aria-label="Select a value"
+      selections={selected}
+      onSelect={onSelect}
+      isGrouped
+    >
+      {options}
+    </Select>
 
-    return (
-      <Select
-        id="select"
-        onToggle={this.onToggle}
-        isOpen={isExpanded}
-        placeholderText="Select a value"
-        aria-label="Select a value"
-        selections={selected}
-        isGrouped
-      >
-        <SelectOption value="Massachusetts" onClick={event=>this.onSelect(event, "Massachusetts")} />
-        <SelectOption value="Other" onClick={event=>this.onSelect(event, "Other")}/>
-      </Select>
-    );
-  }
+  );
 }
 
 export default StateSelection
