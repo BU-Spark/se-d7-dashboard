@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Checkbox, TextInput, Button, Banner } from "@patternfly/react-core";
+import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
@@ -33,28 +32,12 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
       })
       .catch((error) => {
         setIsBannerVisible(true);
-        console.log(error);
         setAuthing(false);
       });
   };
 
   const navigateToSignUp = () => {
     navigate("/address-warning");
-  };
-
-  const SignUp = async () => {
-    const user = {
-      email,
-      password,
-    };
-
-    console.log(user);
-
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      alert(error);
-    }
   };
 
   return (
@@ -82,17 +65,9 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         placeholder=""
       />
 
+      {isBannerVisible && 
+      (<Alert variant="danger" title="Login Failed" />)}
       <br />
-      {isBannerVisible && (
-        <Banner
-          variant="danger"
-          title="Error"
-          className="mb-3"
-          aria-live="polite"
-        >
-          <p>Incorrect username/password</p>
-        </Banner>
-      )}
 
       <Button
         className="px-5 py-1 mb-2"

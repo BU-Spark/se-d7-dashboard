@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 // import firebase auth
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth"
 import { useNavigate } from "react-router-dom";
-import { Checkbox, TextInput, Button, Banner } from "@patternfly/react-core";
+import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
@@ -37,7 +37,17 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
     .catch((error) => {
       setIsBannerVisible(true);
       // Only get the message in the parathesis
-      setBannerMessage(error.message.match(/\(([^)]+)\)/)[1]);
+      let parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+      // Match the message to the error message
+      if (parsedMessage === 'auth/email-already-in-use') {
+        setBannerMessage('Email already in use.');
+      } else if (parsedMessage === 'auth/invalid-email') {
+        setBannerMessage('Invalid email.');
+      } else if (parsedMessage === 'auth/weak-password') {
+        setBannerMessage('Password is too weak.');
+      } else {
+        setBannerMessage('Something went wrong.');
+      }
       console.log(error);
       setAuthing(false);
     });
@@ -68,16 +78,9 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
             placeholder=""
           />
       <br />
-      {isBannerVisible && (
-        <Banner
-          variant="danger"
-          title="Error"
-          className="mb-3"
-          aria-live="polite"
-        >
-          {bannerMessage}
-        </Banner>
-      )}
+      {isBannerVisible && 
+      (<Alert variant="danger" title={bannerMessage} />)}
+      <br />
 
         <div className="text-end mt-5">
         <Button onClick={SignUp} className="px-3 py-1" variant="primary">
