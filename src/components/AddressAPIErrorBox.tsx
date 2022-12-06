@@ -29,7 +29,7 @@ function AddressAPIError() {
           </div>
           <div className="row">
             <small className="text-start text-secondary">
-              We are having trouble connecting to the API
+              We are having trouble connecting to the map service, please try again later.
             </small>
           </div>
         </CardBody>
