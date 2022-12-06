@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert } from "@patternfly/react-core";
+import { Button, Alert,TextInput } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
@@ -45,24 +45,26 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
       <div className="mb-3 pf-c-title h4 text-start">Log In</div>
       <div className="text-start">Email</div>
 
-      <input
+      <TextInput
+        className="px-2"
+        id="textInput-basic-1"
+        type="text"
+        placeholder=""
         value={email}
         onChange={(e) => {
-          setEmail(e.target.value);
+          setEmail(e);
         }}
-        type="text"
-        className="input-text mb-3"
-        placeholder=""
       />
       <div className="text-start">Password</div>
-      <input
+      <TextInput
+        className="px-2 mb-3"
+        id="textInput-basic-1"
+        placeholder=""
         value={password}
         onChange={(e) => {
-          setPassword(e.target.value);
+          setPassword(e);
         }}
         type="password"
-        className="input-text mb-3"
-        placeholder=""
       />
 
       {isBannerVisible && 
