@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select, SelectOption, SelectOptionObject } from '@patternfly/react-core';
+import { Select, SelectOption } from '@patternfly/react-core';
 
 class StateSelection extends React.Component {
   state = {
@@ -7,17 +7,14 @@ class StateSelection extends React.Component {
     isExpanded: false
   };
 
-  // Create a function that takes a string
   onSelect = (event: any, selection: string) => {
-    console.log(event);
     this.setState({
-        selected: selection,
-        isExpanded: false
+      selected: selection,
+      isExpanded: false
     });
   };
 
   onToggle = () => {
-    console.log(this.state.isExpanded)
     this.setState({ isExpanded: !this.state.isExpanded });
   };
 
