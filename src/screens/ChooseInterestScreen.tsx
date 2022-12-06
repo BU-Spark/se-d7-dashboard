@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import ChecklistElement from "../components/ChecklistElement";
-import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
+import { Button, Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function ChooseInterestScreen() {

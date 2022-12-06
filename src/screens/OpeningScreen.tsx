@@ -1,12 +1,16 @@
 import * as React from "react";
-import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Button } from "@patternfly/react-core";
+import { useNavigate } from 'react-router-dom';
 
 function Openingscreen () {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
     navigate('/login');
+  };
+
+  const navigateToSignUp = () => {
+    navigate('/address-warning');
   };
   
     return (
@@ -16,7 +20,7 @@ function Openingscreen () {
         <Button onClick={navigateToNext} className="px-5 py-1 mb-2" style={{width:"260px"}} variant="primary">
         I am a resident of D7
         </Button>
-        <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary">
+        <Button onClick={navigateToSignUp} className="px-5 py-1" style={{width:"260px"}} variant="secondary">
         Find out
         </Button>
         
