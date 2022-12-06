@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 // import firebase auth
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
+import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
@@ -13,105 +13,80 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState("This is a banner.");
 
   const navigateToNext = () => {
-    navigate('/choose-interest');
+    navigate("/choose-interest");
   };
-
-  const Login = async () => {
-    const user = {
-      email,
-      password,
-    }
-    setAuthing(true);
-
-    signInWithEmailAndPassword(auth, user.email, user.password)
-        .then((response) => {
-            console.log(response.user.uid);
-            navigate('/user-profile');
-        })
-        .catch((error) => {
-            alert(error);
-            setAuthing(false);
-        });
-};
-
-// const navigateToSignUp = () => {
-//   navigate('/address-warning');
-// };
 
   const SignUp = async () => {
     const user = {
       email,
       password,
-    }
+    };
 
     console.log(user);
 
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      navigate('/choose-interest');
-    } catch (error) {
-      alert(error);
-    }
-  }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        console.log(response.user.uid);
+        navigate("/choose-interest");
+      })
+      .catch((error) => {
+        setIsBannerVisible(true);
+        // Only get the message in the parathesis
+        let parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+        // Match the message to the error message
+        if (parsedMessage === "auth/email-already-in-use") {
+          setBannerMessage("Email already in use.");
+        } else if (parsedMessage === "auth/invalid-email") {
+          setBannerMessage("Invalid email.");
+        } else if (parsedMessage === "auth/weak-password") {
+          setBannerMessage("Password is too weak.");
+        } else {
+          setBannerMessage("Something went wrong.");
+        }
+        console.log(error);
+        setAuthing(false);
+      });
+  };
 
   return (
     <div className="container">
-              <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
-              <div className="text-start">Email</div>
-      
+      <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
+      <div className="text-start">Email</div>
+
       <input
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            type="text"
-            className="input-text mb-3"
-            placeholder=""
-          />
-          <div className="text-start">Password</div>
-          <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            className="input-text mb-3"
-            placeholder=""
-          />
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+        type="text"
+        className="input-text mb-3"
+        placeholder=""
+      />
+      <div className="text-start">Password</div>
+      <input
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+        type="password"
+        className="input-text mb-3"
+        placeholder=""
+      />
+      <br />
+      {isBannerVisible && <Alert variant="danger" title={bannerMessage} />}
+      <br />
 
-{/* <div className="text-start"> Re-enter Password</div>
-          <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            className="input-text mb-3"
-            placeholder=""
-          /> */}
-
-
-        
-        {/* <Button className="px-5 py-1" style={{width:"260px"}} variant="secondary" onClick={SignUp} >
-        Sign up
-        </Button> */}
-
-        <div className="text-end mt-5">
+      <div className="text-end mt-5">
         <Button onClick={SignUp} className="px-3 py-1" variant="primary">
           Next
         </Button>
       </div>
-
-
-      
     </div>
   );
-}
+};
 
 export default SignUpScreen;
