@@ -8,7 +8,8 @@ class StateSelection extends React.Component {
   };
 
   // Create a function that takes a string
-  onSelect = (selection: string) => {
+  onSelect = (event: any, selection: string) => {
+    console.log(event);
     this.setState({
         selected: selection,
         isExpanded: false
@@ -33,8 +34,8 @@ class StateSelection extends React.Component {
         selections={selected}
         isGrouped
       >
-        <SelectOption value="Massachusetts" onClick={event=>this.onSelect("Massachusetts")} />
-        <SelectOption value="Other" onClick={event=>this.onSelect("Other")}/>
+        <SelectOption value="Massachusetts" onClick={event=>this.onSelect(event, "Massachusetts")} />
+        <SelectOption value="Other" onClick={event=>this.onSelect(event, "Other")}/>
       </Select>
     );
   }
