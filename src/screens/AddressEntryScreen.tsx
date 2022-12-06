@@ -132,7 +132,7 @@ function Addressentryscreen() {
         type="text"
         placeholder="City"
         onChange={(e) => {
-          setCity(e);
+          setCity(e.split(" ").join("+"));
         }}
       />
 
@@ -149,7 +149,7 @@ function Addressentryscreen() {
         type="text"
         placeholder="Zipcode"
         onChange={(e) => {
-          setZip(e);
+          setZip(e.split(" ").join("+"));
         }}
       />
 
