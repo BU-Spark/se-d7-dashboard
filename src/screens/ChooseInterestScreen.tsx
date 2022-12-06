@@ -65,8 +65,6 @@ function ChooseInterestScreen() {
     
     // Update the chips state
     setChips({interests: newChips});
-
-    // Set chip html style to style={{backgroundColor: '#004080', color: 'white'}}
   };
 
   return (
