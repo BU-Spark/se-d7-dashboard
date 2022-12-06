@@ -58,7 +58,8 @@ function Addressentryscreen() {
       setShowInvalid(true);
     } else {
       // Get coordinates from address using openstreetmap API
-      const url = "https://nominatim.openstreetmap.org/search?q=" + a.address + ", " + a.city + ", " + a.state + " " + a.zip + "&format=json&polygon=1&addressdetails=1";
+      const url = "https://nominatim.openstreetmap.org/search?"
+        + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
       console.log(url);
       fetch(url)
         .then((response) => response.json())
@@ -69,8 +70,8 @@ function Addressentryscreen() {
             // console.log("No results found");
           } else {
             // Store the coordinates in state
-            setLat(data[0].lat);
-            setLng(data[0].lon);
+            setLat(data.lat);
+            setLng(data.lon);
             // print the coordinates
             console.log("lat: " + lat + " lng: " + lng);
           }
@@ -111,7 +112,7 @@ function Addressentryscreen() {
         type="text"
         placeholder="Street Address"
         onChange={(e) => {
-          setAddress(e);
+          setAddress(e.split(" ").join("+"));
         }}
       />
       {/* <TextInput

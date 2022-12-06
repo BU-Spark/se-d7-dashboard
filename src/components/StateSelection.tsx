@@ -16,7 +16,7 @@ function StateSelection({ state, setState }: any) {
   };
 
   const options = [
-    <SelectOption key="MA" value="MA" />,
+    <SelectOption key="MA" value="Massachusetts" />,
     <SelectOption key="Other" value="Other" />
   ];
 
