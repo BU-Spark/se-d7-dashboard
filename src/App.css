@@ -190,3 +190,18 @@ label {
   width: 280px !important;
   /* background-color: greenyellow; */
 }
+
+.selected-chip-non-clicked {
+  --pf-global--primary-color-100: black;
+  --pf-global--primary-color--dark-100: black;
+}
+
+.selected-chip-non-clicked:hover {
+  --pf-global--primary-color-100: grey;
+  --pf-global--primary-color--dark-100: grey;
+}
+
+.selected-chip-clicked {
+  --pf-global--primary-color-100: blue;
+  --pf-global--primary-color--dark-100: blue;
+}

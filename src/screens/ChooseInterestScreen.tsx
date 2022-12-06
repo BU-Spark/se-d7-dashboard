@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ChecklistElement from "../components/ChecklistElement";
-import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
+import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {Routes, Route, useNavigate} from 'react-router-dom';
@@ -19,38 +19,52 @@ function ChooseInterestScreen() {
       {
         id: 'a',
         name: 'Vehicles/Parking',
-        isChosen: false,
+        selected: false,
       },
       {
         id: 'b',
         name: 'Street/Park Damage',
-        isChosen: true,
+        selected: false,
       },
       {
         id: 'c',
         name: 'Lights',
-        isChosen: false,
+        selected: false,
       },
       {
         id: 'd',
         name: 'Volunteering',
-        isChosen: false,
+        selected: false,
       },
       {
         id: 'e',
         name: 'Local Events',
-        isChosen: false,
+        selected: false,
       },
       {
         id: 'f',
         name: 'Food Access',
-        isChosen: false,
+        selected: false,
       },
     ]
   });
 
+  // Create an array of strings to store the selected chips
+  const [selectedChips, setSelectedChips] = useState<string[]>([]);
+
   const highlightItem = (id: string) => {
-    // should hightlight the item when it is selected
+    // Flip the chip selected boolean
+    const newChips = chips.interests.map(interest => {
+      if (interest.id === id) {
+        interest.selected = !interest.selected;
+        console.log(interest.selected)
+      }
+      return interest;
+    }
+    );
+    
+    // Update the chips state
+    setChips({interests: newChips});
   };
 
   return (
@@ -63,17 +77,24 @@ function ChooseInterestScreen() {
       </div>
 
       {chips.interests.map(interest => {
+        // Return a chip that has black text color
         return (
-          <Chip className='px-3 m-1' onClick={() => highlightItem('readonlychip')} isReadOnly>
-        {interest.name}
-      </Chip>
-        )
+          // Set style to have black text color
+          <Chip 
+            className={interest.selected ? 'px-3 m-1 .selected-chip-clicked' : 'px-3 m-1 selected-chip-non-clicked'} 
+            onClick={() => highlightItem(interest.id)} 
+            isReadOnly 
+            isOverflowChip
+            >
+            {interest.name}
+          </Chip>
+        );
       })}
 
       
       <Button onClick={navigateToNext} className="px-5 py-1 mt-4" variant="primary">
       Finish Set Up
-        </Button>
+      </Button>
     </div>
   );
 }
