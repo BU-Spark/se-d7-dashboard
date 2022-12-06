@@ -2,9 +2,10 @@ import * as React from "react";
 import AddressCheckBox from "../components/AddressCheckBox";
 import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
 import AddressErrorBox from "../components/AddressErrorBox";
+import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { TextInput, Button } from "@patternfly/react-core";
+import { TextInput, Button, Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 
 function Addressentryscreen() {
@@ -44,16 +45,12 @@ function Addressentryscreen() {
         className="mb-2"
         id="textInput-basic-1"
         type="text"
+        placeholder="City"
         // aria-label="Street Address or P.O. Box"
       />
 
       <div className="text-start mt-3">State</div>
-      <TextInput
-        className="mb-2"
-        id="textInput-basic-1"
-        type="text"
-        // aria-label="Street Address or P.O. Box"
-      />
+      <StateSelection></StateSelection>
 
       <div className="text-start mt-3">Zipcode</div>
       <TextInput
