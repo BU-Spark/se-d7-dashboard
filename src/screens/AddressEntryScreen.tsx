@@ -16,7 +16,6 @@ function Addressentryscreen() {
 
   const navigateToNext = () => {
     setShowLoading(true);
-    // wait 1 second before showing success
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
@@ -46,7 +45,6 @@ function Addressentryscreen() {
         id="textInput-basic-1"
         type="text"
         placeholder="City"
-        // aria-label="Street Address or P.O. Box"
       />
 
       <div className="text-start mt-3">State</div>
@@ -58,7 +56,6 @@ function Addressentryscreen() {
         id="textInput-basic-1"
         type="text"
         placeholder="Zipcode"
-        // aria-label="Street Address or P.O. Box"
       />
 
       {showSuccess && <AddressCheckBox></AddressCheckBox>}
