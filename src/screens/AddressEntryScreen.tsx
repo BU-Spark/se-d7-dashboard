@@ -5,7 +5,7 @@ import AddressErrorBox from "../components/AddressErrorBox";
 import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { TextInput, Button, Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from "@patternfly/react-core";
+import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 
 function Addressentryscreen() {
