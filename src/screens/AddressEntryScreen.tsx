@@ -1,22 +1,31 @@
 import * as React from "react";
 import AddressCheckBox from "../components/AddressCheckBox";
 import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
+import AddressErrorBox from "../components/AddressErrorBox";
+import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Checkbox, TextInput, Button,Chip } from "@patternfly/react-core";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { TextInput, Button } from "@patternfly/react-core";
+import { useNavigate } from "react-router-dom";
 
 function Addressentryscreen() {
   const navigate = useNavigate();
+  const [showLoading, setShowLoading] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
 
   const navigateToNext = () => {
-    navigate('/signup');
+    setShowLoading(true);
+    setTimeout(() => {
+      setShowLoading(false);
+      setShowSuccess(true);
+      navigate("/signup");
+    }, 1000);
   };
 
   return (
     <div className="container">
-
-<div className="text-start">Address</div>
+      <div className="text-start">Address</div>
       <TextInput
         className="px-2"
         id="textInput-basic-1"
@@ -29,43 +38,39 @@ function Addressentryscreen() {
         type="text"
         placeholder="Apt, suite, unit, building, etc."
       />
-      
+
       <div className="mt-3 text-start">City</div>
       <TextInput
         className="mb-2"
         id="textInput-basic-1"
         type="text"
-        // aria-label="Street Address or P.O. Box"
+        placeholder="City"
       />
-      
+
       <div className="text-start mt-3">State</div>
-      <TextInput
-        className="mb-2"
-        id="textInput-basic-1"
-        type="text"
-        // aria-label="Street Address or P.O. Box"
-      />
-      
-<div className="text-start mt-3">Zipcode</div>
+      <StateSelection></StateSelection>
+
+      <div className="text-start mt-3">Zipcode</div>
       <TextInput
         className="mb-5 px-2"
         id="textInput-basic-1"
         type="text"
         placeholder="Zipcode"
-        // aria-label="Street Address or P.O. Box"
       />
-      
 
+      {showSuccess && <AddressCheckBox></AddressCheckBox>}
+      {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
+      {showError && <AddressErrorBox></AddressErrorBox>}
       
-      <AddressCheckBox></AddressCheckBox>
-      <br></br>
-      <AddressCheckBoxLoading></AddressCheckBoxLoading>
       <div className="text-end mt-3">
-        <Button onClick={navigateToNext} className="px-3 py-1" variant="primary">
+        <Button
+          onClick={navigateToNext}
+          className="px-3 py-1"
+          variant="primary"
+        >
           Next
         </Button>
       </div>
-      
     </div>
   );
 }

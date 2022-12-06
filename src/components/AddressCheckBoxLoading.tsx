@@ -1,16 +1,13 @@
 import * as React from "react";
 import {
   Card,
-  CardTitle,
   CardBody,
-  CardFooter,
   Text,
   Icon,
   Spinner,
 } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import CheckCircleIcon from "@patternfly/react-icons/dist/esm/icons/check-circle-icon";
 
 function AddressCheckBoxLoading() {
   return (
