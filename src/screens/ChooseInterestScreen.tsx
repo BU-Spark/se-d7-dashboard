@@ -16,6 +16,7 @@ function ChooseInterestScreen() {
 
 
   const navigateToNext = () => {
+
     // Loop through the chips and add the selected chips to the selectedChips array
     let userEmail = "";
     const loggedInUser = localStorage.getItem("user");
@@ -38,7 +39,8 @@ function ChooseInterestScreen() {
     });
 
     
-    navigate("/login");
+    navigate("/calendar");
+
   };
 
   // Store the chips in state

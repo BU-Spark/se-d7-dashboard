@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import firebase auth
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert } from "@patternfly/react-core";
+import { Button, Alert, TextInput } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
@@ -59,23 +59,23 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
       <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
       <div className="text-start">Email</div>
 
-      <input
+      <TextInput
         value={email}
         onChange={(e) => {
-          setEmail(e.target.value);
+          setEmail(e);
         }}
         type="text"
-        className="input-text mb-3"
+        className="mb-3"
         placeholder=""
       />
       <div className="text-start">Password</div>
-      <input
+      <TextInput
         value={password}
         onChange={(e) => {
-          setPassword(e.target.value);
+          setPassword(e);
         }}
         type="password"
-        className="input-text mb-3"
+        className="mb-3"
         placeholder=""
       />
       <br />
