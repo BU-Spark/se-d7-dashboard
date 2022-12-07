@@ -8,7 +8,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import {config} from '../config/config';
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
@@ -38,6 +38,13 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         let userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
           console.log("Document data:", userData.data());
+          // Check if first name is set, if not, navigate to user profile
+          if (userData.data().firstName) {
+            // TODO: navigate("/home");
+          }
+          else {
+            navigate("/user-profile");
+          }
         } else {
           navigate("/user-profile");
         }

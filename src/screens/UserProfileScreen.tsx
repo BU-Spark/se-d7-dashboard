@@ -38,7 +38,7 @@ function Userprofilescreen() {
     setOptOut(checked);
   };
 
-  const navigateToNext = () => {
+  const navigateToNext = async () => {
     // Add a new document in collection "user-profile"
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -49,7 +49,16 @@ function Userprofilescreen() {
         lastName: lastName,
         phoneNumber: phoneNumber,
         textUpdates: textUpdates,
-        optOut: optOut
+        optOut: optOut,
+        interests: await getDoc(doc(db, "user-profile", userEmail)).then((doc) => {
+          if (doc.exists()) {
+            return doc.data().interests;
+          } else {
+            return [];
+          }
+        }, (error) => {
+          console.log("Error getting document:", error);
+        })
       });
     }
   };
