@@ -39,7 +39,7 @@ function ChooseInterestScreen() {
     });
 
     
-    navigate("/calendar");
+    navigate("/login");
 
   };
 

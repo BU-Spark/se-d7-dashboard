@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -10,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 function Userprofilescreen() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
+  const navigate = useNavigate();
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -68,6 +70,7 @@ function Userprofilescreen() {
           }
         ),
       });
+      navigate("/calendar");
     }
   };
 

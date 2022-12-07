@@ -40,7 +40,7 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
           console.log("Document data:", userData.data());
           // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
-            // TODO: navigate("/home");
+            navigate("/calendar");
           }
           else {
             navigate("/user-profile");

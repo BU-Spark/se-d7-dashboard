@@ -12,6 +12,7 @@ function Openingscreen () {
       setUser(foundUser);
     }
     console.log("User already logged in: ", user);
+    navigate("/calendar");
   }, []);
   
   const navigateToNext = () => {
