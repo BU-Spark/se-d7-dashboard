@@ -9,6 +9,17 @@ function ChooseInterestScreen() {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
+    // Loop through the chips and add the selected chips to the selectedChips array
+    chips.interests.forEach(interest => {
+      if (interest.selected) {
+        console.log(interest.id);
+        let newSelectedChips = selectedChips;
+        newSelectedChips.push(interest.id);
+        setSelectedChips(newSelectedChips);
+      }
+    });
+    // TODO: Send selectedChips to backend
+    console.log(selectedChips);
     navigate('/login');
   };
 
@@ -56,7 +67,6 @@ function ChooseInterestScreen() {
     const newChips = chips.interests.map(interest => {
       if (interest.id === id) {
         interest.selected = !interest.selected;
-        console.log(interest.selected)
       }
       return interest;
     }
