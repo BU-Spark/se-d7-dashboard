@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import {config} from '../config/config';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { config } from "../config/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,7 +18,6 @@ function Userprofilescreen() {
   const [fieldsMissing, setFieldsMissing] = React.useState(false);
 
   const handleFirstNameChange = (firstName: string) => {
-    console.log(firstName)
     setFirstName(firstName);
   };
 
@@ -35,22 +34,19 @@ function Userprofilescreen() {
   };
 
   const handleOptOutChange = (checked: boolean) => {
-    // Flip the value of optOut
     setOptOut(checked);
   };
 
   const navigateToNext = async () => {
-    // Add a new document in collection "user-profile"
-    // Make sure all text fields are filled out
     if (firstName === "" || lastName === "" || phoneNumber === "") {
       setFieldsMissing(true);
       return;
-    }
-    else {
+    } else {
       setFieldsMissing(false);
     }
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
+      console.log("User is logged in.");
       const userEmail = JSON.parse(loggedInUser).email;
       const userProfileRef = doc(db, "user-profile", userEmail);
       setDoc(userProfileRef, {
@@ -59,15 +55,18 @@ function Userprofilescreen() {
         phoneNumber: phoneNumber,
         textUpdates: textUpdates,
         optOut: optOut,
-        interests: await getDoc(doc(db, "user-profile", userEmail)).then((doc) => {
-          if (doc.exists()) {
-            return doc.data().interests;
-          } else {
-            return [];
+        interests: await getDoc(doc(db, "user-profile", userEmail)).then(
+          (doc) => {
+            if (doc.exists()) {
+              return doc.data().interests;
+            } else {
+              return [];
+            }
+          },
+          (error) => {
+            console.log("Error getting document:", error);
           }
-        }, (error) => {
-          console.log("Error getting document:", error);
-        })
+        ),
       });
     }
   };
@@ -105,12 +104,12 @@ function Userprofilescreen() {
       />
 
       {fieldsMissing && (
-      <Alert 
-        variant="danger" 
-        title="Above fields are required"
-        isPlain
-        isInline 
-      />
+        <Alert
+          variant="danger"
+          title="Above fields are required"
+          isPlain
+          isInline
+        />
       )}
 
       <Checkbox
@@ -128,11 +127,11 @@ function Userprofilescreen() {
         isChecked={optOut}
       />
       <div className="text-end ">
-        <Button 
-        className="px-3 py-1" 
-        variant="primary"
-        onClick={navigateToNext}
-      >
+        <Button
+          className="px-3 py-1"
+          variant="primary"
+          onClick={navigateToNext}
+        >
           Next
         </Button>
       </div>
