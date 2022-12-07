@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Checkbox, TextInput, Button } from "@patternfly/react-core";
+import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import {config} from '../config/config';
@@ -15,6 +15,7 @@ function Userprofilescreen() {
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [textUpdates, setTextUpdates] = React.useState(false);
   const [optOut, setOptOut] = React.useState(false);
+  const [fieldsMissing, setFieldsMissing] = React.useState(false);
 
   const handleFirstNameChange = (firstName: string) => {
     console.log(firstName)
@@ -40,6 +41,14 @@ function Userprofilescreen() {
 
   const navigateToNext = async () => {
     // Add a new document in collection "user-profile"
+    // Make sure all text fields are filled out
+    if (firstName === "" || lastName === "" || phoneNumber === "") {
+      setFieldsMissing(true);
+      return;
+    }
+    else {
+      setFieldsMissing(false);
+    }
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const userEmail = JSON.parse(loggedInUser).email;
@@ -85,6 +94,7 @@ function Userprofilescreen() {
         aria-label="Last Name input field"
         onChange={handleLastNameChange}
       />
+
       <div className="text-start">Phone Number</div>
       <TextInput
         className="mb-2"
@@ -93,6 +103,15 @@ function Userprofilescreen() {
         aria-label="Phone Number input field"
         onChange={handlePhoneNumberChange}
       />
+
+      {fieldsMissing && (
+      <Alert 
+        variant="danger" 
+        title="Above fields are required"
+        isPlain
+        isInline 
+      />
+      )}
 
       <Checkbox
         className="mt-4"
