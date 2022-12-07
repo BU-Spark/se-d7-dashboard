@@ -13,26 +13,24 @@ export interface ILoginScreenProps {}
 const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
 
   const Login = async () => {
     const user = {
       email,
       password,
     };
-    setAuthing(true);
 
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then((response) => {
-        console.log(response.user.uid);
+        console.log(response.user.getIdToken());
+        localStorage.setItem("user", JSON.stringify(response.user));
         navigate("/user-profile");
       })
-      .catch((error) => {
+      .catch((_) => {
         setIsBannerVisible(true);
-        setAuthing(false);
       });
   };
 
@@ -65,7 +63,7 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         placeholder=""
       />
 
-      {isBannerVisible && 
+      {isLoginErrorVisible && 
       (<Alert variant="danger" title="Login Failed" />)}
       <br />
 
