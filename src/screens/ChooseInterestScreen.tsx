@@ -80,7 +80,7 @@ function ChooseInterestScreen() {
         return (
           // Set style to have black text color
           <Chip 
-            className={interest.selected ? 'px-3 m-1 .selected-chip-clicked' : 'px-3 m-1 selected-chip-non-clicked'} 
+            className={interest.selected ? 'px-3 m-1 selected-chip-clicked' : 'px-3 m-1 selected-chip-non-clicked'} 
             onClick={() => highlightItem(interest.id)} 
             isReadOnly 
             isOverflowChip
