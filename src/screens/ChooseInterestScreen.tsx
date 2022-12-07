@@ -15,6 +15,13 @@ function ChooseInterestScreen() {
         let newSelectedChips = selectedChips;
         newSelectedChips.push(interest.id);
         setSelectedChips(newSelectedChips);
+        // Get user email from local storage
+        let userEmail = "";
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+          userEmail = JSON.parse(loggedInUser).email;
+        };
+        console.log(userEmail);
       }
     });
     // TODO: Send selectedChips to backend
