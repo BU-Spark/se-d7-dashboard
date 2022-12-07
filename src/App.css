@@ -200,3 +200,9 @@ label {
   --pf-global--primary-color-100: blue;
   --pf-global--primary-color--dark-100: blue;
 }
+
+.horizonal-scroll{
+  overflow-x:scroll ;
+  width:260px;
+  display: flex;
+}

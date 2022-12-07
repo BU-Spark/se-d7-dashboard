@@ -9,7 +9,7 @@ function ChooseInterestScreen() {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
-    navigate('/login');
+    navigate('/calendar');
   };
 
   const [chips, setChips] = useState({
