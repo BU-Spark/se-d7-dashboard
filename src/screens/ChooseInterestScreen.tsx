@@ -3,29 +3,41 @@ import { Button, Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router-dom";
+// Import firebase
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import {config} from '../config/config';
+import { doc, setDoc } from "firebase/firestore";
 
 function ChooseInterestScreen() {
   const navigate = useNavigate();
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
+
 
   const navigateToNext = () => {
     // Loop through the chips and add the selected chips to the selectedChips array
+    let userEmail = "";
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      userEmail = JSON.parse(loggedInUser).email;
+    };
     chips.interests.forEach((interest) => {
       if (interest.selected) {
         console.log(interest.id);
         let newSelectedChips = selectedChips;
         newSelectedChips.push(interest.id);
         setSelectedChips(newSelectedChips);
-        // Get user email from local storage
-        let userEmail = "";
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-          userEmail = JSON.parse(loggedInUser).email;
-        };
-        console.log(userEmail);
       }
     });
-    // TODO: Send selectedChips to backend
-    console.log(selectedChips);
+    
+    // Add a new document in collection "user-profile"
+    const userProfileRef = doc(db, "user-profile", userEmail);
+    setDoc(userProfileRef, {
+      interests: selectedChips
+    });
+
+    
     navigate("/login");
   };
 

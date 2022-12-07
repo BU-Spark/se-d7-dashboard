@@ -4,6 +4,11 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+// Import firebase
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import {config} from '../config/config';
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,6 +22,9 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const [password, setPassword] = useState<string>("");
   const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
 
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
+
   const Login = async () => {
     const user = {
       email,
@@ -24,10 +32,16 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
     };
 
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((response) => {
-        console.log(response.user.getIdToken());
+      .then(async (response) => {
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/user-profile");
+        console.log("Getting user data");
+        let userData = await getDoc(doc(db, "user-profile", user.email));
+        if (userData.exists()) {
+          console.log("Document data:", userData.data());
+        } else {
+          navigate("/user-profile");
+        }
+        
       })
       .catch((_) => {
         setIsBannerVisible(true);
