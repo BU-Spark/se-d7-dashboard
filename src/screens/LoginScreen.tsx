@@ -4,6 +4,11 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+// Import firebase
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import {config} from '../config/config';
+import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert } from "@patternfly/react-core";
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,26 +18,40 @@ export interface ILoginScreenProps {}
 const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
+
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
 
   const Login = async () => {
     const user = {
       email,
       password,
     };
-    setAuthing(true);
 
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/user-profile");
+      .then(async (response) => {
+        localStorage.setItem("user", JSON.stringify(response.user));
+        console.log("Getting user data");
+        let userData = await getDoc(doc(db, "user-profile", user.email));
+        if (userData.exists()) {
+          console.log("Document data:", userData.data());
+          // Check if first name is set, if not, navigate to user profile
+          if (userData.data().firstName) {
+            // TODO: navigate("/home");
+          }
+          else {
+            navigate("/user-profile");
+          }
+        } else {
+          navigate("/user-profile");
+        }
+        
       })
-      .catch((error) => {
+      .catch((_) => {
         setIsBannerVisible(true);
-        setAuthing(false);
       });
   };
 
@@ -65,7 +84,7 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         placeholder=""
       />
 
-      {isBannerVisible && 
+      {isLoginErrorVisible && 
       (<Alert variant="danger" title="Login Failed" />)}
       <br />
 

@@ -1,10 +1,19 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
 function Openingscreen () {
   const navigate = useNavigate();
-
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+    console.log("User already logged in: ", user);
+  }, []);
+  
   const navigateToNext = () => {
     navigate('/login');
   };
