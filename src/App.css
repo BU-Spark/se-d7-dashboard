@@ -197,6 +197,7 @@ label {
 }
 
 .selected-chip-clicked {
+
   --pf-global--primary-color-100: blue;
   --pf-global--primary-color--dark-100: blue;
 }
@@ -205,4 +206,11 @@ label {
   overflow-x:scroll ;
   width:260px;
   display: flex;
+
+  --pf-global--primary-color-100: green;
+  --pf-global--primary-color--dark-100: green;
+  --pf-global--BorderColor--300 : green;
+  --pf-global--BorderColor-100: green;
+  --pf-global--BorderColor--dark-100: green;
+
 }

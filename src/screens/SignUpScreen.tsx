@@ -31,6 +31,8 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user.uid);
+        // Store the user in local storage
+        localStorage.setItem("user", JSON.stringify(response.user));
         navigate("/choose-interest");
       })
       .catch((error) => {

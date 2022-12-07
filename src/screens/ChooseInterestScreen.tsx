@@ -1,51 +1,82 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+// Import firebase
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import {config} from '../config/config';
+import { doc, setDoc } from "firebase/firestore";
 
 function ChooseInterestScreen() {
   const navigate = useNavigate();
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
+
 
   const navigateToNext = () => {
-    navigate('/calendar');
+
+    // Loop through the chips and add the selected chips to the selectedChips array
+    let userEmail = "";
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      userEmail = JSON.parse(loggedInUser).email;
+    };
+    chips.interests.forEach((interest) => {
+      if (interest.selected) {
+        console.log(interest.id);
+        let newSelectedChips = selectedChips;
+        newSelectedChips.push(interest.id);
+        setSelectedChips(newSelectedChips);
+      }
+    });
+    
+    // Add a new document in collection "user-profile"
+    const userProfileRef = doc(db, "user-profile", userEmail);
+    setDoc(userProfileRef, {
+      interests: selectedChips
+    });
+
+    
+    navigate("/calendar");
+
   };
 
+  // Store the chips in state
   const [chips, setChips] = useState({
-
-    interests:[
+    interests: [
       {
-        id: 'a',
-        name: 'Vehicles/Parking',
+        id: "a",
+        name: "Vehicles/Parking",
         selected: false,
       },
       {
-        id: 'b',
-        name: 'Street/Park Damage',
+        id: "b",
+        name: "Street/Park Damage",
         selected: false,
       },
       {
-        id: 'c',
-        name: 'Lights',
+        id: "c",
+        name: "Lights",
         selected: false,
       },
       {
-        id: 'd',
-        name: 'Volunteering',
+        id: "d",
+        name: "Volunteering",
         selected: false,
       },
       {
-        id: 'e',
-        name: 'Local Events',
+        id: "e",
+        name: "Local Events",
         selected: false,
       },
       {
-        id: 'f',
-        name: 'Food Access',
+        id: "f",
+        name: "Food Access",
         selected: false,
       },
-    ]
+    ],
   });
 
   // Create an array of strings to store the selected chips
@@ -53,46 +84,47 @@ function ChooseInterestScreen() {
 
   const highlightItem = (id: string) => {
     // Flip the chip selected boolean
-    const newChips = chips.interests.map(interest => {
+    const newChips = chips.interests.map((interest) => {
       if (interest.id === id) {
         interest.selected = !interest.selected;
-        console.log(interest.selected)
       }
       return interest;
-    }
-    );
-    
+    });
+
     // Update the chips state
-    setChips({interests: newChips});
+    setChips({ interests: newChips });
   };
 
   return (
     <div className="container">
       <div className="pf-c-title mb-3 h5">
-      Help Us Understand Your Interests
+        Help Us Understand Your Interests
       </div>
-      <div className="mb-2">
-      You can always change this later
-      </div>
+      <div className="mb-2">You can always change this later</div>
 
-      {chips.interests.map(interest => {
-        // Return a chip that has black text color
+      {chips.interests.map((interest) => {
         return (
-          // Set style to have black text color
-          <Chip 
-            className={interest.selected ? 'px-3 m-1 .selected-chip-clicked' : 'px-3 m-1 selected-chip-non-clicked'} 
-            onClick={() => highlightItem(interest.id)} 
-            isReadOnly 
+          <Chip
+            className={
+              interest.selected
+                ? "px-3 m-1 selected-chip-clicked"
+                : "px-3 m-1 selected-chip-non-clicked"
+            }
+            onClick={() => highlightItem(interest.id)}
+            isReadOnly
             isOverflowChip
-            >
+          >
             {interest.name}
           </Chip>
         );
       })}
 
-      
-      <Button onClick={navigateToNext} className="px-5 py-1 mt-4" variant="primary">
-      Finish Set Up
+      <Button
+        onClick={navigateToNext}
+        className="px-5 py-1 mt-4"
+        variant="primary"
+      >
+        Finish Set Up
       </Button>
     </div>
   );
