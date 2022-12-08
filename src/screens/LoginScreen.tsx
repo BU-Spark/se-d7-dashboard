@@ -87,7 +87,11 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
       />
 
       {isLoginErrorVisible && 
-      (<Alert variant="danger" title="Login Failed" />)}
+      (<Alert 
+        isPlain
+        isInline
+        variant="danger" 
+        title="Login Failed" />)}
       <br />
 
       <Button
