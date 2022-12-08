@@ -79,7 +79,11 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         placeholder=""
       />
       <br />
-      {isBannerVisible && <Alert variant="danger" title={bannerMessage} />}
+      {isBannerVisible && <Alert 
+        isPlain
+        isInline
+        variant="danger" 
+        title={bannerMessage} />}
       <br />
 
       <div className="text-end mt-5">
