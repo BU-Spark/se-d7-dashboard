@@ -11,7 +11,7 @@ import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen() {
   const [search, setSearch] = React.useState("");
-  const [hasEvents, setHasEvents] = React.useState(false);
+  const [hasEvents, setHasEvents] = React.useState(true);
   const [events, setEvents] = React.useState([
     {
       title: "Food Drive",
@@ -53,7 +53,7 @@ function CalendarScreen() {
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
       <div className="horizonal-scroll">
-      {events.map((event) => {
+      {hasEvents && events.map((event) => {
         return (
           <CalendarCard
           title={event.title}
@@ -61,7 +61,15 @@ function CalendarScreen() {
         ></CalendarCard>
         );
       })}
+
+      {!hasEvents && 
+        <CalendarCard
+          title= "No Events"
+          content="Check back later!"
+        ></CalendarCard>
+      }
       </div>
+      
 
       <div className="my-3 pf-c-title h5 text-start">You Pinned</div>
       <Button
