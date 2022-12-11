@@ -11,7 +11,13 @@ import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen() {
   const [search, setSearch] = React.useState("");
+  // This marks if there are events in the first place
   const [hasEvents, setHasEvents] = React.useState(true);
+  // This marks if the event calendar is still being downloaded
+  const [loadingEvents, setLoadingEvents] = React.useState(false);
+  // This markts if the event processing is complete
+  const [eventsProcessed, setEventsProcessed] = React.useState(false);
+  // This is the list of events
   const [events, setEvents] = React.useState([
     {
       title: "Food Drive",
