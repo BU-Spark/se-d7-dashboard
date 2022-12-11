@@ -1,38 +1,16 @@
 import * as React from "react";
-import AddressCheckBox from "../components/AddressCheckBox";
-import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
 import CalendarCard from "../components/CalendarCard";
-import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {
-  Text,
   Button,
   SearchInput,
   Icon,
-  Card,
-  CardTitle,
-  CardBody,
-  CardFooter,
 } from "@patternfly/react-core";
-import { useNavigate } from "react-router-dom";
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen() {
-  const navigate = useNavigate();
-  const [showLoading, setShowLoading] = React.useState(false);
-  const [showSuccess, setShowSuccess] = React.useState(false);
-  const [showError, setShowError] = React.useState(false);
   const [search, setSearch] = React.useState("");
-
-  const navigateToNext = () => {
-    setShowLoading(true);
-    setTimeout(() => {
-      setShowLoading(false);
-      setShowSuccess(true);
-      navigate("/signup");
-    }, 1000);
-  };
 
   const onChange = (value: string) => {
     setSearch(value);
