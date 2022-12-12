@@ -7,11 +7,21 @@ import {
   SearchInput,
   Icon,
 } from "@patternfly/react-core";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import {config} from '../config/config';
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen(event: any) {
   const calendarUrl = 'https://calendar.google.com/calendar/ical/c_080ee803375d2514bcb0ec37156349602eb5972c84e941fe9f50bc91448193ec%40group.calendar.google.com/public/basic.ics';
-  
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
+  const loggedInUser = localStorage.getItem("user");
+  let userEmail = "";
+  if (loggedInUser) {
+    userEmail = JSON.parse(loggedInUser).email;
+  };
+  const userProfileRef = doc(db, "user-profile", userEmail);
   const [search, setSearch] = React.useState("");
   // This marks if there are events in the first place
   const [hasEvents, setHasEvents] = React.useState(true);
@@ -31,14 +41,19 @@ function CalendarScreen(event: any) {
     },
   ]);
 
-  const [interests, setInterests] = React.useState([
-    {
-      title: "Volunteering",
-    },
-    {
-      title: "Local Events",
-    },
-  ]);
+  const [interests, setInterests] = React.useState([]);
+
+  // Get the interests from the user profile
+  getDoc(userProfileRef).then((doc) => {
+    if (doc.exists()) {
+      setInterests(doc.data()['interests']);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
 
   const onChange = (value: string) => {
     setSearch(value);
@@ -94,7 +109,7 @@ function CalendarScreen(event: any) {
           style={{ width: "260px" }}
           variant="primary"
           >
-          {interest.title}
+          {interest}
           </Button>
         );
       })}
