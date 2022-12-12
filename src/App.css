@@ -205,15 +205,8 @@ label {
   --pf-global--BorderColor--dark-100: green;
 }
 
-.horizonal-scroll{
+.horizontal-scroll{
   overflow-x:scroll ;
   width:260px;
   display: flex;
-
-  --pf-global--primary-color-100: green;
-  --pf-global--primary-color--dark-100: green;
-  --pf-global--BorderColor--300 : green;
-  --pf-global--BorderColor-100: green;
-  --pf-global--BorderColor--dark-100: green;
-
 }

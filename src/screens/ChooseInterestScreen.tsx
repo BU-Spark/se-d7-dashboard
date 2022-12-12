@@ -25,9 +25,8 @@ function ChooseInterestScreen() {
     };
     chips.interests.forEach((interest) => {
       if (interest.selected) {
-        console.log(interest.id);
         let newSelectedChips = selectedChips;
-        newSelectedChips.push(interest.id);
+        newSelectedChips.push(interest.name);
         setSelectedChips(newSelectedChips);
       }
     });

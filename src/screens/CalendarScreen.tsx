@@ -1,38 +1,54 @@
 import * as React from "react";
-import AddressCheckBox from "../components/AddressCheckBox";
-import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
 import CalendarCard from "../components/CalendarCard";
-import StateSelection from "../components/StateSelection";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {
-  Text,
   Button,
   SearchInput,
   Icon,
-  Card,
-  CardTitle,
-  CardBody,
-  CardFooter,
 } from "@patternfly/react-core";
-import { useNavigate } from "react-router-dom";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import {config} from '../config/config';
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen() {
-  const navigate = useNavigate();
-  const [showLoading, setShowLoading] = React.useState(false);
-  const [showSuccess, setShowSuccess] = React.useState(false);
-  const [showError, setShowError] = React.useState(false);
-  const [search, setSearch] = React.useState("");
-
-  const navigateToNext = () => {
-    setShowLoading(true);
-    setTimeout(() => {
-      setShowLoading(false);
-      setShowSuccess(true);
-      navigate("/signup");
-    }, 1000);
+  const app = initializeApp(config.firebaseConfig);
+  const db = getFirestore(app);
+  const loggedInUser = localStorage.getItem("user");
+  let userEmail = "";
+  if (loggedInUser) {
+    userEmail = JSON.parse(loggedInUser).email;
   };
+  const userProfileRef = doc(db, "user-profile", userEmail);
+  const [search, setSearch] = React.useState("");
+  // This marks if there are events in the first place
+  const [hasEvents, setHasEvents] = React.useState(true);
+  // This is the list of events
+  const [events, setEvents] = React.useState([
+    {
+      title: "Food Drive",
+      content: "Community Center November 15",
+    },
+    {
+      title: "Christmas Fair",
+      content: "Church December 24",
+    },
+  ]);
+
+  const [interests, setInterests] = React.useState([]);
+
+  // Get the interests from the user profile
+  getDoc(userProfileRef).then((doc) => {
+    if (doc.exists()) {
+      setInterests(doc.data()['interests']);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
 
   const onChange = (value: string) => {
     setSearch(value);
@@ -59,43 +75,39 @@ function CalendarScreen() {
       </div>
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
-      <div className="horizonal-scroll">
+      <div className="horizontal-scroll">
+
+      {hasEvents ? (
+        events.map((event) => {
+          return (
+            <CalendarCard
+            title={event.title}
+            content={event.content}
+          ></CalendarCard>
+          );
+        })
+      ) : (
         <CalendarCard
-          title="Food Drive"
-          content="Community Center November 15"
+          title= "No Events"
+          content="Check back later!"
         ></CalendarCard>
-        <CalendarCard
-          title="Christmas Fair"
-          content="Church December 24"
-        ></CalendarCard>
-        <CalendarCard
-          title="New year Fair"
-          content="Church January 25"
-        ></CalendarCard>
+      )}
       </div>
+      
 
       <div className="my-3 pf-c-title h5 text-start">You Pinned</div>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Volunteering
-      </Button>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Local Events
-      </Button>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Food Access
-      </Button>
+
+      {interests.map((interest) => {
+        return (
+          <Button
+          className="px-5 py-1 mb-2"
+          style={{ width: "260px" }}
+          variant="primary"
+          >
+          {interest}
+          </Button>
+        );
+      })}
 
       <div className="my-3 pf-c-title h5 text-start">Our Resources</div>
       <Button
@@ -135,7 +147,7 @@ function CalendarScreen() {
       </Button>
 
       <div className="mt-3 pf-c-title h5 text-start">News and Updates</div>
-      <div className="horizonal-scroll">
+      <div className="horizontal-scroll">
         <CalendarCard
           title="Food Drive"
           content="Community Center November 15"

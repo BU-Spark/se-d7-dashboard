@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@patternfly/react-core";
+import { Button, ContextSelectorFooter } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
 function Openingscreen () {
@@ -9,10 +9,14 @@ function Openingscreen () {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
+      // Don't set user if it is undefined
+      if (foundUser != undefined) {
+        setUser(foundUser);
+        console.log("User is logged in");
+        console.log(foundUser.email);
+        navigate("/calendar");
+      }
     }
-    console.log("User already logged in: ", user);
-    navigate("/calendar");
   }, []);
   
   const navigateToNext = () => {

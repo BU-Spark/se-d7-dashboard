@@ -94,11 +94,11 @@ function Addressentryscreen() {
               }
             }).then((arcgisResponse) => {
               // Check if the address is in District 7
-              if (arcgisResponse == -1) {
+              if (arcgisResponse === -1) {
                 setShowLoading(false);
                 setShowAPIError(true);
               }
-              else if (arcgisResponse == 7) {
+              else if (arcgisResponse === 7) {
                 setShowLoading(false);
                 setShowSuccess(true);
                 navigateToNext();
