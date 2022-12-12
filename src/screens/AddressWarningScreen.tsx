@@ -1,7 +1,7 @@
 import * as React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Checkbox, TextInput, Button, Chip } from "@patternfly/react-core";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Button } from "@patternfly/react-core";
+import { useNavigate } from 'react-router-dom';
 
 function Addresswarningscreen () {
   const navigate = useNavigate();
