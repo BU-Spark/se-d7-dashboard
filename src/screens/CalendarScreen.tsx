@@ -2,8 +2,6 @@ import * as React from "react";
 import CalendarCard from "../components/CalendarCard";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import * as fs from 'fs';
-import * as ical from 'ical';
 import {
   Button,
   SearchInput,
@@ -13,9 +11,9 @@ import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen(event: any) {
   const calendarUrl = 'https://calendar.google.com/calendar/ical/c_080ee803375d2514bcb0ec37156349602eb5972c84e941fe9f50bc91448193ec%40group.calendar.google.com/public/basic.ics';
-  const calendarData = fs.readFileSync(calendarUrl, 'utf8');
-  const calendarEvents = ical.parseICS(calendarData);
-  function checkUpcomingEvents(events: { [key: string]: ical.Event }) {
+  // const calendarData = fs.readFileSync(calendarUrl, 'utf8');
+  // const calendarEvents = ical.parseICS(calendarData);
+  function checkUpcomingEvents(events: { [key: string]: any }) {
     // Get the current date and the date one week from now
     const now = new Date();
     const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
