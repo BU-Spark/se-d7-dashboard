@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@patternfly/react-core";
+import { Button, ContextSelectorFooter } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
 function Openingscreen () {
@@ -10,17 +10,14 @@ function Openingscreen () {
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       // Don't set user if it is undefined
-      if (foundUser) {
+      if (foundUser != undefined) {
         setUser(foundUser);
+        navigate("/calendar");
       }
       else {
-        console.log("User is undefined");
-        // Exit this function
         return;
       }
     }
-    console.log("User already logged in: ", user);
-    navigate("/calendar");
   }, []);
   
   const navigateToNext = () => {
