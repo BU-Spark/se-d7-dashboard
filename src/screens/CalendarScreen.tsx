@@ -59,21 +59,22 @@ function CalendarScreen() {
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
       <div className="horizonal-scroll">
-      {hasEvents && events.map((event) => {
-        return (
-          <CalendarCard
-          title={event.title}
-          content={event.content}
-        ></CalendarCard>
-        );
-      })}
 
-      {!hasEvents && 
+      {hasEvents ? (
+        events.map((event) => {
+          return (
+            <CalendarCard
+            title={event.title}
+            content={event.content}
+          ></CalendarCard>
+          );
+        })
+      ) : (
         <CalendarCard
           title= "No Events"
           content="Check back later!"
         ></CalendarCard>
-      }
+      )}
       </div>
       
 
