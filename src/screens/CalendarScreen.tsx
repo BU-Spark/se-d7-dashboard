@@ -12,8 +12,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import {config} from '../config/config';
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
-function CalendarScreen(event: any) {
-  const calendarUrl = 'https://calendar.google.com/calendar/ical/c_080ee803375d2514bcb0ec37156349602eb5972c84e941fe9f50bc91448193ec%40group.calendar.google.com/public/basic.ics';
+function CalendarScreen() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
   const loggedInUser = localStorage.getItem("user");
@@ -25,10 +24,6 @@ function CalendarScreen(event: any) {
   const [search, setSearch] = React.useState("");
   // This marks if there are events in the first place
   const [hasEvents, setHasEvents] = React.useState(true);
-  // This marks if the event calendar is still being downloaded
-  const [loadingEvents, setLoadingEvents] = React.useState(false);
-  // This markts if the event processing is complete
-  const [eventsProcessed, setEventsProcessed] = React.useState(false);
   // This is the list of events
   const [events, setEvents] = React.useState([
     {
