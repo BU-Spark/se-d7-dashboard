@@ -78,7 +78,7 @@ function CalendarScreen(event: any) {
       </div>
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
-      <div className="horizonal-scroll">
+      <div className="horizontal-scroll">
 
       {hasEvents ? (
         events.map((event) => {
@@ -159,7 +159,7 @@ function CalendarScreen(event: any) {
       </Button>
 
       <div className="mt-3 pf-c-title h5 text-start">News and Updates</div>
-      <div className="horizonal-scroll">
+      <div className="horizontal-scroll">
         <CalendarCard
           title="Food Drive"
           content="Community Center November 15"
