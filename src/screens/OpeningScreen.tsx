@@ -14,9 +14,6 @@ function Openingscreen () {
         setUser(foundUser);
         navigate("/calendar");
       }
-      else {
-        return;
-      }
     }
   }, []);
   
