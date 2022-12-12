@@ -11,24 +11,6 @@ import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
 function CalendarScreen(event: any) {
   const calendarUrl = 'https://calendar.google.com/calendar/ical/c_080ee803375d2514bcb0ec37156349602eb5972c84e941fe9f50bc91448193ec%40group.calendar.google.com/public/basic.ics';
-  // const calendarData = fs.readFileSync(calendarUrl, 'utf8');
-  // const calendarEvents = ical.parseICS(calendarData);
-  function checkUpcomingEvents(events: { [key: string]: any }) {
-    // Get the current date and the date one week from now
-    const now = new Date();
-    const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-  
-    // Check if the calendar has any events in the upcoming week
-    const upcomingEvents = Object.values(events).filter(event => {
-      return event.start >= now && event.start < nextWeek;
-    });
-  
-    if (upcomingEvents.length > 0) {
-      console.log('There are events in the upcoming week.');
-    } else {
-      console.log('There are no events in the upcoming week.');
-    }
-  }
   
   const [search, setSearch] = React.useState("");
   // This marks if there are events in the first place
@@ -47,9 +29,14 @@ function CalendarScreen(event: any) {
       title: "Christmas Fair",
       content: "Church December 24",
     },
+  ]);
+
+  const [interests, setInterests] = React.useState([
     {
-      title: "New year Fair",
-      content: "Church January 25",
+      title: "Volunteering",
+    },
+    {
+      title: "Local Events",
     },
   ]);
 
@@ -99,27 +86,18 @@ function CalendarScreen(event: any) {
       
 
       <div className="my-3 pf-c-title h5 text-start">You Pinned</div>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Volunteering
-      </Button>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Local Events
-      </Button>
-      <Button
-        className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
-        variant="primary"
-      >
-        Food Access
-      </Button>
+
+      {interests.map((interest) => {
+        return (
+          <Button
+          className="px-5 py-1 mb-2"
+          style={{ width: "260px" }}
+          variant="primary"
+          >
+          {interest.title}
+          </Button>
+        );
+      })}
 
       <div className="my-3 pf-c-title h5 text-start">Our Resources</div>
       <Button
