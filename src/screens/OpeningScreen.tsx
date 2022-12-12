@@ -9,7 +9,15 @@ function Openingscreen () {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
+      // Don't set user if it is undefined
+      if (foundUser) {
+        setUser(foundUser);
+      }
+      else {
+        console.log("User is undefined");
+        // Exit this function
+        return;
+      }
     }
     console.log("User already logged in: ", user);
     navigate("/calendar");
