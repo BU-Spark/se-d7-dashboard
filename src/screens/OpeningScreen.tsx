@@ -12,6 +12,8 @@ function Openingscreen () {
       // Don't set user if it is undefined
       if (foundUser != undefined) {
         setUser(foundUser);
+        console.log("User is logged in");
+        console.log(foundUser.email);
         navigate("/calendar");
       }
     }
