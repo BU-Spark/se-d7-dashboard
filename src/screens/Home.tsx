@@ -12,7 +12,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import {config} from '../config/config';
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
 
-function CalendarScreen() {
+function Home() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
   const loggedInUser = localStorage.getItem("user");
@@ -165,4 +165,4 @@ function CalendarScreen() {
   );
 }
 
-export default CalendarScreen;
+export default Home;

@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
 
-const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -95,4 +95,4 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default SignUpScreen;
+export default Register;

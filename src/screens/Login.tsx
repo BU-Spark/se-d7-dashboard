@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
 
-const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const Login: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
@@ -121,4 +121,4 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default Loginscreen;
+export default Login;

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
-function Addresswarningscreen () {
+function AddressInfo() {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
@@ -26,4 +26,4 @@ function Addresswarningscreen () {
   
 }
 
-export default Addresswarningscreen;
+export default AddressInfo

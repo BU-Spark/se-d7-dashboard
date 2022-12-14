@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 
-function Addressentryscreen() {
+function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -180,4 +180,4 @@ function Addressentryscreen() {
   );
 }
 
-export default Addressentryscreen;
+export default AddressVerify;

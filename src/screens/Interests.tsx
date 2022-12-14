@@ -9,7 +9,7 @@ import { getFirestore } from 'firebase/firestore';
 import {config} from '../config/config';
 import { doc, setDoc } from "firebase/firestore";
 
-function ChooseInterestScreen() {
+function Interests() {
   const navigate = useNavigate();
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
@@ -129,4 +129,4 @@ function ChooseInterestScreen() {
   );
 }
 
-export default ChooseInterestScreen;
+export default Interests;

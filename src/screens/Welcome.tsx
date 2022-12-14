@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, ContextSelectorFooter } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
-function Openingscreen () {
+function Welcome () {
   const navigate = useNavigate();
   const [user, setUser] = useState();
   useEffect(() => {
@@ -44,4 +44,4 @@ function Openingscreen () {
   
 }
 
-export default Openingscreen;
+export default Welcome;
