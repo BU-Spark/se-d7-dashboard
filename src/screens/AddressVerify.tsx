@@ -72,7 +72,7 @@ function AddressVerify() {
             return { lat: data[0].lat, lng: data[0].lon };
           }
         }).then((coords) => {
-          // Query ArcGIS Identity API to return all layers that contain the point
+          // Query ArcGIS Query API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
           if (!coords) {
             setShowLoading(false);
