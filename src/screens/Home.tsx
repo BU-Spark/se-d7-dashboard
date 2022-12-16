@@ -1,5 +1,6 @@
 import * as React from "react";
 import CalendarCard from "../components/CalendarCard";
+import Calendar from "../components/Calendar";
 import {
   Button,
   SearchInput,
@@ -71,6 +72,7 @@ function Home() {
           </Icon>
         </div>
       </div>
+      <Calendar></Calendar>
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
       <div className="horizontal-scroll">
