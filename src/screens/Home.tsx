@@ -1,7 +1,5 @@
 import * as React from "react";
 import CalendarCard from "../components/CalendarCard";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import {
   Button,
   SearchInput,

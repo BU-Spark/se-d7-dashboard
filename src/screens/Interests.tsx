@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { initializeApp } from 'firebase/app';

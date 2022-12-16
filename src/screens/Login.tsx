@@ -11,11 +11,10 @@ import {config} from '../config/config';
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert,TextInput } from "@patternfly/react-core";
-import "bootstrap/dist/css/bootstrap.css";
 
-export interface ILoginScreenProps {}
+export interface Login {}
 
-const Login: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const Login: React.FunctionComponent<Login> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");

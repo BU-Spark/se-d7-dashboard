@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
 

@@ -1,5 +1,4 @@
 import * as React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 

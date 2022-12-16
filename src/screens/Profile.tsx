@@ -5,8 +5,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { config } from "../config/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 function Profile() {
   const app = initializeApp(config.firebaseConfig);

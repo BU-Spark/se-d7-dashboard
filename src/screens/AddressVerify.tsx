@@ -5,8 +5,6 @@ import AddressErrorBox from "../components/AddressErrorBox";
 import AddressInvalidBox from "../components/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/AddressAPIErrorBox";
 import StateSelection from "../components/StateSelection";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 
