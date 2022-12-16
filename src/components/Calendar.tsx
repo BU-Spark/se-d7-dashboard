@@ -79,12 +79,12 @@ function Calendar() {
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center" key={i}>
-          {/* {format(addDays(startDate, i), dateFormat)} */}
+        <div className="col-1 me-1" key={i}>
+          {format(addDays(startDate, i), dateFormat)}
         </div>
       );
     }
-    return <div className="days row">{days}</div>;
+    return <div className="days row" style={{width: "480px"}}>{days}</div>;
   };
 
 
@@ -103,7 +103,7 @@ function Calendar() {
         const cloneDay = day;
         days.push(
           <div
-            className={`col cell ${
+            className={`col-1 me-1 ${
               isSameDay(day, new Date())
                 ? "today"
                 : isSameDay(day, selectedDate)
@@ -124,7 +124,7 @@ function Calendar() {
       }
 
       rows.push(
-        <div className="row" key={formattedDate}>
+        <div className="row " key={formattedDate} style={{width: "480px"}}>
           {days}
         </div>
       );
