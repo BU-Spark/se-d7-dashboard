@@ -28,6 +28,17 @@ function Calendar() {
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  // const formatDisplayedDate = (date: string) => {
+  //   if (date.length ===2) {
+  //     return date.slice(0, 1);
+  //   }else if (date.length === 4){
+  //     return date.slice(0, 1);
+  //   }else{
+  //     return ""
+  //   }
+    
+  // };
+
   const changeMonthHandle = (btnType: string) => {
     if (btnType === "prev") {
       setCurrentMonth(subMonths(currentMonth, 1));
@@ -58,14 +69,14 @@ function Calendar() {
     const dateFormat = "MMM yyyy";
     // console.log("selected day", selectedDate);
     return (
-      <div className="header row flex-middle">
+      <div className="header row flex-middle my-2">
         <div className="col col-start">
           {/* <div className="icon" onClick={() => changeMonthHandle("prev")}>
             prev month
           </div> */}
         </div>
-        <div className="col col-center">
-          <span>{format(currentMonth, dateFormat)}</span>
+        <div className="col col-center ">
+          <small>{format(currentMonth, dateFormat)}</small>
         </div>
         <div className="col col-end">
           {/* <div className="icon" onClick={() => changeMonthHandle("next")}>next month</div> */}
@@ -79,8 +90,9 @@ function Calendar() {
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col-1 me-1" key={i}>
-          {format(addDays(startDate, i), dateFormat)}
+        <div className="col-1 me-1 text-muted" key={i}>
+          <small>{format(addDays(startDate, i), dateFormat)}</small>
+          
         </div>
       );
     }
@@ -117,7 +129,7 @@ function Calendar() {
             }}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">{formattedDate}</span>
+            {/* <span className="bg">{formattedDate}</span> */}
           </div>
         );
         day = addDays(day, 1);
@@ -134,15 +146,15 @@ function Calendar() {
   };
   const renderFooter = () => {
     return (
-      <div className="header row flex-middle">
+      <div className="header row flex-middle mt-2">
         <div className="col col-start">
-          <Button className="px-2 py-1 mb-2" onClick={() => changeWeekHandle("prev")}>
+          <Button variant="secondary" className="px-2 py-1 mb-2" onClick={() => changeWeekHandle("prev")}>
             prev week
           </Button>
         </div>
         {/* <div>{currentWeek}</div> */}
         <div className="col col-end" onClick={() => changeWeekHandle("next")}>
-          <Button className="px-2 py-1 mb-2">next week</Button>
+          <Button variant="secondary" className="px-2 py-1 mb-2">next week</Button>
         </div>
       </div>
     );
