@@ -1,5 +1,6 @@
 import * as React from "react";
 import CalendarCard from "../components/CalendarCard";
+import Calendar from "../components/Calendar";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {
@@ -11,6 +12,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import {config} from '../config/config';
 import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
+
 
 function CalendarScreen() {
   const app = initializeApp(config.firebaseConfig);
@@ -73,6 +75,7 @@ function CalendarScreen() {
           </Icon>
         </div>
       </div>
+      <Calendar></Calendar>
 
       <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
       <div className="horizontal-scroll">
