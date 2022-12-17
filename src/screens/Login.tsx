@@ -42,10 +42,10 @@ const Login: React.FunctionComponent<Login> = (props) => {
             navigate("/home");
           }
           else {
-            navigate("/user-profile");
+            navigate("/profile");
           }
         } else {
-          navigate("/user-profile");
+          navigate("/profile");
         }
         
       })
