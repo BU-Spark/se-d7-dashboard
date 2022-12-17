@@ -1,6 +1,6 @@
 import * as React from "react";
-import CalendarCard from "../components/CalendarCard";
-import Calendar from "../components/Calendar";
+import CalendarCard from "../components/home/calendar/CalendarCard";
+import Calendar from "../components/home/calendar/DatePicker";
 import {
   Button,
   SearchInput,
@@ -26,6 +26,27 @@ function Home() {
   // This is the list of events
   const [events, setEvents] = React.useState([
     {
+      title: "Food Drive",
+      content: "Community Center November 15",
+    },
+    {
+      title: "Christmas Fair",
+      content: "Church December 24",
+    },{
+      title: "Food Drive",
+      content: "Community Center November 15",
+    },
+    {
+      title: "Christmas Fair",
+      content: "Church December 24",
+    },{
+      title: "Food Drive",
+      content: "Community Center November 15",
+    },
+    {
+      title: "Christmas Fair",
+      content: "Church December 24",
+    },{
       title: "Food Drive",
       content: "Community Center November 15",
     },

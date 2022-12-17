@@ -23,7 +23,7 @@ import {
 import { useState } from "react";
 
 
-function Calendar() {
+function DatePicker() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -96,7 +96,7 @@ function Calendar() {
         </div>
       );
     }
-    return <div className="days row" style={{width: "480px"}}>{days}</div>;
+    return <div className="days row">{days}</div>;
   };
 
 
@@ -136,7 +136,7 @@ function Calendar() {
       }
 
       rows.push(
-        <div className="row " key={formattedDate} style={{width: "480px"}}>
+        <div className="row " key={formattedDate}>
           {days}
         </div>
       );
@@ -172,4 +172,4 @@ function Calendar() {
 
 
 
-export default Calendar;
+export default DatePicker;
