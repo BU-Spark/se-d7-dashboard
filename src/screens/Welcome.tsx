@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, ContextSelectorFooter } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
-function Welcome () {
+function Welcome() {
   const navigate = useNavigate();
   const [user, setUser] = useState();
   useEffect(() => {
@@ -14,7 +14,7 @@ function Welcome () {
         setUser(foundUser);
         console.log("User is logged in");
         console.log(foundUser.email);
-        navigate("/calendar");
+        navigate("/home");
       }
     }
   }, []);
@@ -24,7 +24,7 @@ function Welcome () {
   };
 
   const navigateToSignUp = () => {
-    navigate('/address-warning');
+    navigate('/address-info');
   };
   
     return (

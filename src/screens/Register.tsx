@@ -16,7 +16,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const [bannerMessage, setBannerMessage] = useState("This is a banner.");
 
   const navigateToNext = () => {
-    navigate("/choose-interest");
+    navigate("/interests");
   };
 
   const SignUp = async () => {
@@ -32,7 +32,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
         console.log(response.user.uid);
         // Store the user in local storage
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/choose-interest");
+        navigate("/interests");
       })
       .catch((error) => {
         setIsBannerVisible(true);

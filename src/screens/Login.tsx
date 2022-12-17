@@ -39,7 +39,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           console.log("Document data:", userData.data());
           // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
-            navigate("/calendar");
+            navigate("/home");
           }
           else {
             navigate("/user-profile");
@@ -55,7 +55,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   const navigateToSignUp = () => {
-    navigate("/address-warning");
+    navigate("/address-info");
   };
 
   return (
