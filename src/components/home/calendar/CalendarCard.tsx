@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, CardBody, Text, Icon } from "@patternfly/react-core";
+import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
