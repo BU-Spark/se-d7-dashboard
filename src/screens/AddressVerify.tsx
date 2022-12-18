@@ -110,7 +110,7 @@ function AddressVerify() {
   };
 
   return (
-    <div className="container">
+    <div className="container-padded">
       <div className="text-start">Address</div>
       <TextInput
         className="px-2"
@@ -165,7 +165,7 @@ function AddressVerify() {
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
       {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
       
-      <div className="text-end mt-3">
+      <div className="text-end mt-5 pt-5">
         <Button
           onClick={submit}
           className="px-3 py-1"

@@ -21,10 +21,27 @@
   justify-content: space-between;
 }
 
+.container-padded {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 16vw;
+}
+
 .center-wrapper {
   display: flex;
   justify-content: center;
 }
+
+/* Welcome Page Styles */
+.welcome-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: left;
+  color: #151515;
+}  
 
 /* Login Page Styles */
 .page-login-line {

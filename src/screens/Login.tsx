@@ -7,12 +7,12 @@ import {
 // Import firebase
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import {config} from '../config/config';
+import { config } from '../config/config';
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert,TextInput } from "@patternfly/react-core";
+import { Button, Alert, TextInput } from "@patternfly/react-core";
 
-export interface Login {}
+export interface Login { }
 
 const Login: React.FunctionComponent<Login> = (props) => {
   const auth = getAuth();
@@ -47,9 +47,10 @@ const Login: React.FunctionComponent<Login> = (props) => {
         } else {
           navigate("/profile");
         }
-        
+
       })
-      .catch((_) => {
+      .catch((e) => {
+        console.log(e);
         setIsBannerVisible(true);
       });
   };
@@ -59,8 +60,8 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="mb-3 pf-c-title h4 text-start">Log In</div>
+    <div className="container-padded">
+      <div className="mb-3 h4 text-start">Log In</div>
       <div className="text-start">Email</div>
 
       <TextInput
@@ -85,23 +86,22 @@ const Login: React.FunctionComponent<Login> = (props) => {
         type="password"
       />
 
-      {isLoginErrorVisible && 
-      (<Alert 
-        isPlain
-        isInline
-        variant="danger" 
-        title="Login Failed" />)}
+      {isLoginErrorVisible &&
+        (<Alert
+          isPlain
+          isInline
+          variant="danger"
+          title="Login Failed" />)}
       <br />
 
       <Button
         className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
         variant="primary"
         onClick={Login}
       >
         Log In
       </Button>
-      <div className="center-wrapper">
+      <div className="center-wrapper mt-5 mb-5">
         <div className="wrapper">
           <div className="page-login-line"></div>
         </div>
@@ -110,7 +110,6 @@ const Login: React.FunctionComponent<Login> = (props) => {
 
       <Button
         className="px-5 py-1"
-        style={{ width: "260px" }}
         variant="secondary"
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
       >
