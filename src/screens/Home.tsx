@@ -8,6 +8,7 @@ import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Resources from "../components/home/Resources";
 import Updates from "../components/home/calendar/Updates";
+import LogoBar from "../components/home/LogoBar";
 
 function Home() {
   const app = initializeApp(config.firebaseConfig);
@@ -119,6 +120,7 @@ function Home() {
 
   return (
     <div className="container">
+      <LogoBar />
       <Search />
 
       <div className="mt-3 text-start heading">Happening This Week</div>

@@ -7,7 +7,7 @@ function Pinned(props: { interests: string[] }) {
             {props.interests.map((interest) => {
                 return (
                     <Button
-                        className="px-5 py-1 mb-2"
+                        className="px-3 py-2 mb-2 pinned"
                         variant="primary"
                     >
                         {interest}

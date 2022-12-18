@@ -11,7 +11,7 @@ function Search() {
     return (
         <div className="search">
             <SearchInput
-                className="ps-4 py-2"
+                className="ps-1"
                 placeholder="Search D7 Resources"
                 value={search}
                 onChange={onChange}

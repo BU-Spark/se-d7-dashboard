@@ -1,12 +1,3 @@
-import * as React from "react";
-
-import {
-  Button,
-  Icon,
-
-} from "@patternfly/react-core";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import {
   format,
   subMonths,
