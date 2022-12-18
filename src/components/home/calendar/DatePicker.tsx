@@ -2,12 +2,11 @@ import * as React from "react";
 
 import {
   Button,
-  SearchInput,
-  
+  Icon,
+
 } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { EllipsisVIcon } from "@patternfly/react-icons";
 import {
   format,
   subMonths,
@@ -20,6 +19,7 @@ import {
   addWeeks,
   subWeeks
 } from "date-fns";
+import { AngleLeftIcon, AngleRightIcon } from "@patternfly/react-icons";
 import { useState } from "react";
 
 
@@ -27,17 +27,6 @@ function DatePicker() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  // const formatDisplayedDate = (date: string) => {
-  //   if (date.length ===2) {
-  //     return date.slice(0, 1);
-  //   }else if (date.length === 4){
-  //     return date.slice(0, 1);
-  //   }else{
-  //     return ""
-  //   }
-    
-  // };
 
   const changeMonthHandle = (btnType: string) => {
     if (btnType === "prev") {
@@ -61,7 +50,7 @@ function DatePicker() {
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
     }
   };
-  const onDateClickHandle = (day:Date, dayStr:string) => {
+  const onDateClickHandle = (day: Date, dayStr: string) => {
     setSelectedDate(day);
   };
 
@@ -71,34 +60,30 @@ function DatePicker() {
     return (
       <div className="header row flex-middle my-2">
         <div className="col col-start">
-          {/* <div className="icon" onClick={() => changeMonthHandle("prev")}>
-            prev month
-          </div> */}
         </div>
         <div className="col col-center ">
           <small>{format(currentMonth, dateFormat)}</small>
         </div>
         <div className="col col-end">
-          {/* <div className="icon" onClick={() => changeMonthHandle("next")}>next month</div> */}
         </div>
       </div>
     );
   };
+
   const renderDays = () => {
     const dateFormat = "EEE";
     const days = [];
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col-1 me-1 text-muted" key={i}>
+        <div className="col text-muted" key={i}>
           <small>{format(addDays(startDate, i), dateFormat)}</small>
-          
+
         </div>
       );
     }
     return <div className="days row">{days}</div>;
   };
-
 
   const renderCells = () => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
@@ -111,17 +96,16 @@ function DatePicker() {
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, dateFormat);
-        
+
         const cloneDay = day;
         days.push(
           <div
-            className={`col-1 me-1 ${
-              isSameDay(day, new Date())
-                ? "today"
-                : isSameDay(day, selectedDate)
+            className={`col ${isSameDay(day, new Date())
+              ? "today"
+              : isSameDay(day, selectedDate)
                 ? "selected"
                 : ""
-            }`}
+              }`}
             // key={}
             onClick={() => {
               const dayStr = format(cloneDay, "ccc dd MMM yy");
@@ -129,7 +113,6 @@ function DatePicker() {
             }}
           >
             <span className="number">{formattedDate}</span>
-            {/* <span className="bg">{formattedDate}</span> */}
           </div>
         );
         day = addDays(day, 1);
@@ -144,32 +127,28 @@ function DatePicker() {
     }
     return <div className="body">{rows}</div>;
   };
-  const renderFooter = () => {
-    return (
-      <div className="header row flex-middle mt-2">
-        <div className="col col-start">
-          <Button variant="secondary" className="px-2 py-1 mb-2" onClick={() => changeWeekHandle("prev")}>
-            prev week
-          </Button>
+
+  return (
+    <div className="col">
+      {renderHeader()}
+      <div className="container-horizontal">
+        <div className="me-2 mt-2" onClick={() => changeWeekHandle("prev")}>
+          <AngleLeftIcon size="lg" color="#205F00" />
         </div>
-        {/* <div>{currentWeek}</div> */}
-        <div className="col col-end" onClick={() => changeWeekHandle("next")}>
-          <Button variant="secondary" className="px-2 py-1 mb-2">next week</Button>
+
+        <div className="col">
+          {renderDays()}
+          {renderCells()}
+        </div>
+
+        <div>
+          <div className="ms-2 mt-2" onClick={() => changeWeekHandle("next")}>
+            <AngleRightIcon size="lg" color="#205F00" />
+          </div>
         </div>
       </div>
-    );
-  };
-  return (
-    <div className="calendar">
-      {renderHeader()}
-      {renderDays()}
-      {renderCells()}
-      {renderFooter()}
     </div>
   );
 };
-
-
-
 
 export default DatePicker;

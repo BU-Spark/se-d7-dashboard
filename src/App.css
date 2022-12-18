@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 
+/* Global Styles */
 .App {
   text-align: center;
   font-family: "Red Hat Text", sans-serif;
@@ -8,10 +9,14 @@
 }
 
 .container {
-  margin-top: 5vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.container-horizontal {
+  display: flex;
+  flex-direction: row;
 }
 
 .center-wrapper {
@@ -19,25 +24,46 @@
   justify-content: center;
 }
 
+/* Login Page Styles */
 .page-login-line {
   width: 122px;
   height: 0px;
   border: 0.7px solid #000000;
 }
 
+/* Calendar Styles */
+
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
 }
 
+.calendar-card{
+  min-width: 220px;
+  min-height: 150px;
+  width: 15vw;
+  height: 10vh;
+  border: 1px solid #D2D2D2;
+}
+
+/* Homepage Styles */
+.heading {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 22px;
+  color: #123400;
+}
+
+/* Patternfly Variables */
 .pf-c-button{
   --pf-global--primary-color--100: #205F00;
   --pf-global--primary-color--200: #123400;
 }
 
 .selected-chip-non-clicked {
-  --pf-global--primary-color-100: black;
-  --pf-global--primary-color--dark-100: black;
+  --pf-c-icon__content--Color: #205F00;
 }
 
 .selected-chip-non-clicked:hover {

@@ -1,15 +1,13 @@
 import * as React from "react";
-import CalendarCard from "../components/home/calendar/CalendarCard";
-import Calendar from "../components/home/calendar/DatePicker";
-import {
-  Button,
-  SearchInput,
-  Icon,
-} from "@patternfly/react-core";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import {config} from '../config/config';
-import CogIcon from "@patternfly/react-icons/dist/esm/icons/cog-icon";
+import { config } from '../config/config';
+import Search from "../components/home/Search";
+import { useEffect } from "react";
+import Calendar from "../components/home/calendar/Calendar";
+import Pinned from "../components/home/Pinned";
+import Resources from "../components/home/Resources";
+import Updates from "../components/home/calendar/Updates";
 
 function Home() {
   const app = initializeApp(config.firebaseConfig);
@@ -20,9 +18,6 @@ function Home() {
     userEmail = JSON.parse(loggedInUser).email;
   };
   const userProfileRef = doc(db, "user-profile", userEmail);
-  const [search, setSearch] = React.useState("");
-  // This marks if there are events in the first place
-  const [hasEvents, setHasEvents] = React.useState(true);
   // This is the list of events
   const [events, setEvents] = React.useState([
     {
@@ -32,156 +27,111 @@ function Home() {
     {
       title: "Christmas Fair",
       content: "Church December 24",
-    },{
+    }, {
       title: "Food Drive",
       content: "Community Center November 15",
     },
     {
       title: "Christmas Fair",
       content: "Church December 24",
-    },{
+    }, {
       title: "Food Drive",
       content: "Community Center November 15",
     },
     {
       title: "Christmas Fair",
       content: "Church December 24",
-    },{
+    }, {
       title: "Food Drive",
       content: "Community Center November 15",
     },
     {
       title: "Christmas Fair",
       content: "Church December 24",
-    },
+    }
   ]);
 
-  const [interests, setInterests] = React.useState([]);
+  const [updates, setUpdates] = React.useState([
+    {
+      title: "Vote!",
+      content: "Your councelor demands it!",
+    },
+    {
+      title: "Community Meeting",
+      content: "Participate or else!",
+    }, {
+      title: "Vote!",
+      content: "Your councelor demands it!",
+    },
+    {
+      title: "Community Meeting",
+      content: "Participate or else!",
+    }, {
+      title: "Vote!",
+      content: "Your councelor demands it!",
+    },
+    {
+      title: "Community Meeting",
+      content: "Participate or else!",
+    }, {
+      title: "Vote!",
+      content: "Your councelor demands it!",
+    },
+    {
+      title: "Community Meeting",
+      content: "Participate or else!",
+    }, {
+      title: "Vote!",
+      content: "Your councelor demands it!",
+    },
+    {
+      title: "Community Meeting",
+      content: "Participate or else!",
+    }, 
+  ]);
+
+  const [interests, setInterests] = React.useState([
+    "Food",
+    "Clothing",
+    "Shelter"
+  ]);
 
   // Get the interests from the user profile
-  getDoc(userProfileRef).then((doc) => {
-    if (doc.exists()) {
-      setInterests(doc.data()['interests']);
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  }).catch((error) => {
-    console.log("Error getting document:", error);
-  });
+  const fetchdata = async () => {
+    await getDoc(userProfileRef).then((doc) => {
+      if (doc.exists()) {
+        setInterests(doc.data()['interests']);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
 
-  const onChange = (value: string) => {
-    setSearch(value);
-  };
+  // call fetchdata() only once
+  useEffect(() => {
+    fetchdata();
+    console.log("fetching data");
+  }, []);
+
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-10">
-         
-          <SearchInput
-            className=" ps-4 py-2"
-            placeholder="Search D7 Resources"
-            value={search}
-            onChange={onChange}
-            onClear={() => onChange("")}
-          />
-        </div>
-        <div className="col-1">
-          <Icon className="my-2 ">
-            <CogIcon />
-          </Icon>
-        </div>
-      </div>
-      <Calendar></Calendar>
+      <Search />
 
-      <div className="mt-3 pf-c-title h5 text-start">Happening This Week</div>
-      <div className="horizontal-scroll">
+      <div className="mt-3 text-start heading">Happening This Week</div>
+      <Calendar events={events} />
 
-      {hasEvents ? (
-        events.map((event) => {
-          return (
-            <CalendarCard
-            title={event.title}
-            content={event.content}
-          ></CalendarCard>
-          );
-        })
-      ) : (
-        <CalendarCard
-          title= "No Events"
-          content="Check back later!"
-        ></CalendarCard>
-      )}
-      </div>
-      
+      <div className="my-3 pf-c-title heading text-start">You Pinned</div>
+      <Pinned interests={interests}/>
 
-      <div className="my-3 pf-c-title h5 text-start">You Pinned</div>
+      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+      <Resources resources={interests} />
 
-      {interests.map((interest) => {
-        return (
-          <Button
-          className="px-5 py-1 mb-2"
-          style={{ width: "260px" }}
-          variant="primary"
-          >
-          {interest}
-          </Button>
-        );
-      })}
-
-      <div className="my-3 pf-c-title h5 text-start">Our Resources</div>
-      <Button
-        className="fw-bold py-2 mb-2 text-center"
-        style={{ width: "260px" }}
-        variant="tertiary"
-      >
-        <small>GET RESOURCES</small>
-      </Button>
-      <Button
-        className="fw-bold py-2 mb-2 text-center"
-        style={{ width: "260px" }}
-        variant="tertiary"
-      >
-        <small>SUBMIT REQUESTS AND REPORTS</small>
-      </Button>
-      <Button
-        className="fw-bold py-2 mb-2 text-center"
-        style={{ width: "260px" }}
-        variant="tertiary"
-      >
-        <small>GET INVOLVED</small>
-      </Button>
-      <Button
-        className="fw-bold py-2 mb-2 text-center"
-        style={{ width: "260px" }}
-        variant="tertiary"
-      >
-        <small>SUBSCRIBE TO MAILING LIST</small>
-      </Button>
-      <Button
-        className="fw-bold py-2 mb-2 text-center"
-        style={{ width: "260px" }}
-        variant="tertiary"
-      >
-        <small>ABOUT THE DISTRICT</small>
-      </Button>
-
-      <div className="mt-3 pf-c-title h5 text-start">News and Updates</div>
-      <div className="horizontal-scroll">
-        <CalendarCard
-          title="Food Drive"
-          content="Community Center November 15"
-        ></CalendarCard>
-        <CalendarCard
-          title="Christmas Fair"
-          content="Church December 24"
-        ></CalendarCard>
-        <CalendarCard
-          title="New year Fair"
-          content="Church January 25"
-        ></CalendarCard>
-      </div>
+      <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
+      <Updates updates={updates} />
     </div>
   );
 }
