@@ -1,16 +1,14 @@
 import * as React from "react";
-import AddressCheckBox from "../components/AddressCheckBox";
-import AddressCheckBoxLoading from "../components/AddressCheckBoxLoading";
-import AddressErrorBox from "../components/AddressErrorBox";
-import AddressInvalidBox from "../components/AddressInvalidBox";
-import AddressAPIErrorBox from "../components/AddressAPIErrorBox";
-import StateSelection from "../components/StateSelection";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
+import AddressCheckBox from "../components/address/AddressCheckBox";
+import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
+import AddressErrorBox from "../components/address/AddressErrorBox";
+import AddressInvalidBox from "../components/address/AddressInvalidBox";
+import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
+import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 
-function Addressentryscreen() {
+function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -72,7 +70,7 @@ function Addressentryscreen() {
             return { lat: data[0].lat, lng: data[0].lon };
           }
         }).then((coords) => {
-          // Query ArcGIS Identity API to return all layers that contain the point
+          // Query ArcGIS Query API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
           if (!coords) {
             setShowLoading(false);
@@ -112,7 +110,7 @@ function Addressentryscreen() {
   };
 
   return (
-    <div className="container">
+    <div className="container-padded">
       <div className="text-start">Address</div>
       <TextInput
         className="px-2"
@@ -167,7 +165,7 @@ function Addressentryscreen() {
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
       {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
       
-      <div className="text-end mt-3">
+      <div className="text-end mt-5 pt-5">
         <Button
           onClick={submit}
           className="px-3 py-1"
@@ -180,4 +178,4 @@ function Addressentryscreen() {
   );
 }
 
-export default Addressentryscreen;
+export default AddressVerify;

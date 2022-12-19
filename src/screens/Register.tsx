@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import "bootstrap/dist/css/bootstrap.css";
 
 export interface ILoginScreenProps {}
 
-const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -17,7 +16,7 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const [bannerMessage, setBannerMessage] = useState("This is a banner.");
 
   const navigateToNext = () => {
-    navigate("/choose-interest");
+    navigate("/interests");
   };
 
   const SignUp = async () => {
@@ -33,7 +32,7 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         console.log(response.user.uid);
         // Store the user in local storage
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/choose-interest");
+        navigate("/interests");
       })
       .catch((error) => {
         setIsBannerVisible(true);
@@ -95,4 +94,4 @@ const SignUpScreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default SignUpScreen;
+export default Register;

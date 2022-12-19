@@ -1,194 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
+@import url("https://use.typekit.net/oes6dvw.css");
 
+/* Global Styles */
 .App {
   text-align: center;
   font-family: "Red Hat Text", sans-serif;
   color: #151515;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.container-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container-padded {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 16vw;
+}
+
+.center-wrapper {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.page-open-welcometxt {
-  width: 280px;
-  margin: auto;
-
+/* Welcome Page Styles */
+.welcome-title {
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
   line-height: 40px;
-  margin-top: 5%;
-}
-
-.page-open-subtxt {
-  font-size: 20px;
-  width: 220px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15%;
-  line-height: 22px;
-}
-.page-aw-h1 {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
   text-align: left;
-  margin-top: 10%;
-  margin-bottom: 5%;
-}
-.page-aw-h2 {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 18px;
-  margin-bottom: 70%;
-  text-align: left;
-}
+  color: #151515;
+}  
 
-.btn-blue {
-  padding: 6px 16px;
-  background: #0066cc;
-  border-radius: 3px;
-  border-style: none;
-  color: white;
-  width: 280px;
-  font-size: 16px;
-  margin: 5px 0 5px 0;
-}
-
-.btn-white {
-  padding: 6px 16px;
-  background: white;
-  border-radius: 3px;
-  border: 1px solid #0066cc;
-  color: #0066cc;
-  width: 280px;
-  font-size: 16px;
-  margin: 5px 0 5px 0;
-}
-.btn-next {
-  padding: 6px 16px;
-  background: #0066cc;
-  border-radius: 3px;
-  border-style: none;
-  color: white;
-  font-size: 16px;
-}
-.container-next {
-  /* padding-left: 90%; */
-  width: 280px;
-  /* background-color: #61dafb; */
-  display: flex;
-  justify-content: right;
-}
-.container {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 7%;
-  width: 260px;
-  margin-left: auto;
-  margin-right: auto;
-  /* background-color: #61dafb; */
-}
-/* .form-inner-container{
-  background-color: #b7cde3;
-  width: 360px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
-
-} */
-
-.input-text {
-  /* display: flex; */
-  display: block;
-
-  padding: 6px 8px;
-  
-  height: 36px;
-  width: 260px;
-  background: #ffffff;
-  border-style: none;
-  box-shadow: inset 0px -1px 0px #8a8d90, inset 1px 0px 0px #f0f0f0,
-    inset 0px 1px 0px #f0f0f0, inset -1px 0px 0px #f0f0f0;
-}
-
-label {
-  display: block;
-  text-align: left;
-  font-weight: 800;
-  margin: 5px;
-  font-size: 14px;
-  line-height: 18px;
-}
-.page-login-h1 {
-  display: block;
-  text-align: left;
-  font-weight: 800;
-  margin: 5px;
-  font-size: 20px;
-  line-height: 18px;
-  margin-top: 20%;
-  margin-bottom: 10%;
-}
-.center-wrapper {
-  display: flex;
-  justify-content: center;
-  /* background-color: aquamarine; */
-}
-
+/* Login Page Styles */
 .page-login-line {
   width: 122px;
   height: 0px;
   border: 0.7px solid #000000;
-
-  margin: 30% 0 30% 0;
 }
 
-.wrap{
-  background-color: blue;
-  width: 260px;
+/* Calendar Styles */
+
+.horizontal-scroll{
+  overflow-x: scroll;
+  display: flex;
 }
 
-.container{
-  width: 280px !important;
-  /* background-color: greenyellow; */
+.calendar-card{
+  min-width: 220px;
+  min-height: 150px;
+  width: 15vw;
+  height: 10vh;
+  border: 1px solid #D2D2D2;
+}
+
+/* Homepage Styles */
+.heading {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 22px;
+  color: #123400;
+}
+
+.logo{
+  font-family: 'aller-display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  color: #123400;
+}
+
+.pinned {
+  text-align: left !important;
+  font-size: 18px !important;
+}
+
+/* Patternfly Variables */
+.pf-c-button{
+  --pf-global--primary-color--100: #205F00;
+  --pf-global--primary-color--200: #123400;
 }
 
 .selected-chip-non-clicked {
-  --pf-global--primary-color-100: black;
-  --pf-global--primary-color--dark-100: black;
+  --pf-c-icon__content--Color: #205F00;
 }
 
 .selected-chip-non-clicked:hover {
@@ -197,16 +105,9 @@ label {
 }
 
 .selected-chip-clicked {
-
   --pf-global--primary-color-100: green;
   --pf-global--primary-color--dark-100: green;
   --pf-global--BorderColor--300 : green;
   --pf-global--BorderColor-100: green;
   --pf-global--BorderColor--dark-100: green;
-}
-
-.horizontal-scroll{
-  overflow-x:scroll ;
-  width:260px;
-  display: flex;
 }

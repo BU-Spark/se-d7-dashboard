@@ -7,15 +7,14 @@ import {
 // Import firebase
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import {config} from '../config/config';
+import { config } from '../config/config';
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert,TextInput } from "@patternfly/react-core";
-import "bootstrap/dist/css/bootstrap.css";
+import { Button, Alert, TextInput } from "@patternfly/react-core";
 
-export interface ILoginScreenProps {}
+export interface Login { }
 
-const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const Login: React.FunctionComponent<Login> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
@@ -40,28 +39,29 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
           console.log("Document data:", userData.data());
           // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
-            navigate("/calendar");
+            navigate("/home");
           }
           else {
-            navigate("/user-profile");
+            navigate("/profile");
           }
         } else {
-          navigate("/user-profile");
+          navigate("/profile");
         }
-        
+
       })
-      .catch((_) => {
+      .catch((e) => {
+        console.log(e);
         setIsBannerVisible(true);
       });
   };
 
   const navigateToSignUp = () => {
-    navigate("/address-warning");
+    navigate("/address-info");
   };
 
   return (
-    <div className="container">
-      <div className="mb-3 pf-c-title h4 text-start">Log In</div>
+    <div className="container-padded">
+      <div className="mb-3 h4 text-start">Log In</div>
       <div className="text-start">Email</div>
 
       <TextInput
@@ -86,23 +86,22 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
         type="password"
       />
 
-      {isLoginErrorVisible && 
-      (<Alert 
-        isPlain
-        isInline
-        variant="danger" 
-        title="Login Failed" />)}
+      {isLoginErrorVisible &&
+        (<Alert
+          isPlain
+          isInline
+          variant="danger"
+          title="Login Failed" />)}
       <br />
 
       <Button
         className="px-5 py-1 mb-2"
-        style={{ width: "260px" }}
         variant="primary"
         onClick={Login}
       >
         Log In
       </Button>
-      <div className="center-wrapper">
+      <div className="center-wrapper mt-5 mb-5">
         <div className="wrapper">
           <div className="page-login-line"></div>
         </div>
@@ -111,7 +110,6 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
 
       <Button
         className="px-5 py-1"
-        style={{ width: "260px" }}
         variant="secondary"
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
       >
@@ -121,4 +119,4 @@ const Loginscreen: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default Loginscreen;
+export default Login;

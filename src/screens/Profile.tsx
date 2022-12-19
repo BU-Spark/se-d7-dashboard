@@ -5,10 +5,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { config } from "../config/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 
-function Userprofilescreen() {
+function Profile() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
   const navigate = useNavigate();
@@ -70,7 +68,7 @@ function Userprofilescreen() {
           }
         ),
       });
-      navigate("/calendar");
+      navigate("/home");
     }
   };
 
@@ -142,4 +140,4 @@ function Userprofilescreen() {
   );
 }
 
-export default Userprofilescreen;
+export default Profile;
