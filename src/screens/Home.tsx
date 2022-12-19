@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Resources from "../components/home/Resources";
-import Updates from "../components/home/calendar/Updates";
+import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
 import linksJson from "../links.json";
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import CalendarCard from "./CalendarCard";
+import CalendarCard from "./calendar/CalendarCard";
 function Updates(props: { updates: { title: string, content: string }[] }) {
     return (
         <div className="horizontal-scroll">
