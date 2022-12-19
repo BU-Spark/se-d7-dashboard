@@ -93,7 +93,7 @@ function Interests() {
   };
 
   return (
-    <div className="container">
+    <div className="container-padded">
       <div className="pf-c-title mb-3 h5">
         Help Us Understand Your Interests
       </div>

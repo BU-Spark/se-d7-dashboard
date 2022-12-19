@@ -54,7 +54,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   };
 
   return (
-    <div className="container">
+    <div className="container-padded">
       <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
       <div className="text-start">Email</div>
 
