@@ -73,7 +73,7 @@ function Profile() {
   };
 
   return (
-    <div className="container">
+    <div className="container-padded">
       <div className="pf-c-title pf-m-lg text-start mb-3">
         Build Your User Profile
       </div>
