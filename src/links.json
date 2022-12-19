@@ -1,6 +1,7 @@
-{
+[
     {
         "title": "Food",
+        "selected": false,
         "links": [
             {
                 "title": "Free Meals",
@@ -22,6 +23,7 @@
     },
     {
         "title": "Health",
+        "selected": false,
         "links": [
             {
                 "title": "Mental Health",
@@ -55,6 +57,7 @@
     },
     {
         "title": "Education",
+        "selected": false,
         "links": [
             {
                 "title": "Find Schools",
@@ -72,6 +75,7 @@
     },
     {
         "title": "Housing",
+        "selected": false,
         "links": [
             {
                 "title": "Find Affordable Housing",
@@ -89,6 +93,7 @@
     },
     {
         "title": "Submit Requests and Reports",
+        "selected": false,
         "links": [
             {
                 "title": "311 Service Request",
@@ -102,6 +107,7 @@
     },
     {
         "title": "Get Involved",
+        "selected": false,
         "links": [
             {
                 "title": "Events",
@@ -136,5 +142,5 @@
                 "url": "https://www.boston.gov/departments/age-strong-commission/volunteer-opportunities-older-people"
             }
         ]
-    },
-}
+    }
+]

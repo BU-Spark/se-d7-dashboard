@@ -9,6 +9,7 @@ import Pinned from "../components/home/Pinned";
 import Resources from "../components/home/Resources";
 import Updates from "../components/home/calendar/Updates";
 import LogoBar from "../components/home/LogoBar";
+import linksJson from "../links.json";
 
 function Home() {
   const app = initializeApp(config.firebaseConfig);
@@ -91,17 +92,15 @@ function Home() {
     }, 
   ]);
 
-  const [interests, setInterests] = React.useState([
-    "Food",
-    "Clothing",
-    "Shelter"
-  ]);
+  const [interests, setInterests] = React.useState<string[]>([]);
+  const [resources, setResources] = React.useState<string[]>([]);
 
   // Get the interests from the user profile
   const fetchdata = async () => {
     await getDoc(userProfileRef).then((doc) => {
       if (doc.exists()) {
-        setInterests(doc.data()['interests']);
+        setInterests(linksJson.filter(obj => doc.data()['interests'].includes(obj.title)).map(obj => obj.title));
+        setResources(linksJson.filter(obj => !doc.data()['interests'].includes(obj.title)).map(obj => obj.title));
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -130,7 +129,7 @@ function Home() {
       <Pinned interests={interests}/>
 
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
-      <Resources resources={interests} />
+      <Resources resources={resources} />
 
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates updates={updates} />

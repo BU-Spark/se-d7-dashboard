@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 // Import firebase
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import {config} from '../config/config';
+import { config } from '../config/config';
 import { doc, setDoc } from "firebase/firestore";
+import linksJson from "../links.json";
 
 function Interests() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Interests() {
     chips.interests.forEach((interest) => {
       if (interest.selected) {
         let newSelectedChips = selectedChips;
-        newSelectedChips.push(interest.name);
+        newSelectedChips.push(interest.title);
         setSelectedChips(newSelectedChips);
       }
     });
@@ -42,47 +43,16 @@ function Interests() {
 
   // Store the chips in state
   const [chips, setChips] = useState({
-    interests: [
-      {
-        id: "a",
-        name: "Vehicles/Parking",
-        selected: false,
-      },
-      {
-        id: "b",
-        name: "Street/Park Damage",
-        selected: false,
-      },
-      {
-        id: "c",
-        name: "Lights",
-        selected: false,
-      },
-      {
-        id: "d",
-        name: "Volunteering",
-        selected: false,
-      },
-      {
-        id: "e",
-        name: "Local Events",
-        selected: false,
-      },
-      {
-        id: "f",
-        name: "Food Access",
-        selected: false,
-      },
-    ],
+    interests: linksJson
   });
 
   // Create an array of strings to store the selected chips
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
 
-  const highlightItem = (id: string) => {
+  const highlightItem = (title: string) => {
     // Flip the chip selected boolean
     const newChips = chips.interests.map((interest) => {
-      if (interest.id === id) {
+      if (interest.title === title) {
         interest.selected = !interest.selected;
       }
       return interest;
@@ -107,11 +77,11 @@ function Interests() {
                 ? "px-3 m-1 selected-chip-clicked"
                 : "px-3 m-1 selected-chip-non-clicked"
             }
-            onClick={() => highlightItem(interest.id)}
+            onClick={() => highlightItem(interest.title)}
             isReadOnly
             isOverflowChip
           >
-            {interest.name}
+            {interest.title}
           </Chip>
         );
       })}
