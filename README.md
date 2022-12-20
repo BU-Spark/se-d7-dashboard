@@ -1,13 +1,4 @@
-# D7 Dashboard
-
-# Description
-This repository contains a native app which provides Boston's district 7 residents easier access to city services and a simpler means to contact their councilperson.
-
-This project will be built using a serverless architecture to minimize cost.
-
-## Tech stack
-- Firebase
-- React Native
+# TEMPLATE-base-repo
 
 ## Get started
 Running this project requires the installation of node.js. To install dependencies, navigate to the local copy of this code and run `npm install` to install needed dependencies. To run the project, `npm start` will be enough.
