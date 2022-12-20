@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import {BrowserRouter, Route, Link, Router, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Welcome from './screens/Welcome';
 import AddressInfo from './screens/AdressInfo';
 import Register from './screens/Register';
@@ -10,6 +9,7 @@ import Login from './screens/Login';
 import UserProfileScreen from './screens/Profile';
 import Interests from './screens/Interests';
 import Home from './screens/Home';
+import Portal from './screens/Portal';
 import {initializeApp} from 'firebase/app';
 import {config} from './config/config';
 import '@patternfly/react-core/dist/styles/base.css';
@@ -31,6 +31,7 @@ function App() {
           <Route path="/address-entry" element={<AddressVerify/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
+          <Route path="/portal" element={<Portal/>} />        
         </Routes>
       </BrowserRouter>
     </div>

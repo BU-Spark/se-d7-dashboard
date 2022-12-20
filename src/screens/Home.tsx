@@ -7,8 +7,9 @@ import { useEffect } from "react";
 import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Resources from "../components/home/Resources";
-import Updates from "../components/home/calendar/Updates";
+import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
+import linksJson from "../links.json";
 
 function Home() {
   const app = initializeApp(config.firebaseConfig);
@@ -91,17 +92,15 @@ function Home() {
     }, 
   ]);
 
-  const [interests, setInterests] = React.useState([
-    "Food",
-    "Clothing",
-    "Shelter"
-  ]);
+  const [pinned, setPinned] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
+  const [resources, setResources] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
 
   // Get the interests from the user profile
   const fetchdata = async () => {
     await getDoc(userProfileRef).then((doc) => {
       if (doc.exists()) {
-        setInterests(doc.data()['interests']);
+        setPinned(linksJson.filter(obj => doc.data()['interests'].includes(obj.title)));
+        setResources(linksJson.filter(obj => !doc.data()['interests'].includes(obj.title)));
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -127,10 +126,10 @@ function Home() {
       <Calendar events={events} />
 
       <div className="my-3 pf-c-title heading text-start">You Pinned</div>
-      <Pinned interests={interests}/>
+      <Pinned pinned={pinned}/>
 
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
-      <Resources resources={interests} />
+      <Resources resources={resources} />
 
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates updates={updates} />
