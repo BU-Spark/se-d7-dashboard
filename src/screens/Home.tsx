@@ -92,15 +92,15 @@ function Home() {
     }, 
   ]);
 
-  const [interests, setInterests] = React.useState<string[]>([]);
-  const [resources, setResources] = React.useState<string[]>([]);
+  const [pinned, setPinned] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
+  const [resources, setResources] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
 
   // Get the interests from the user profile
   const fetchdata = async () => {
     await getDoc(userProfileRef).then((doc) => {
       if (doc.exists()) {
-        setInterests(linksJson.filter(obj => doc.data()['interests'].includes(obj.title)).map(obj => obj.title));
-        setResources(linksJson.filter(obj => !doc.data()['interests'].includes(obj.title)).map(obj => obj.title));
+        setPinned(linksJson.filter(obj => doc.data()['interests'].includes(obj.title)));
+        setResources(linksJson.filter(obj => !doc.data()['interests'].includes(obj.title)));
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -126,7 +126,7 @@ function Home() {
       <Calendar events={events} />
 
       <div className="my-3 pf-c-title heading text-start">You Pinned</div>
-      <Pinned interests={interests}/>
+      <Pinned pinned={pinned}/>
 
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
       <Resources resources={resources} />
