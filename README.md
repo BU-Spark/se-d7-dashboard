@@ -1,5 +1,7 @@
 # D7 Dashboard
-
+![add_collaborators](https://github.com/BU-Spark/se-d7-dashboard/actions/workflows/add_collaborators.yml/badge.svg)
+![firebase-hosting-merge](https://github.com/BU-Spark/se-d7-dashboard/actions/workflows/firebase-hosting-merge.yml/badge.svg)
+![release_archive](https://github.com/BU-Spark/se-d7-dashboard/actions/workflows/release_archive.yml/badge.svg)
 ## Introduction
 The D7 Dashboard is a web app that provides Boston's district 7 residents with easier access to city services and a more straightforward way to contact their councilperson. Located in the heart of Boston, district 7 is home to a diverse community of residents who deserve the best resources and support from their government.
 
