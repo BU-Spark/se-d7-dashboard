@@ -1,22 +1,30 @@
 # D7 Dashboard
 
 ## Introduction
-Welcome to the D7 Dashboard! This repository contains a native app that provides Boston's district 7 residents with easier access to city services and a more straightforward way to contact their councilperson. 
+The D7 Dashboard is a web app that provides Boston's district 7 residents with easier access to city services and a more straightforward way to contact their councilperson. Located in the heart of Boston, district 7 is home to a diverse community of residents who deserve the best resources and support from their government.
 
-Our goal is to make it as simple as possible for residents to get the help they need and stay connected with their community. That's why we've built this app using a serverless architecture, which minimizes cost and makes it easy to scale.
+Our team is dedicated to improving the lives of district 7 residents by creating a user-friendly platform that makes it easy to find and access the services they need. We also want to help better brand and promote district 7, highlighting all the great things happening in the community.
 
 ## Tech Stack
 - Firebase: We chose to use Firebase as our database and backend service provider because of its simplicity and ease of use. It allows us to store and retrieve data in real-time, as well as handle user authentication and other backend tasks.
-- React Native: For the frontend, we decided to use React Native, a JavaScript framework for building native mobile apps. It allows us to write code that is easily reusable across both iOS and Android platforms, saving us time and resources.
+- React: We are using the React JavaScript library to build the frontend of the D7 Dashboard. React allows us to create reusable UI components and efficiently update the user interface as data changes.
+- PatternFly: As our UI/UX kit, we are using PatternFly to ensure a consistent and professional design throughout the app.
 
 ## Getting Started
-To get started with the D7 Dashboard, you'll need to have [node.js](https://nodejs.org/) installed on your machine. Once you've cloned this repository to your local machine, navigate to the project directory and run `npm install` to install all necessary dependencies. 
+To get started with the D7 Dashboard, you'll need to have [node.js](https://nodejs.org/) and the [Firebase CLI](https://firebase.google.com/docs/cli) installed on your machine. Once you've cloned this repository to your local machine, navigate to the project directory and run `npm install` to install all necessary dependencies. 
 
-To start the app, simply run `npm start`. This will launch the app in your default browser, where you can begin using it.
+To start the app in development mode, run `npm start`. This will launch the app in your default browser, where you can begin using it.
+
+## Deployment
+To deploy the D7 Dashboard, you'll need to do the following:
+
+1. Build the production version of the app by running `npm run build`. This will create a production-ready build of the app in the `build` directory.
+2. Use the Firebase CLI to deploy the build to your Firebase hosting by running `firebase deploy`.
+
+This will deploy the D7 Dashboard to your specified Firebase hosting URL, making it accessible to users.
 
 ## Features
 - City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from trash pickup and street cleaning to public transportation and healthcare resources.
-- Contact Councilperson: Need to get in touch with your councilperson? The D7 Dashboard makes it easy to find their contact information and send them a message directly through the app.
 - Community Events: Stay up-to-date with what's happening in your community by checking out the events calendar. You'll find information on meetings, workshops, and other activities happening in district 7.
 
 ## Known Bugs and Limitations
