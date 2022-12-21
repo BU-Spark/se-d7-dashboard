@@ -1,25 +1,32 @@
 # D7 Dashboard
 
-# Description
-This repository contains a native app which provides Boston's district 7 residents easier access to city services and a simpler means to contact their councilperson.
+## Introduction
+Welcome to the D7 Dashboard! This repository contains a native app that provides Boston's district 7 residents with easier access to city services and a more straightforward way to contact their councilperson. 
 
-This project will be built using a serverless architecture to minimize cost.
+Our goal is to make it as simple as possible for residents to get the help they need and stay connected with their community. That's why we've built this app using a serverless architecture, which minimizes cost and makes it easy to scale.
 
-## Tech stack
-- Firebase
-- React Native
+## Tech Stack
+- Firebase: We chose to use Firebase as our database and backend service provider because of its simplicity and ease of use. It allows us to store and retrieve data in real-time, as well as handle user authentication and other backend tasks.
+- React Native: For the frontend, we decided to use React Native, a JavaScript framework for building native mobile apps. It allows us to write code that is easily reusable across both iOS and Android platforms, saving us time and resources.
 
-## Get started
-Running this project requires the installation of node.js. To install dependencies, navigate to the local copy of this code and run `npm install` to install needed dependencies. To run the project, `npm start` will be enough.
+## Getting Started
+To get started with the D7 Dashboard, you'll need to have [node.js](https://nodejs.org/) installed on your machine. Once you've cloned this repository to your local machine, navigate to the project directory and run `npm install` to install all necessary dependencies. 
 
-## Bugs and limitations
-PatternFly CSS is strange in behavior, since our client wants a new color scheme a better way to change colors is recommended.
+To start the app, simply run `npm start`. This will launch the app in your default browser, where you can begin using it.
 
-There are some cases where reads and writes to firebase is called in a loop. These needs to be resolved.
+## Features
+- City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from trash pickup and street cleaning to public transportation and healthcare resources.
+- Contact Councilperson: Need to get in touch with your councilperson? The D7 Dashboard makes it easy to find their contact information and send them a message directly through the app.
+- Community Events: Stay up-to-date with what's happening in your community by checking out the events calendar. You'll find information on meetings, workshops, and other activities happening in district 7.
 
-Firebase is currently set to open, before production this needs to be closed. It is open to better assist testing and development during the time being.
+## Known Bugs and Limitations
+There are a few known bugs and limitations with the D7 Dashboard that we are currently working to resolve. These include:
 
-## Add Users
-To add yourself to the repository, open a Pull Request modifying `COLLABORATORS`, entering your GitHub username in a newline.
+- The PatternFly CSS is behaving strangely, and our client has requested a new color scheme. We recommend finding a better way to change colors in the future.
+- There are some cases where reads and writes to Firebase are called in a loop, which can cause issues. We are working to resolve these issues.
+- Currently, the Firebase database is set to open to assist with testing and development. However, before going into production, we will need to close it off to ensure security.
 
-All Pull Requests must follow the Pull Request Template, with a title formatted like such `[Project Name]: <Descriptive Title>`
+## Adding Users
+If you'd like to contribute to the D7 Dashboard, we welcome your help! To add yourself as a collaborator, simply open a Pull Request and modify the `COLLABORATORS` file by adding your GitHub username on a new line.
+
+Please be sure to follow the Pull Request template, and include a descriptive title in the following format: `[Project Name]: <Descriptive Title>`.
