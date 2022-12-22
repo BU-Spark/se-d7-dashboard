@@ -14,6 +14,7 @@
     "bootstrap": "^5.2.3",
     "date-fns": "^2.29.3",
     "firebase": "^9.15.0",
+    "firebase-tools": "^11.19.0",
     "firestore": "^1.1.6",
     "patternfly": "^3.59.5",
     "react": "^18.2.0",
