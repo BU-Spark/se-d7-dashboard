@@ -21,9 +21,11 @@ To start the app in development mode, run `npm start`. This will launch the app 
 To deploy the D7 Dashboard, you'll need to do the following:
 
 1. Build the production version of the app by running `npm run build`. This will create a production-ready build of the app in the `build` directory.
-2. Use the Firebase CLI to deploy the build to your Firebase hosting by running `firebase deploy`.
+2. Log into the Firebase CLI via `npx firebase login`. Provide login details.
+3. Use the Firebase CLI to deploy the build to your Firebase hosting by running `npx firebase deploy`.
+4. Deployed web app will be linked to https://se-d7-dashboard.web.app/
 
-This will deploy the D7 Dashboard to your specified Firebase hosting URL, making it accessible to users.
+This will deploy the D7 Dashboard, making it accessible to users.
 
 ## Features
 - Account Creation: Create an account to access services! You can also sign up for SMS & email updates from the councilperson.
