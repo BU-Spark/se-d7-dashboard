@@ -27,7 +27,7 @@ This will deploy the D7 Dashboard to your specified Firebase hosting URL, making
 
 ## Features
 - Account Creation: Create an account to access services! You can also sign up for SMS & email updates from the councilperson.
-- City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from 311 requests, police accountability reports, senior volunteering opportunities, healthcare access, and everything in between. More resouces can be quickly and easily added by modifying the `links.json` file. The resources displayed are dynamically rendered, so any changes to that file directly update the frontend's UI/UX. 
+- City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from 311 requests, police accountability reports, senior volunteering opportunities, healthcare access, and everything in between. More resources can be quickly and easily added by modifying the `links.json` file. The resources displayed are dynamically rendered, so any changes to that file directly update the frontend's UI/UX. 
 - Community Events: Stay up-to-date with what's happening in your community by checking out the events calendar. You'll find information on meetings, workshops, and other activities happening in district 7.
 - Announcements: Stay up-to-date with updates from the your city councilperson!
 
