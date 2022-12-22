@@ -26,14 +26,15 @@ To deploy the D7 Dashboard, you'll need to do the following:
 This will deploy the D7 Dashboard to your specified Firebase hosting URL, making it accessible to users.
 
 ## Features
-- City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from trash pickup and street cleaning to public transportation and healthcare resources.
+- Account Creation: Create an account to access services! You can also sign up for SMS & email updates from the councilperson.
+- City Services: The D7 Dashboard provides a comprehensive list of city services that are available to district 7 residents. This includes everything from 311 requests, police accountability reports, senior volunteering opportunities, healthcare access, and everything in between. More resouces can be quickly and easily added by modifying the `links.json` file. The resources displayed are dynamically rendered, so any changes to that file directly update the frontend's UI/UX. 
 - Community Events: Stay up-to-date with what's happening in your community by checking out the events calendar. You'll find information on meetings, workshops, and other activities happening in district 7.
+- Announcements: Stay up-to-date with updates from the your city councilperson!
 
 ## Known Bugs and Limitations
-There are a few known bugs and limitations with the D7 Dashboard that we are currently working to resolve. These include:
-
-- The PatternFly CSS is behaving strangely, and our client has requested a new color scheme. We recommend finding a better way to change colors in the future.
-- There are some cases where reads and writes to Firebase are called in a loop, which can cause issues. We are working to resolve these issues.
+There are no known bugs, but there are some limitations with the current implementation of the D7 Dashboard. These include:
+- There is no means with which to add announcements or calendar events, as a clear implementation plan was not detailed in the scope of the project requirements for the semester. This feature can be added easily in the future (either with a Google Calendar integration or with a custom submission page). The home screen currently parses JSON to render events.
+- The registration page should save tokens so that users do not need to login again upon registration.
 - Currently, the Firebase database is set to open to assist with testing and development. However, before going into production, we will need to close it off to ensure security.
 
 ## Adding Users
