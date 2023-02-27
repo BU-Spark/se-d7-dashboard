@@ -15,6 +15,8 @@ function Welcome() {
         console.log("User is logged in");
         console.log(foundUser.email);
         navigate("/home");
+      }else{
+        console.log("User not logged in");
       }
     }
   }, []);
