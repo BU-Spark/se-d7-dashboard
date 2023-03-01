@@ -14,6 +14,8 @@ import { Button, Alert, TextInput } from "@patternfly/react-core";
 
 export interface Login { }
 
+
+//client hit Log In button
 const Login: React.FunctionComponent<Login> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
       email,
       password,
     };
-
+      
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(async (response) => {
         localStorage.setItem("user", JSON.stringify(response.user));

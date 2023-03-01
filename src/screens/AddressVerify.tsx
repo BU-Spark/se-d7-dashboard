@@ -28,7 +28,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup");
+      navigate("/profile"); //change this so it doesn't loop back to sign up page.
     }, 1000);
   };
 
@@ -50,7 +50,15 @@ function AddressVerify() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else {
+    } else if (a.city !== "Boston"){
+      setShowLoading(false);
+      setShowError(true);
+    } 
+    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check
+     * 
+     * 
+     */
+    else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
