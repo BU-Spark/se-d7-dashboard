@@ -54,10 +54,7 @@ function AddressVerify() {
       setShowLoading(false);
       setShowError(true);
     } 
-    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check
-     * 
-     * 
-     */
+    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
