@@ -28,7 +28,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/profile"); //change this so it doesn't loop back to sign up page.
+      navigate("/signup"); 
     }, 1000);
   };
 

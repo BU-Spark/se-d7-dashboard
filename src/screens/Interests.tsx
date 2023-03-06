@@ -35,9 +35,8 @@ function Interests() {
     setDoc(userProfileRef, {
       interests: selectedChips
     });
-
     
-    navigate("/login");
+    navigate("/home"); //change from "login" to "home" to prevent looping back to login screen after login in
 
   };
 
