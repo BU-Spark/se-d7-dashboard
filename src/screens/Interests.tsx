@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { config } from '../config/config';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc,setDoc } from "firebase/firestore";
 import linksJson from "../links.json";
 
 function Interests() {
@@ -34,7 +34,9 @@ function Interests() {
     const userProfileRef = doc(db, "user-profile", userEmail);
     setDoc(userProfileRef, {
       interests: selectedChips
-    });
+    },{merge: true}); 
+      //merge existing contents with newly provided data, if merge = false, interests will override firstName, lastName
+    
     
     navigate("/home"); //change from "login" to "home" to prevent looping back to login screen after login in
 

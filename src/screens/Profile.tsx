@@ -68,7 +68,7 @@ function Profile() {
           }
         ),
       });
-      navigate("/home");
+      navigate("/interests");
     }
   };
 

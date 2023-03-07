@@ -32,7 +32,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
         console.log(response.user.uid);
         // Store the user in local storage
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/interests");
+        navigate("/profile");
       })
       .catch((error) => {
         setIsBannerVisible(true);
