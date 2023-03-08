@@ -1,0 +1,11 @@
+1. No need to touch any files inside of strapi folder. For now we are not going to need them.
+2. to run strapi on your machine navigate to strapi folder and run: 
+yarn develop
+3. strapi also has read me with other comands
+4. To login as an admin go to 
+http://localhost:1337/admin/
+
+email: sparkeng@bu.edu
+password: D7dashboard
+
+5. It already has a collection called tweet where we defined the attributes that the tweet is going to have. 
