@@ -11,6 +11,16 @@ import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
 import linksJson from "../links.json";
 
+//initialise the type of calendar data we are getting from strapi
+type calData = {
+  id: number,
+  attributes: {
+    title: string,
+    body: string,
+    date: string,
+  }
+};
+
 function Home() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
@@ -20,38 +30,7 @@ function Home() {
     userEmail = JSON.parse(loggedInUser).email;
   };
   const userProfileRef = doc(db, "user-profile", userEmail);
-  // This is the list of events
-  const [events, setEvents] = React.useState([
-    {
-      title: "Food Drive",
-      content: "Community Center November 15",
-    },
-    {
-      title: "Christmas Fair",
-      content: "Church December 24",
-    }, {
-      title: "Food Drive",
-      content: "Community Center November 15",
-    },
-    {
-      title: "Christmas Fair",
-      content: "Church December 24",
-    }, {
-      title: "Food Drive",
-      content: "Community Center November 15",
-    },
-    {
-      title: "Christmas Fair",
-      content: "Church December 24",
-    }, {
-      title: "Food Drive",
-      content: "Community Center November 15",
-    },
-    {
-      title: "Christmas Fair",
-      content: "Church December 24",
-    }
-  ]);
+  // This is the list of updates
 
   const [updates, setUpdates] = React.useState([
     {
@@ -94,6 +73,8 @@ function Home() {
 
   const [pinned, setPinned] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
   const [resources, setResources] = React.useState<{ title: string, "links": { title: string, url: string }[] }[]>([]);
+  //calendarData array of calData type
+  const [calendarData, setCalendarData] = React.useState<calData[]>([]);
 
   // Get the interests from the user profile
   const fetchdata = async () => {
@@ -110,12 +91,32 @@ function Home() {
     });
   }
 
+  //fetch calendar data from Strapi
+  useEffect(() => {
+    const fetchCalendarData = async () => {
+      try{
+        const res = await fetch("http://localhost:1337/api/calendars");
+        const json = await res.json();
+        //set the calendar data
+        setCalendarData(json.data);
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+    fetchCalendarData();
+  }, []);
+
+  //create object to pass as props to Calendar component
+  const passCalendarData = {
+    data: calendarData
+  }
+
   // call fetchdata() only once
   useEffect(() => {
     fetchdata();
     console.log("fetching data");
   }, []);
-
 
   return (
     <div className="container">
@@ -123,7 +124,7 @@ function Home() {
       <Search />
 
       <div className="mt-3 text-start heading">Happening This Week</div>
-      <Calendar events={events} />
+      <Calendar {...passCalendarData} />
 
       <div className="my-3 pf-c-title heading text-start">You Pinned</div>
       <Pinned pinned={pinned}/>
@@ -136,5 +137,7 @@ function Home() {
     </div>
   );
 }
+
+export type {calData};
 
 export default Home;

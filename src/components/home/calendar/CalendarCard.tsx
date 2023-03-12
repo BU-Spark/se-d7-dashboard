@@ -3,9 +3,12 @@ import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
-function CalendarCard(props: { title: string; content: string; image?: string }) {
+
+//date and image is optional for now
+function CalendarCard(props: { title: string; content: string; image?: string; date?: string }) {
   const title = props.title;
   const content = props.content;
+  const date = props.date ? props.date : "";
 
   return (
     <div>
@@ -22,6 +25,9 @@ function CalendarCard(props: { title: string; content: string; image?: string })
             </div>
           </div>
           <div className="row mt-2 ">
+          <small className="text-start text-secondary">
+              {date}
+            </small>
             <small className="text-start text-secondary">
               {content}
             </small>
