@@ -5,7 +5,7 @@ yarn develop or npm start
 4. To login as an admin go to 
 http://localhost:1337/admin/
 
-email: sparkeng@bu.edus
+email: sparkeng@bu.edu
 password: D7dashboard
 
 5. It already has a collection called tweet where we defined the attributes that the tweet is going to have. 
