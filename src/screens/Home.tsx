@@ -143,8 +143,6 @@ function Home() {
         const res = await fetch(APIUrl + "tweets");
         const json = await res.json();
         setTweetData(json.data);
-        console.log("tweet!");
-        console.log(json.data);
       } catch (error) {
         console.error(error);
       }
