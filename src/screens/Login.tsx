@@ -60,6 +60,9 @@ const Login: React.FunctionComponent<Login> = (props) => {
   const navigateToSignUp = () => {
     navigate("/address-info");
   };
+  const navigateToHome = () => {
+    navigate("/home");
+  };
 
   return (
     <div className="container-padded">
@@ -112,12 +115,21 @@ const Login: React.FunctionComponent<Login> = (props) => {
       </div>
       <div className="mb-2">Don’t have an account?</div>
       <Button
-        className="px-5 py-1"
+        className="px-5 py-1 mb-4"
         variant="secondary"
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
       >
         Sign up
       </Button>
+
+      <Button
+        className="px-5 py-1"
+        variant="secondary"
+        /*onClick={SignUp}*/ onClick={navigateToHome}
+      >
+        See D7 Resources anyway
+      </Button>
+
 
     </div>
   );

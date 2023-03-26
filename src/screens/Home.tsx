@@ -40,9 +40,12 @@ function Home() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
   const loggedInUser = localStorage.getItem("user");
+
   let userEmail = "";
   if (loggedInUser) {
     userEmail = JSON.parse(loggedInUser).email;
+  }else{
+    userEmail = "defaultuser@email.com"
   }
   const userProfileRef = doc(db, "user-profile", userEmail);
   // This is the list of updates

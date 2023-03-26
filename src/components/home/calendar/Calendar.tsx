@@ -9,7 +9,6 @@ function Calendar(props: {data: calData[]}) {
     const data = props.data;
     return (
         <div>
-             //remove DatePicker
             <div className="horizontal-scroll">
                 {data.length > 0 ? (
                     data.map((event) => {

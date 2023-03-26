@@ -103,14 +103,14 @@
   font-size: 18px !important;
 }
 
-/* Patternfly Variables */
+/* Patternfly Variables #205F00; #123400*/
 .pf-c-button{
-  --pf-global--primary-color--100: #205F00;
-  --pf-global--primary-color--200: #123400;
+  --pf-global--primary-color--100: #0066CC;
+  --pf-global--primary-color--200: #0358ae;
 }
 
 .selected-chip-non-clicked {
-  --pf-c-icon__content--Color: #205F00;
+  --pf-c-icon__content--Color: #0066CC;
 }
 
 .selected-chip-non-clicked:hover {
@@ -119,9 +119,9 @@
 }
 
 .selected-chip-clicked {
-  --pf-global--primary-color-100: green;
-  --pf-global--primary-color--dark-100: green;
-  --pf-global--BorderColor--300 : green;
-  --pf-global--BorderColor-100: green;
-  --pf-global--BorderColor--dark-100: green;
+  --pf-global--primary-color-100: #0066CC;
+  --pf-global--primary-color--dark-100: #0066CC;
+  --pf-global--BorderColor--300 : #0066CC;
+  --pf-global--BorderColor-100: #0066CC;
+  --pf-global--BorderColor--dark-100: #0066CC;
 }
