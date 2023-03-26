@@ -4,7 +4,8 @@
   "info": {
     "singularName": "calendar",
     "pluralName": "calendars",
-    "displayName": "calendar"
+    "displayName": "calendar",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

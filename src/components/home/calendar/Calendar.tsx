@@ -7,10 +7,9 @@ import type {calData} from '../../../screens/Home';
 
 function Calendar(props: {data: calData[]}) {
     const data = props.data;
-
     return (
         <div>
-            <DatePicker />
+             //remove DatePicker
             <div className="horizontal-scroll">
                 {data.length > 0 ? (
                     data.map((event) => {
@@ -30,7 +29,7 @@ function Calendar(props: {data: calData[]}) {
                 )}
             </div>
         </div>
-    );
+    )
 }
 
 export default Calendar;

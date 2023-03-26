@@ -93,7 +93,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           isPlain
           isInline
           variant="danger"
-          title="Login Failed" />)}
+          title="Incorect email or password" />)}
       <br />
 
       <Button
@@ -103,13 +103,14 @@ const Login: React.FunctionComponent<Login> = (props) => {
       >
         Log In
       </Button>
+
+
       <div className="center-wrapper mt-5 mb-5">
         <div className="wrapper">
           <div className="page-login-line"></div>
         </div>
       </div>
       <div className="mb-2">Don’t have an account?</div>
-
       <Button
         className="px-5 py-1"
         variant="secondary"
@@ -117,6 +118,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
       >
         Sign up
       </Button>
+
     </div>
   );
 };

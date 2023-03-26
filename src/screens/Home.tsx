@@ -133,6 +133,7 @@ function Home() {
         const res = await fetch(APIUrl + "calendars");
         const json = await res.json();
         //set the calendar data
+        console.log(json.data[0]);
         setCalendarData(json.data);
       } catch (error) {
         console.log(error);
