@@ -13,9 +13,8 @@ import linksJson from "../links.json";
 
 import Announcement from "../components/home/announcements/Announcement";
 
-//replace this with the rails url eventually
-const APIUrl = "http://localhost:1337/api/";
-//const APIUrl = "https://se-d7-dev.up.railway.app/admin/";
+//for dev
+const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi
 type calData = {
