@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { config } from "../config/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-
+import { ProgressStepperCompact3 } from "../components/home/Progressbar";
 function Profile() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
@@ -74,6 +74,7 @@ function Profile() {
 
   return (
     <div className="container-padded">
+      <ProgressStepperCompact3/>
       <div className="pf-c-title pf-m-lg text-start mb-3">
         Build Your User Profile
       </div>

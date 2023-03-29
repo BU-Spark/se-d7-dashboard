@@ -7,7 +7,7 @@ import { getFirestore } from 'firebase/firestore';
 import { config } from '../config/config';
 import { doc, getDoc,setDoc } from "firebase/firestore";
 import linksJson from "../links.json";
-
+import { ProgressStepperCompact4 } from "../components/home/Progressbar";
 function Interests() {
   const navigate = useNavigate();
   const app = initializeApp(config.firebaseConfig);
@@ -65,6 +65,7 @@ function Interests() {
 
   return (
     <div className="container-padded">
+      <ProgressStepperCompact4/>
       <div className="pf-c-title mb-3 h5">
         Help Us Understand Your Interests
       </div>

@@ -2,7 +2,15 @@ import React from 'react';
 import { ProgressStepper, ProgressStep } from '@patternfly/react-core';
 import './ProgressStepperCompact.css'; // import custom CSS styles
 
-export const ProgressStepperCompact: React.FunctionComponent = () => {
+/** File for storing different variation of the progress bar use at different stage of the sign up flow
+ * properly more efficient to use React props, come back to fixed later
+ * 
+ * Address verify
+ */
+
+
+//this is for current -> pending -> pending -> pending
+export const ProgressStepperCompact1: React.FunctionComponent = (props) => {
   return (
     <React.Fragment>
       <br />
@@ -10,25 +18,105 @@ export const ProgressStepperCompact: React.FunctionComponent = () => {
         <ProgressStep
           variant="info"
           isCurrent
-          id="compact-step1"
-          titleId="compact-step2-title"
-          aria-label="step with info"
         >
         </ProgressStep>
         <ProgressStep
           variant="pending"
-          id="compact-step2"
-          titleId="compact-step3-title"
-          aria-label="pending step"
         >
         </ProgressStep>
         <ProgressStep
           variant="pending"
-          id="compact-step3"
-          titleId="compact-step3-title"
-          aria-label="pending step"
         >
         </ProgressStep>
+        <ProgressStep
+          variant="pending"
+        >
+        </ProgressStep>
+        
+      </ProgressStepper>
+    </React.Fragment>
+  );
+};
+//this is for finished -> current -> pending -> pending
+export const ProgressStepperCompact2: React.FunctionComponent = (props) => {
+  return (
+    <React.Fragment>
+      <br />
+      <ProgressStepper className="pf-c-progress-stepper pf-m-horizontal pf-m-center "> {/* add custom class and horizontal modifier */}
+        <ProgressStep
+          variant="success"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="info"
+          isCurrent
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="pending"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="pending"
+        >
+        </ProgressStep>
+        
+      </ProgressStepper>
+    </React.Fragment>
+  );
+};
+//this is for finished  -> finished -> current -> pending
+export const ProgressStepperCompact3: React.FunctionComponent = (props) => {
+  return (
+    <React.Fragment>
+      <br />
+      <ProgressStepper className="pf-c-progress-stepper pf-m-horizontal pf-m-center "> {/* add custom class and horizontal modifier */}
+        <ProgressStep
+          variant="success"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="success"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="info"
+          isCurrent
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="pending"
+        >
+        </ProgressStep>
+        
+      </ProgressStepper>
+    </React.Fragment>
+  );
+};
+//this is for finished  -> finished -> finished -> current
+export const ProgressStepperCompact4: React.FunctionComponent = (props) => {
+  return (
+    <React.Fragment>
+      <br />
+      <ProgressStepper className="pf-c-progress-stepper pf-m-horizontal pf-m-center "> {/* add custom class and horizontal modifier */}
+        <ProgressStep
+          variant="success"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="success"
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="success"
+          isCurrent
+        >
+        </ProgressStep>
+        <ProgressStep
+          variant="info"
+        >
+        </ProgressStep>
+        
       </ProgressStepper>
     </React.Fragment>
   );
