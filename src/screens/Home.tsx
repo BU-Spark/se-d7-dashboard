@@ -36,6 +36,14 @@ type tweetData = {
   };
 };
 
+type upData = {
+  id: number;
+  attributes: {
+    title: string;
+    content: string;
+  };
+};
+
 function Home() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
@@ -44,55 +52,13 @@ function Home() {
   let userEmail = "";
   if (loggedInUser) {
     userEmail = JSON.parse(loggedInUser).email;
-  }else{
-    userEmail = "defaultuser@email.com"
+  } else {
+    userEmail = "defaultuser@email.com";
   }
   const userProfileRef = doc(db, "user-profile", userEmail);
-  // This is the list of updates
+  //updateData array of upData type
 
-  const [updates, setUpdates] = React.useState([
-    {
-      title: "Vote!",
-      content: "Your councelor demands it!",
-    },
-    {
-      title: "Community Meeting",
-      content: "Participate or else!",
-    },
-    {
-      title: "Vote!",
-      content: "Your councelor demands it!",
-    },
-    {
-      title: "Community Meeting",
-      content: "Participate or else!",
-    },
-    {
-      title: "Vote!",
-      content: "Your councelor demands it!",
-    },
-    {
-      title: "Community Meeting",
-      content: "Participate or else!",
-    },
-    {
-      title: "Vote!",
-      content: "Your councelor demands it!",
-    },
-    {
-      title: "Community Meeting",
-      content: "Participate or else!",
-    },
-    {
-      title: "Vote!",
-      content: "Your councelor demands it!",
-    },
-    {
-      title: "Community Meeting",
-      content: "Participate or else!",
-    },
-  ]);
-
+  const [updateData, setUpdateData] = React.useState<upData[]>([]);
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
@@ -136,7 +102,6 @@ function Home() {
         const res = await fetch(APIUrl + "calendars");
         const json = await res.json();
         //set the calendar data
-        console.log(json.data[0]);
         setCalendarData(json.data);
       } catch (error) {
         console.log(error);
@@ -153,8 +118,19 @@ function Home() {
       }
     };
 
+    const fetchUpdateData = async () => {
+      try {
+        const res = await fetch(APIUrl + "updates");
+        const json = await res.json();
+        setUpdateData(json.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchCalendarData();
     fetchTweetData();
+    fetchUpdateData();
   }, []);
 
   //create object to pass as props to Calendar component
@@ -163,6 +139,9 @@ function Home() {
   };
   const passTweetData = {
     tweets: tweetData,
+  };
+  const passUpdateData = {
+    updates: updateData,
   };
   // call fetchdata() only once
   useEffect(() => {
@@ -192,12 +171,13 @@ function Home() {
       <Resources resources={resources} />
 
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
-      <Updates updates={updates} />
+      <Updates {...passUpdateData} />
     </div>
   );
 }
 
 export type { calData };
 export type { tweetData };
+export type { upData };
 
 export default Home;
