@@ -7,7 +7,7 @@ import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-
+import {ProgressStepperCompact} from "../components/home/Progressbar"
 function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
@@ -116,6 +116,7 @@ function AddressVerify() {
 
   return (
     <div className="container-padded">
+      <ProgressStepperCompact/>
       <div className="text-start">Address</div>
       <TextInput
         className="px-2"
