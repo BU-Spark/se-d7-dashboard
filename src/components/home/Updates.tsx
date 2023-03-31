@@ -4,7 +4,7 @@ import type { upData } from "../../screens/Home";
 function Updates(props: { updates: upData[] }) {
   return (
     <div className="horizontal-scroll">
-      {props.updates.length > 0 ? (
+      {props.updates && props.updates.length > 0 ? (
         props.updates.map((update) => {
           return (
             <CalendarCard
