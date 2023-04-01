@@ -116,8 +116,8 @@ function AddressVerify() {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact1/>
-      <div className="text-start">Address</div>
+      <ProgressStepperCompact1 />
+      <div className="text-start mt-5">Address</div>
       <TextInput
         className="px-2"
         id="textInput-basic-1"

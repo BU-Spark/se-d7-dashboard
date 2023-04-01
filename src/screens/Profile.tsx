@@ -75,7 +75,7 @@ function Profile() {
   return (
     <div className="container-padded">
       <ProgressStepperCompact3/>
-      <div className="pf-c-title pf-m-lg text-start mb-3">
+      <div className="pf-c-title pf-m-lg text-start mb-3 mt-5">
         Build Your User Profile
       </div>
 

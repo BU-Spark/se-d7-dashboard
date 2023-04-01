@@ -66,7 +66,7 @@ function Interests() {
   return (
     <div className="container-padded">
       <ProgressStepperCompact4/>
-      <div className="pf-c-title mb-3 h5">
+      <div className="pf-c-title mb-3 h5 mt-5">
         Help Us Understand Your Interests
       </div>
       <div className="mb-2">You can always change this later</div>

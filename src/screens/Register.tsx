@@ -57,7 +57,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   return (
     <div className="container-padded">
       <ProgressStepperCompact2/>
-      <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
+      <div className="mb-3 pf-c-title h4 text-start mt-5" >Sign Up</div>
       <div className="text-start">Email</div>
 
       <TextInput
