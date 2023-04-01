@@ -118,13 +118,28 @@ function Home() {
     };
 
     const fetchUpdateData = async () => {
-      try {
-        const res = await fetch(APIUrl + "updates");
-        const json = await res.json();
-        setUpdateData(json.data);
-      } catch (error) {
-        console.log(error);
-      }
+      fetch(APIUrl + "updates")
+        .then((res) => {
+          if (res.ok) {
+            res.json().then((json) => {
+              setUpdateData(json.data);
+            });
+          } else {
+            console.log(`status code: ${res.status}`);
+            setUpdateData([
+              {
+                id: -1,
+                attributes: {
+                  title: "Uh Oh!",
+                  content: "Looks like there was an issue!",
+                },
+              },
+            ]);
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     };
 
     fetchCalendarData();
