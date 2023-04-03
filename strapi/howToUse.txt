@@ -8,4 +8,15 @@ http://localhost:1337/admin/
 email: sparkeng@bu.edu
 password: D7dashboard
 
-5. It already has a collection called tweet where we defined the attributes that the tweet is going to have. 
+6. Currently strapi is deployed on Railway with "production" and "development" environments connected to PostgreSQL:
+
+production: https://se-d7-prod.up.railway.app/
+development: https://se-d7-dev.up.railway.app/
+
+7. To login into the app follow:
+https://se-d7-prod.up.railway.app/admin OR https://se-d7-dev.up.railway.app/admin 
+
+8. Login credentials are the same as local ones.
+9. To create a new content type in strapi, it is necessary to create it locally and push changes to github branch. Strapi will automaticaly redeploy. 
+10. You can add the content itself inside the deployed strapi application.
+11. All changes will be displayed inside the PostgreSQL database hosted on Railway.
