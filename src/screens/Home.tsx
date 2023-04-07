@@ -10,9 +10,9 @@ import Resources from "../components/home/Resources";
 import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
 import linksJson from "../links.json";
-
+import { Button } from "@patternfly/react-core";
 import Announcement from "../components/home/announcements/Announcement";
-
+import { useNavigate } from "react-router-dom";
 //for dev
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 
@@ -44,6 +44,7 @@ type upData = {
 };
 
 function Home() {
+  const navigate = useNavigate();
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
   const loggedInUser = localStorage.getItem("user");
@@ -61,9 +62,11 @@ function Home() {
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
+
   const [resources, setResources] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
+
   //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
   //tweetData array of tweetData type
@@ -170,7 +173,8 @@ function Home() {
 
       {/*
 	  this announcments component here will
-	  probably be temporary while we figure out what to do with announcements*/}
+	  probably be temporary while we figure out what to do with announcements
+    */}
 
       <div className="mt-3 text-start heading">Announcements</div>
       <Announcement {...passTweetData} />
@@ -182,7 +186,15 @@ function Home() {
       <Pinned pinned={pinned} />
 
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
-      <Resources resources={resources} />
+      <Button
+        className="fw-bold py-2 mb-2 heading text-uppercase "
+        variant="secondary"
+        onClick= { () => navigate("/getresources")}
+        >
+        Get Resources
+      </Button>
+
+    
 
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} />

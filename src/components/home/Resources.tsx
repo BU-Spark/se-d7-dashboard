@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
     const navigate = useNavigate();
-    
     const goToPortal = (resource: { title: string, "links": { title: string, url: string }[] }) => {
         // Navigate to the portal page
         // Pass the resource as a prop
@@ -21,6 +20,7 @@ function Resources(props: {resources: { title: string, "links": { title: string,
                     >
                         {resource.title}
                     </Button>
+                    
                 );
             })}
         </div>

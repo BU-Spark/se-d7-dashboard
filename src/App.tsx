@@ -14,6 +14,7 @@ import {initializeApp} from 'firebase/app';
 import {config} from './config/config';
 import '@patternfly/react-core/dist/styles/base.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import GetResources from './screens/GetResources';
 
 
 initializeApp(config.firebaseConfig);
@@ -31,7 +32,8 @@ function App() {
           <Route path="/address-entry" element={<AddressVerify/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
-          <Route path="/portal" element={<Portal/>} />        
+          <Route path="/portal" element={<Portal/>} /> 
+          <Route path="/getresources" element={<GetResources/>} />           
         </Routes>
       </BrowserRouter>
     </div>
