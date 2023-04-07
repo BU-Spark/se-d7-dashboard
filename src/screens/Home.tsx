@@ -10,6 +10,7 @@ import Resources from "../components/home/Resources";
 import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
 import linksJson from "../links.json";
+import ViewAllPosts from "../components/home/ViewAllPosts";
 
 import Announcement from "../components/home/announcements/Announcement";
 
@@ -185,7 +186,8 @@ function Home() {
       <Resources resources={resources} />
 
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
-      <Updates {...passUpdateData} />
+      <Updates {...passUpdateData} vertical={false} />
+      <ViewAllPosts {...passUpdateData} />
     </div>
   );
 }
@@ -193,5 +195,6 @@ function Home() {
 export type { calData };
 export type { tweetData };
 export type { upData };
+export { APIUrl };
 
 export default Home;
