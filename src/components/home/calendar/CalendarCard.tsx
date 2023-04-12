@@ -3,15 +3,19 @@ import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
+import Modal from '../Modal';
+import useModal from '../useModal';
+
 
 //date and image is optional for now
 function CalendarCard(props: { title: string; content: string; image?: string; date?: string }) {
   const title = props.title;
   const content = props.content;
   const date = props.date ? props.date : "";
+  const { isOpen, toggle } = useModal();
 
   return (
-    <div>
+    <div onClick={toggle}>
       <Card className="ms-1 me-3 my-3 calendar-card">
         <div className=" mx-3 mt-3 mb-5">
           <div className="row">
@@ -43,6 +47,8 @@ function CalendarCard(props: { title: string; content: string; image?: string; d
               <div></div>
             )}
           </div>
+          <Modal isOpen={isOpen} toggle={toggle} title={title} date={date} content={content}>
+          </Modal>
         </div>
       </Card>
     </div>
