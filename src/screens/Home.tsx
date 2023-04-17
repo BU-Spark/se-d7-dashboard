@@ -24,6 +24,7 @@ type calData = {
     title: string;
     body: string;
     date: string;
+    location: string;
   };
 };
 

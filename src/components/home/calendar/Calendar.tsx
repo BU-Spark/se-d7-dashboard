@@ -17,6 +17,7 @@ function Calendar(props: {data: calData[]}) {
                                 title={event.attributes.title}
                                 content={event.attributes.body}
                                 date={event.attributes.date}
+                                location={event.attributes.location}
                             ></CalendarCard>
                         );
                     })
