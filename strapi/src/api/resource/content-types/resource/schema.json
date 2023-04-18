@@ -15,7 +15,8 @@
     "foods": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::food.food"
+      "target": "api::food.food",
+      "mappedBy": "resource"
     }
   }
 }

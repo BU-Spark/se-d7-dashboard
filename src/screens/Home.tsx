@@ -14,7 +14,10 @@ import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
-//for dev
+
+
+
+//for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi

@@ -17,6 +17,12 @@
     },
     "url": {
       "type": "string"
+    },
+    "resource": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resource.resource",
+      "inversedBy": "foods"
     }
   }
 }
