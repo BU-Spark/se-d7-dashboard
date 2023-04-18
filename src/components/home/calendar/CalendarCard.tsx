@@ -8,10 +8,11 @@ import useModal from '../useModal';
 
 
 //date and image is optional for now
-function CalendarCard(props: { title: string; content: string; image?: string; date?: string }) {
+function CalendarCard(props: { title: string; content: string; image?: string; date?: string; location?: string }) {
   const title = props.title;
   const content = props.content;
   const date = props.date ? props.date : "";
+  const location = props.location ? props.location: "";
   const { isOpen, toggle } = useModal();
 
   return (
@@ -47,7 +48,7 @@ function CalendarCard(props: { title: string; content: string; image?: string; d
               <div></div>
             )}
           </div>
-          <Modal isOpen={isOpen} toggle={toggle} title={title} date={date} content={content}>
+          <Modal isOpen={isOpen} toggle={toggle} title={title} date={date} content={content} location={location}>
           </Modal>
         </div>
       </Card>
