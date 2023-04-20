@@ -10,7 +10,7 @@ import Resources from "../components/home/Resources";
 import { link } from "fs";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useLocation } from "react-router-dom";
-
+import { APIUrl } from "./Home";
 
 function GetResources(){
     const app = initializeApp(config.firebaseConfig);
@@ -25,13 +25,55 @@ function GetResources(){
     }
     const userProfileRef = doc(db, "user-profile", userEmail);
 
-    const [resources, setResources] = 
+     const [resources, setResources] = 
         React.useState<{title: string; 
-                links: {title:string, url: string}[]}[]>([]);
-    
+                links: {title:string, url: string}[]}[]>([]); 
+                
+   /*  const [resources, setResources] = React.useState<{category: string; 
+            sub_category: string;
+            link: string }[]>([]); */
+
     useEffect(() =>{
-      console.log(linksJson);
-      setResources(linksJson);
+      interface data {
+        title: string;
+        links: {title: string,
+                url: string}[]
+      }
+
+      const fetchResourceData = async () => {
+        try {
+          const res = await fetch(APIUrl + "resource-lists");
+          const json = await res.json();
+          
+          
+          let jsonData = json.data.map((x : any) => {
+            return {
+              category: x.attributes.category,
+              sub_category: x.attributes.sub_category,
+              link: x.attributes.link
+            }
+          })
+          const categoryData: data[] = Array.from(jsonData.reduce((map:any,item:any) =>{
+              const category = item.category;
+              const sub_cate = item.sub_category;
+              const link = { title: sub_cate, url: item.link };
+              const existingCategoryData = map.get(category);
+
+              if (existingCategoryData){
+                existingCategoryData.links.push(link);
+              }else {
+                map.set(category, { title: category, links: [link] });
+              }
+              return map;
+          },new Map()).values())
+          setResources(categoryData);
+
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      
+      fetchResourceData();
     })
   
 
