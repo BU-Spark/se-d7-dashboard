@@ -29,9 +29,6 @@ function GetResources(){
         React.useState<{title: string; 
                 links: {title:string, url: string}[]}[]>([]); 
                 
-   /*  const [resources, setResources] = React.useState<{category: string; 
-            sub_category: string;
-            link: string }[]>([]); */
 
     useEffect(() =>{
       interface data {
@@ -45,7 +42,7 @@ function GetResources(){
           const res = await fetch(APIUrl + "resource-lists");
           const json = await res.json();
           
-          
+
           let jsonData = json.data.map((x : any) => {
             return {
               category: x.attributes.category,
@@ -53,17 +50,21 @@ function GetResources(){
               link: x.attributes.link
             }
           })
+
+          //take API response and convert to into array of objects of the type define in "data" interface
           const categoryData: data[] = Array.from(jsonData.reduce((map:any,item:any) =>{
               const category = item.category;
               const sub_cate = item.sub_category;
               const link = { title: sub_cate, url: item.link };
               const existingCategoryData = map.get(category);
-
+              //for each item in jsonData, 'category', 'sub-category', 'link' are extracted.
+              //if 'category' exist in Map, the link is added to the existing category's 'links'
               if (existingCategoryData){
                 existingCategoryData.links.push(link);
               }else {
                 map.set(category, { title: category, links: [link] });
               }
+           
               return map;
           },new Map()).values())
           setResources(categoryData);
