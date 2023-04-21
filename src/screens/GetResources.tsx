@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import linksJson from "../links.json";
+
 import { useEffect } from "react";
 import * as React from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { config } from "../config/config";
-import { Button } from "@patternfly/react-core";
+
 import Resources from "../components/home/Resources";
-import { link } from "fs";
+
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useLocation } from "react-router-dom";
 import { APIUrl } from "./Home";
@@ -41,8 +41,6 @@ function GetResources(){
         try {
           const res = await fetch(APIUrl + "resource-lists");
           const json = await res.json();
-          
-
           let jsonData = json.data.map((x : any) => {
             return {
               category: x.attributes.category,
