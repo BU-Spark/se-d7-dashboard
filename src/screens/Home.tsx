@@ -6,7 +6,6 @@ import Search from "../components/home/Search";
 import { useEffect } from "react";
 import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
-import Resources from "../components/home/Resources";
 import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
 import linksJson from "../links.json";
@@ -68,9 +67,6 @@ function Home() {
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
 
-  const [resources, setResources] = React.useState<
-    { title: string; links: { title: string; url: string }[] }[]
-  >([]);
 
   //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
@@ -85,11 +81,6 @@ function Home() {
           setPinned(
             linksJson.filter((obj) =>
               doc.data()["interests"].includes(obj.title)
-            )
-          );
-          setResources(
-            linksJson.filter(
-              (obj) => !doc.data()["interests"].includes(obj.title)
             )
           );
         } else {
@@ -198,9 +189,6 @@ function Home() {
         >
         Get Resources
       </Button>
-
-    
-
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
