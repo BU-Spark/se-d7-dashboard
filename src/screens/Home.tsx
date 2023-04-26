@@ -13,7 +13,7 @@ import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
-
+import Resources from "../components/home/Resources";
 
 
 //for dev,
@@ -67,7 +67,11 @@ function Home() {
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
 
+  const [InvolvedData, setInvolvedData] =  React.useState<{title: string; 
+    links: {title:string, url: string}[]}[]>([]); 
 
+  const [SubmitandRequestData, setSubmitandRequestData] =  React.useState<{title: string; 
+    links: {title:string, url: string}[]}[]>([]); 
   //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
   //tweetData array of tweetData type
@@ -140,10 +144,43 @@ function Home() {
           console.error(e);
         });
     };
+    const fetchGetInvolvedData = async() =>{
+      fetch(APIUrl + "get-involveds").then((res) =>{
+        if(res.ok){
+          res.json().then((json) =>{
+            const links = json.data.map((obj:any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
+            const result = [{ title: 'Get Involved', links }];
+            setInvolvedData(result);
+          });
+        }else{
+          console.log(`status code: ${res.status}`);
+        }
+      }).catch((e) =>{
+        console.log(e);
+      })
+    };
+    //Get Submit and Request Data
+    const fetchGetSubmitRequestData = async() =>{
+      fetch(APIUrl + "submit-requests-and-reports").then((res) =>{
+        if(res.ok){
+          res.json().then((json) =>{
+            const links = json.data.map((obj:any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
+            const result = [{ title: 'Submit Request and Reports', links }];
+            setSubmitandRequestData(result);
+          });
+        }else{
+          console.log(`status code: ${res.status}`);
+        }
+      }).catch((e) =>{
+        console.log(e);
+      })
+    };
 
     fetchCalendarData();
     fetchTweetData();
     fetchUpdateData();
+    fetchGetInvolvedData();
+    fetchGetSubmitRequestData();
   }, []);
 
   //create object to pass as props to Calendar component
@@ -183,12 +220,15 @@ function Home() {
 
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
       <Button
-        className="fw-bold py-2 mb-2 heading text-uppercase "
+        className="px-3 py-2 mb-2 pinned "
         variant="secondary"
         onClick= { () => navigate("/getresources")}
         >
         Get Resources
       </Button>
+      <Resources resources={InvolvedData}/>
+      <Resources resources={SubmitandRequestData}/>
+      
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
