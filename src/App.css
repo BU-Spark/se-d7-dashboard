@@ -174,3 +174,16 @@
 .modal-text{
   margin-top: 20px;
 }
+
+.logout-button-div{
+  position: "absolute";
+  top: 0;
+  right: 0;
+}
+
+.logout-button{
+  background-color: #0066CC;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
