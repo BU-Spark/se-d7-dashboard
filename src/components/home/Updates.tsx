@@ -6,7 +6,14 @@ function Updates(props: { updates: upData[]; vertical: boolean }) {
     <div
       className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
       style={
-        props.vertical ? { display: "flex", justifyContent: "center" } : {}
+        props.vertical
+          ? {
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }
+          : {}
       }
     >
       {props.updates[0] && props.updates[0].id === -1 ? (
