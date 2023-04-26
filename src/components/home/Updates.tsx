@@ -11,6 +11,7 @@ function Updates(props: { updates: upData[]; vertical: boolean }) {
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",
+              alignItems: "center",
             }
           : {}
       }
