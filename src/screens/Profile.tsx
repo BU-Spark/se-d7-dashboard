@@ -6,6 +6,7 @@ import { getFirestore } from "firebase/firestore";
 import { config } from "../config/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { ProgressStepperCompact3 } from "../components/home/Progressbar";
+import RegisteredSelection from "../components/login/RegisteredSelection";
 function Profile() {
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
@@ -16,6 +17,7 @@ function Profile() {
   const [textUpdates, setTextUpdates] = React.useState(false);
   const [optOut, setOptOut] = React.useState(false);
   const [fieldsMissing, setFieldsMissing] = React.useState(false);
+  const [registered, setRegistered] = React.useState("");
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);
@@ -38,7 +40,12 @@ function Profile() {
   };
 
   const navigateToNext = async () => {
-    if (firstName === "" || lastName === "" || phoneNumber === "") {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      phoneNumber === "" ||
+      registered === ""
+    ) {
       setFieldsMissing(true);
       return;
     } else {
@@ -55,6 +62,7 @@ function Profile() {
         phoneNumber: phoneNumber,
         textUpdates: textUpdates,
         optOut: optOut,
+        registeredVoter: registered,
         interests: await getDoc(doc(db, "user-profile", userEmail)).then(
           (doc) => {
             if (doc.exists()) {
@@ -74,7 +82,7 @@ function Profile() {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact3/>
+      <ProgressStepperCompact3 />
       <div className="pf-c-title pf-m-lg text-start mb-3 mt-5">
         Build Your User Profile
       </div>
@@ -103,6 +111,11 @@ function Profile() {
         type="tel"
         aria-label="Phone Number input field"
         onChange={handlePhoneNumberChange}
+      />
+      <div className="text-start">Are you registered to vote?</div>
+      <RegisteredSelection
+        registered={registered}
+        setRegistered={setRegistered}
       />
 
       {fieldsMissing && (
