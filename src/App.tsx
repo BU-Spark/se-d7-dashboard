@@ -16,6 +16,7 @@ import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
+import AllAnnouncements from "./screens/AllAnnouncements";
 
 initializeApp(config.firebaseConfig);
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/interests" element={<Interests />} />
           <Route path="/portal" element={<Portal />} />
           <Route path="/all-posts" element={<AllPosts />} />
+          <Route path="/all-announcements" element={<AllAnnouncements/>} />
         </Routes>
       </BrowserRouter>
     </div>

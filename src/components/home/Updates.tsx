@@ -3,12 +3,10 @@ import CalendarCard from "./calendar/CalendarCard";
 import type { upData } from "../../screens/Home";
 function Updates(props: { updates: upData[]; vertical: boolean }) {
   return (
-    <div
-      className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
-      style={
-        props.vertical ? { display: "flex", justifyContent: "center" } : {}
-      }
-    >
+    <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
+    style={
+      props.vertical ? {display: "flex", flexWrap: "wrap", justifyContent: "center",} : {}
+    } >
       {props.updates[0] && props.updates[0].id === -1 ? (
         <CalendarCard
           title="Uh Oh!"

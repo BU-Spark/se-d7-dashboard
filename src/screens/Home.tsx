@@ -13,6 +13,7 @@ import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
+import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 
 
 
@@ -173,7 +174,8 @@ function Home() {
     */}
 
       <div className="mt-3 text-start heading">Announcements</div>
-      <Announcement {...passTweetData} />
+      <Announcement {...passTweetData} vertical={false} />
+      <ViewAllAnnouncements {...passTweetData}/>
 
       <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} />
