@@ -6,7 +6,7 @@ function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
     style={
-      props.vertical ? {display: "flex", flexWrap: "wrap", justifyContent: "center",} : {}
+      props.vertical ? {display: "flex", flexWrap: "wrap"} : {}
     } >
       {props.tweets.length > 0 ? (
         props.tweets.map((announcement) => {

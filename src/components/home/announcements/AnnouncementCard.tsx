@@ -17,6 +17,13 @@ function AnnouncementCard(props: {
   const date = props.date ? props.date : "";
   const { isOpen, toggle } = useModal();
 
+  const dateTimeString = date;
+
+  const [dateTime, timeWithZ] = dateTimeString.split("T");
+  const time = timeWithZ ? timeWithZ.replace("Z", "") : "";
+
+  const finalDate = dateTime + " " + new Date("1970-01-01T" + time + "Z").toLocaleTimeString()
+
   return (
     <div onClick={toggle}>
       <Card className="ms-1 me-3 my-3 calendar-card">
@@ -32,7 +39,7 @@ function AnnouncementCard(props: {
             </div>
           </div>
           <div className="row mt-2 ">
-            <small className="text-start text-secondary">{date}</small>
+            <small className="text-start text-secondary">{finalDate}</small>
             <small className="text-start text-secondary">{content}</small>
             {/* if there's an image, display it */}
             {props.image ? (
@@ -46,7 +53,7 @@ function AnnouncementCard(props: {
             )}
           </div>
         </div>
-        <Modal isOpen={isOpen} toggle={toggle} title={title} date={date} content={content}>
+        <Modal isOpen={isOpen} toggle={toggle} title={title} date={finalDate} content={content}>
         </Modal>
       </Card>
     </div>

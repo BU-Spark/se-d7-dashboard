@@ -57,6 +57,19 @@
   display: flex;
 }
 
+.vertical-scroll{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width:700px){
+  .vertical-scroll{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 .calendar-card{
   min-width: 220px;
   min-height: 150px;
