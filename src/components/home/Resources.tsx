@@ -26,7 +26,7 @@ function Resources(props: {resources: { title: string, "links": { title: string,
                 return (
                     <Button
                         className="px-3 py-2 mb-2 pinned"
-                        variant="secondary"
+                        variant="primary"
                         onClick={() => goToPortal(resource)}
                     >
                         {resource.title}

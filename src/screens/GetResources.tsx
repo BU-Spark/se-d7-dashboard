@@ -83,6 +83,7 @@ function GetResources(){
             Get Resources
         </div>
         <div className = "mt-5">
+          
           <Resources resources={resources} />
         </div>
     </div>

@@ -223,7 +223,7 @@ function Home() {
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
       <Button
         className="px-3 py-2 mb-2 pinned "
-        variant="secondary"
+        variant="primary"
         onClick= { () => navigate("/getresources")}
         >
         Get Resources
