@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
+import { ProgressStepperCompact2 } from "../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
 
@@ -32,7 +33,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
         console.log(response.user.uid);
         // Store the user in local storage
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/interests");
+        navigate("/profile");
       })
       .catch((error) => {
         setIsBannerVisible(true);
@@ -55,7 +56,8 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
 
   return (
     <div className="container-padded">
-      <div className="mb-3 pf-c-title h4 text-start">Sign Up</div>
+      <ProgressStepperCompact2/>
+      <div className="mb-3 pf-c-title h4 text-start mt-5" >Sign Up</div>
       <div className="text-start">Email</div>
 
       <TextInput

@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { config } from '../config/config';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc,setDoc } from "firebase/firestore";
 import linksJson from "../links.json";
-
+import { ProgressStepperCompact4 } from "../components/home/Progressbar";
 function Interests() {
   const navigate = useNavigate();
   const app = initializeApp(config.firebaseConfig);
@@ -34,10 +34,11 @@ function Interests() {
     const userProfileRef = doc(db, "user-profile", userEmail);
     setDoc(userProfileRef, {
       interests: selectedChips
-    });
-
+    },{merge: true}); 
+      //merge existing contents with newly provided data, if merge = false, interests will override firstName, lastName
     
-    navigate("/login");
+    
+    navigate("/home"); //change from "login" to "home" to prevent looping back to login screen after login in
 
   };
 
@@ -64,7 +65,8 @@ function Interests() {
 
   return (
     <div className="container-padded">
-      <div className="pf-c-title mb-3 h5">
+      <ProgressStepperCompact4/>
+      <div className="pf-c-title mb-3 h5 mt-5">
         Help Us Understand Your Interests
       </div>
       <div className="mb-2">You can always change this later</div>

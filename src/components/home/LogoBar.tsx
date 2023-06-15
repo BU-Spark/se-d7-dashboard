@@ -1,4 +1,5 @@
 import { ListIcon } from "@patternfly/react-icons";
+import LogOut from '../../screens/LogOut'
 
 function LogoBar() {
     return (
@@ -6,7 +7,9 @@ function LogoBar() {
             <div className="logo">
                 D7
             </div>
-            <ListIcon color="#123400" size="lg"/>
+            <div style={{ marginLeft: "auto" }}>
+            <LogOut /> 
+            </div>
         </div>
     );
 }

@@ -9,7 +9,7 @@ function Portal() {
     return (
         <div>
             <div className="mt-4 ms-4 portal-nav">
-                <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>
+                <AngleLeftIcon size="md" onClick={() => navigate(-1)}/>
                 {location.state.title}
             </div>
             <div className="container-padded">

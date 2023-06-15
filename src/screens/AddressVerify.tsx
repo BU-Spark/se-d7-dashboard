@@ -7,7 +7,7 @@ import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-
+import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
@@ -28,7 +28,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup");
+      navigate("/signup"); 
     }, 1000);
   };
 
@@ -50,7 +50,12 @@ function AddressVerify() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else {
+    } else if (a.city !== "Boston"){
+      setShowLoading(false);
+      setShowError(true);
+    } 
+    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
+    else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
@@ -111,7 +116,8 @@ function AddressVerify() {
 
   return (
     <div className="container-padded">
-      <div className="text-start">Address</div>
+      <ProgressStepperCompact1 />
+      <div className="text-start mt-5">Address</div>
       <TextInput
         className="px-2"
         id="textInput-basic-1"

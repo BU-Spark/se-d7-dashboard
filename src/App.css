@@ -57,6 +57,19 @@
   display: flex;
 }
 
+.vertical-scroll{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width:700px){
+  .vertical-scroll{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 .calendar-card{
   min-width: 220px;
   min-height: 150px;
@@ -103,14 +116,14 @@
   font-size: 18px !important;
 }
 
-/* Patternfly Variables */
+/* Patternfly Variables #205F00; #123400*/
 .pf-c-button{
-  --pf-global--primary-color--100: #205F00;
-  --pf-global--primary-color--200: #123400;
+  --pf-global--primary-color--100: #0066CC;
+  --pf-global--primary-color--200: #0358ae;
 }
 
 .selected-chip-non-clicked {
-  --pf-c-icon__content--Color: #205F00;
+  --pf-c-icon__content--Color: #0066CC;
 }
 
 .selected-chip-non-clicked:hover {
@@ -119,9 +132,71 @@
 }
 
 .selected-chip-clicked {
-  --pf-global--primary-color-100: green;
-  --pf-global--primary-color--dark-100: green;
-  --pf-global--BorderColor--300 : green;
-  --pf-global--BorderColor-100: green;
-  --pf-global--BorderColor--dark-100: green;
+  --pf-global--primary-color-100: #0066CC;
+  --pf-global--primary-color--dark-100: #0066CC;
+  --pf-global--BorderColor--300 : #0066CC;
+  --pf-global--BorderColor-100: #0066CC;
+  --pf-global--BorderColor--dark-100: #0066CC;
+}
+
+.modal-overlay {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-box {
+  position: relative;
+  background: white;
+  width: 80%;
+  height: 60%;
+  padding: 1rem;
+}
+
+@media (min-width:800px){
+.modal-box {
+  position: relative;
+  background: white;
+  width: 50%;
+  height: 60%;
+  padding: 1rem;
+}
+}
+
+.modal-wrapper{
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+}
+
+.modal-text{
+  margin-top: 20px;
+}
+
+.logout-button-div{
+  position: "absolute";
+  top: 0;
+  right: 0;
+}
+
+.logout-button{
+  background-color: #0066CC;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
 }

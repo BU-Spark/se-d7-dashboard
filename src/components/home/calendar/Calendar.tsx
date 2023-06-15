@@ -1,18 +1,23 @@
 import * as React from "react";
 import CalendarCard from "./CalendarCard";
 import DatePicker from "./DatePicker";
-function Calendar(props: { events: { title: string, content: string }[] }) {
+//import calData type
+import type {calData} from '../../../screens/Home';
 
+
+function Calendar(props: {data: calData[]}) {
+    const data = props.data;
     return (
         <div>
-            <DatePicker />
             <div className="horizontal-scroll">
-                {props.events.length > 0 ? (
-                    props.events.map((event) => {
+                {data.length > 0 ? (
+                    data.map((event) => {
                         return (
                             <CalendarCard
-                                title={event.title}
-                                content={event.content}
+                                title={event.attributes.title}
+                                content={event.attributes.body}
+                                date={event.attributes.date}
+                                location={event.attributes.location}
                             ></CalendarCard>
                         );
                     })
@@ -24,7 +29,7 @@ function Calendar(props: { events: { title: string, content: string }[] }) {
                 )}
             </div>
         </div>
-    );
+    )
 }
 
 export default Calendar;
