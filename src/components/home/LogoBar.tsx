@@ -1,4 +1,3 @@
-import { ListIcon } from "@patternfly/react-icons";
 import LogOut from '../../screens/LogOut'
 
 function LogoBar() {

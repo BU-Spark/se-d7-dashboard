@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Button, ContextSelectorFooter } from "@patternfly/react-core";
+import React, { useEffect } from "react";
+import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 
 function Welcome() {
   const navigate = useNavigate();
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       // Don't set user if it is undefined
-      if (foundUser != undefined) {
-        setUser(foundUser);
+      if (foundUser !== undefined) {
+        // setUser(foundUser);
         console.log("User is logged in");
         console.log(foundUser.email);
         navigate("/home");
@@ -19,7 +19,10 @@ function Welcome() {
         console.log("User not logged in");
       }
     }
-  }, []);
+    else{
+      console.log('no exsisted user')
+    }
+  });
   
   const navigateToNext = () => {
     navigate('/login');

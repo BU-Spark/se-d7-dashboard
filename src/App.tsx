@@ -34,7 +34,7 @@ function App() {
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
           <Route path="/portal" element={<Portal/>} /> 
-          <Route path="/getresources" element={<GetResources/>} />           
+          <Route path="/getresources" element={<GetResources/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/home" element={<Home />} />
