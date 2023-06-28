@@ -10,7 +10,7 @@ function Welcome() {
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       // Don't set user if it is undefined
-      if (foundUser !== undefined) {
+      if (foundUser != undefined) {
         // setUser(foundUser);
         console.log("User is logged in");
         console.log(foundUser.email);
