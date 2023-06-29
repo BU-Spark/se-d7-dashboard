@@ -25,3 +25,5 @@ yarn-error.log*
 /.firebase
 strapi/yarn.lock
 strapi/package-lock.json
+
+pnpm-lock.yaml
