@@ -8,7 +8,6 @@ import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
-import linksJson from "../links.json";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +66,6 @@ function Home() {
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
-
   const [InvolvedData, setInvolvedData] =  React.useState<{title: string; 
     links: {title:string, url: string}[]}[]>([]); 
 
@@ -83,11 +81,17 @@ function Home() {
     await getDoc(userProfileRef)
       .then((doc) => {
         if (doc.exists()) {
-          setPinned(
-            linksJson.filter((obj) =>
-              doc.data()["interests"].includes(obj.title)
-            )
-          );
+          // console.log("Document data:", doc.data()["interests"]);
+
+          // Gets user interest from firebase
+          const userInterests: string[] = doc.data()["interests"];
+          // then transfers the data so that can be passed to pinned
+          // pinned.tsx will do the searching for the sub categories in the database resource-lists
+          const transformedInterests = userInterests.map((userInterest: string) => ({
+            title: userInterest,
+            links: [],
+          }));
+          setPinned(transformedInterests);
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
