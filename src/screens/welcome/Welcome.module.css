@@ -1,0 +1,44 @@
+.welcome_bg{
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10vh 0;
+    height: 100vh;
+  }
+  
+.welcome_title {
+  margin-left: 10vw;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: left;
+  color: #151515;
+  background-color: rgba(227, 184, 31, 0.5);
+  padding: 1px 16vw 4px 15px;
+}
+
+.bottom_section{
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome_hint{
+  background-color: rgba(227, 184, 31, 0.5);
+  font-size: 20px;
+  margin-right: 20vw;
+  text-align: left;
+  padding-left: 25vw;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.welcome_button{
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+
+
+

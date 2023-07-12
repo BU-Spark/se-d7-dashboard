@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./screens/Welcome";
+import Welcome from "./screens/welcome/Welcome";
 import AddressInfo from "./screens/AdressInfo";
 import Register from "./screens/Register";
 import AddressVerify from "./screens/AddressVerify";
