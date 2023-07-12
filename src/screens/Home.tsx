@@ -1,5 +1,6 @@
 import * as React from "react";
 import { initializeApp } from "firebase/app";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { config } from "../config/config";
 import Search from "../components/home/Search";
@@ -51,15 +52,9 @@ function Home() {
   const navigate = useNavigate();
   const app = initializeApp(config.firebaseConfig);
   const db = getFirestore(app);
-  const loggedInUser = localStorage.getItem("user");
+  const auth = getAuth();
 
-  let userEmail = "";
-  if (loggedInUser) {
-    userEmail = JSON.parse(loggedInUser).email;
-  } else {
-    userEmail = "defaultuser@email.com";
-  }
-  const userProfileRef = doc(db, "user-profile", userEmail);
+
   //updateData array of upData type
 
   const [updateData, setUpdateData] = React.useState<upData[]>([]);
@@ -77,7 +72,8 @@ function Home() {
   const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
 
   // Get the interests from the user profile
-  const fetchdata = async () => {
+  const fetchdata = async (userEmail = "defaultuser@email.com") => {
+    const userProfileRef = doc(db, "user-profile", userEmail);
     await getDoc(userProfileRef)
       .then((doc) => {
         if (doc.exists()) {
@@ -101,6 +97,17 @@ function Home() {
         console.log("Error getting document:", error);
       });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.email) {
+        fetchdata(user.email);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [auth, navigate]);
 
   //fetch calendar data from Strapi
   useEffect(() => {
@@ -201,7 +208,7 @@ function Home() {
   // call fetchdata() only once
   useEffect(() => {
     fetchdata();
-    console.log("fetching data");
+    // console.log("fetching data");
   }, []);
 
   return (

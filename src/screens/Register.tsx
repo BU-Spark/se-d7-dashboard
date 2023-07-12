@@ -21,18 +21,9 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   };
 
   const SignUp = async () => {
-    const user = {
-      email,
-      password,
-    };
-
-    console.log(user);
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        console.log(response.user.uid);
-        // Store the user in local storage
-        localStorage.setItem("user", JSON.stringify(response.user));
+        // console.log(response.user.uid);
         navigate("/profile");
       })
       .catch((error) => {

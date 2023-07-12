@@ -3,6 +3,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIUrl } from "../../screens/Home";
 
+interface IResource {
+  attributes: {
+    category: string;
+    sub_category: string;
+    link: string;
+  };
+};
+
 function Pinned(props: {
   pinned: { title: string; links: { title: string; url: string }[] }[];
 }) {
@@ -37,13 +45,7 @@ function Pinned(props: {
       try {
         const res = await fetch(APIUrl + "resource-lists");
         const json = await res.json();
-        let jsonData = json.data.map((x: any) => {
-          return {
-            category: x.attributes.category,
-            sub_category: x.attributes.sub_category,
-            link: x.attributes.link,
-          };
-        });
+        let jsonData = json.data.map((resource: IResource) => resource.attributes);
 
         //take API response and convert to into array of objects of the type define in "data" interface
         const categoryData: data[] = Array.from(

@@ -10,9 +10,8 @@ function LogOut() {
     const SignOut = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
-            localStorage.removeItem("user");
-            navigate("/")
             console.log("Logged out")
+            navigate("/")
         }).catch((error) => {
             // An error happened.
             console.log(error)
