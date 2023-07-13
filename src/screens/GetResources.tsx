@@ -2,15 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 import { useEffect } from "react";
 import * as React from "react";
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { config } from "../config/config";
 
 import Resources from "../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { useLocation } from "react-router-dom";
 import { APIUrl } from "./Home";
 
 interface IResource {
@@ -22,12 +17,7 @@ interface IResource {
 };
 
 function GetResources(){
-    const app = initializeApp(config.firebaseConfig);
-    const db = getFirestore(app);
     const navigate = useNavigate();
-    const auth = getAuth();
-    const userEmail = auth.currentUser?.email || "defaultuser@email.com";
-    const userProfileRef = doc(db, "user-profile", userEmail);
 
      const [resources, setResources] = 
         React.useState<{title: string; 

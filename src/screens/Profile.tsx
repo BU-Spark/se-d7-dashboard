@@ -1,18 +1,14 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { config } from "../config/config";
+import { db, auth } from "../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { ProgressStepperCompact3 } from "../components/home/Progressbar";
 import RegisteredSelection from "../components/login/RegisteredSelection";
+
 function Profile() {
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
   const navigate = useNavigate();
-  const auth = getAuth();
+
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");

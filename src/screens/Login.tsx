@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 
+import { db, auth } from "../firebase";
 import {
-  getAuth,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   browserLocalPersistence,
   setPersistence,
 } from "firebase/auth";
-// Import firebase
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { config } from "../config/config";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
@@ -21,14 +17,10 @@ export interface Login {}
 
 //client hit Log In button
 const Login: React.FunctionComponent<Login> = (props) => {
-  const auth = getAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
-
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
 
   useEffect(() => {
     setPersistence(auth, browserLocalPersistence);

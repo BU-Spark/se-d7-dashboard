@@ -1,8 +1,7 @@
 import * as React from "react";
-import { initializeApp } from "firebase/app";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { config } from "../config/config";
+import { db, auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import Search from "../components/home/Search";
 import { useEffect } from "react";
 import Calendar from "../components/home/calendar/Calendar";
@@ -50,13 +49,8 @@ type upData = {
 
 function Home() {
   const navigate = useNavigate();
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
-  const auth = getAuth();
-
 
   //updateData array of upData type
-
   const [updateData, setUpdateData] = React.useState<upData[]>([]);
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]

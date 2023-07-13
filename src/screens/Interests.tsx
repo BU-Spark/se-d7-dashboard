@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
-import { initializeApp } from 'firebase/app';
+import { db, auth } from "../firebase";
+<<<<<<< HEAD
+=======
 import { getAuth } from "firebase/auth";
-import { getFirestore } from 'firebase/firestore';
-import { config } from '../config/config';
-import { doc, getDoc,setDoc } from "firebase/firestore";
+>>>>>>> 0c004b4 (app, db, auth refactored)
+import { doc, setDoc } from "firebase/firestore";
 import { ProgressStepperCompact4 } from "../components/home/Progressbar";
 import { APIUrl } from "./Home";
 
@@ -25,8 +26,6 @@ interface IResource {
 
 function Interests() {
   const navigate = useNavigate();
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
 
     // Store the chips in state
     const [chips, setChips] = useState<{ interests: IInterest[] }>({
@@ -38,7 +37,6 @@ function Interests() {
 
   const navigateToNext = () => {
     // Loop through the chips and add the selected chips to the selectedChips array
-    const auth = getAuth();
     const userEmail = auth.currentUser?.email || "defaultuser@email.com";
     
     chips.interests.forEach((interest) => {

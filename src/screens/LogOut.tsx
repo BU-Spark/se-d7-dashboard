@@ -1,12 +1,11 @@
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@patternfly/react-core";
+import { auth } from "../firebase";
 
 
 function LogOut() {
     const navigate = useNavigate();
 
-    const auth = getAuth();
     const SignOut = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
