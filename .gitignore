@@ -10,8 +10,10 @@
 src/__snapshots__
 src/tests/__snapshots__
 test.tsx.snap
+
 # production
 /build
+/dist
 
 # misc
 .DS_Store
