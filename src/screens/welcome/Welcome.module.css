@@ -38,6 +38,8 @@
 .welcome_button{
   margin-left: 20vw;
   margin-right: 20vw;
+  margin-bottom: 15px;
+  padding: 6px 16px;
 }
 
 .cls{
