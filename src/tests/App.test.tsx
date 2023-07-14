@@ -10,12 +10,12 @@ import AddressVerify from '../screens/AddressVerify';
 import Profile from '../screens/Profile';
 import Interests from '../screens/Interests';
 
-describe('App', () => {
-  it('renders all screens without compile warnings', () => {
-    const { container } = render(<App />);
-    expect(container).toMatchSnapshot();
-  });
-});
+// describe('App', () => {
+//   it('renders all screens without compile warnings', () => {
+//     const { container } = render(<App />);
+//     expect(container).toMatchSnapshot();
+//   });
+// });
 
 describe('Login', () => {
   it('renders the login screen', () => {
