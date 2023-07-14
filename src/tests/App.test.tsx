@@ -1,14 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import {render, screen} from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Login from './screens/Login';
-import Register from './screens/Register';
-import Home from './screens/Home';
-import AddressInfo from './screens/AdressInfo';
-import AddressVerify from './screens/AddressVerify';
-import Profile from './screens/Profile';
-import Interests from './screens/Interests';
+import App from '../App';
+import Login from '../screens/Login';
+import Register from '../screens/Register';
+import Home from '../screens/Home';
+import AddressInfo from '../screens/AdressInfo';
+import AddressVerify from '../screens/AddressVerify';
+import Profile from '../screens/Profile';
+import Interests from '../screens/Interests';
 
 describe('App', () => {
   it('renders all screens without compile warnings', () => {
@@ -26,7 +26,7 @@ describe('Login', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Don’t have an account?')).toBeInTheDocument();
+    expect(screen.getByText('Don’t have an account?')).toBeVisible();
   });
 });
 
@@ -39,7 +39,7 @@ describe('Register', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Sign Up')).toBeInTheDocument();
+    expect(screen.getByText('Sign Up')).toBeVisible();
   });
 });
 
@@ -52,7 +52,7 @@ describe('Address Info', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeInTheDocument();
+    expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
   });
 });
 
@@ -65,7 +65,7 @@ describe('Address Info', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeInTheDocument();
+    expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
   });
 });
 
@@ -78,7 +78,7 @@ describe('Address Entry', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Address')).toBeInTheDocument();
+    expect(screen.getByText('Address')).toBeVisible();
   });
 });
 
@@ -91,7 +91,7 @@ describe('Profile', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Build Your User Profile')).toBeInTheDocument();
+    expect(screen.getByText('Build Your User Profile')).toBeVisible();
   });
 });
 
@@ -104,6 +104,6 @@ describe('Interests', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Help Us Understand Your Interests')).toBeInTheDocument();
+    expect(screen.getByText('Help Us Understand Your Interests')).toBeVisible();
   });
 });

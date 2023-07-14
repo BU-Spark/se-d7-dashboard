@@ -1,4 +1,3 @@
-/* eslint-env node */
 
 module.exports = {
   root: true,
@@ -23,5 +22,9 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-interface": "warn",
   },
+  excludedFiles: ['./vite.config.ts']
 }

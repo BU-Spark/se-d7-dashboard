@@ -40,5 +40,10 @@
   margin-right: 20vw;
 }
 
-
+.cls{
+  display: none;
+  .cls2{
+    color: #151515;
+  }
+}
 
