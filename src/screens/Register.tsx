@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // import firebase auth
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import { ProgressStepperCompact2 } from "../components/home/Progressbar";
@@ -10,6 +9,7 @@ export interface ILoginScreenProps {}
 
 const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const navigate = useNavigate();
+  const auth = getAuth();
   const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");

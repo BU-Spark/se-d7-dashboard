@@ -2,30 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
-import { db, auth } from "../firebase";
-<<<<<<< HEAD
-=======
-import { getAuth } from "firebase/auth";
->>>>>>> 0c004b4 (app, db, auth refactored)
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { ProgressStepperCompact4 } from "../components/home/Progressbar";
 import { APIUrl } from "./Home";
+
+import { IResource } from "../types";
+import { getAuth } from "firebase/auth";
 
 interface IInterest {
   title: string;
   selected: boolean;
 };
 
-interface IResource {
-  attributes: {
-    category: string;
-    sub_category: string;
-    link: string;
-  };
-};
-
 function Interests() {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
 
     // Store the chips in state
     const [chips, setChips] = useState<{ interests: IInterest[] }>({

@@ -1,9 +1,8 @@
 import * as React from "react";
-import { db, auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import Search from "../components/home/Search";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Updates from "../components/home/Updates";
@@ -49,6 +48,8 @@ type upData = {
 
 function Home() {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
 
   //updateData array of upData type
   const [updateData, setUpdateData] = React.useState<upData[]>([]);
@@ -65,14 +66,13 @@ function Home() {
   //tweetData array of tweetData type
   const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
 
-  // Get the interests from the user profile
-  const fetchdata = async (userEmail = "defaultuser@email.com") => {
+  // This function fetch user interests from user-profile
+  // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
+  const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
     const userProfileRef = doc(db, "user-profile", userEmail);
     await getDoc(userProfileRef)
       .then((doc) => {
         if (doc.exists()) {
-          // console.log("Document data:", doc.data()["interests"]);
-
           // Gets user interest from firebase
           const userInterests: string[] = doc.data()["interests"];
           // then transfers the data so that can be passed to pinned
@@ -83,14 +83,13 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  };
+  }, [db]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -101,7 +100,7 @@ function Home() {
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [auth, navigate]);
+  }, [auth, fetchdata]);
 
   //fetch calendar data from Strapi
   useEffect(() => {
@@ -199,11 +198,13 @@ function Home() {
   const passUpdateData = {
     updates: updateData,
   };
-  // call fetchdata() only once
+
   useEffect(() => {
-    fetchdata();
-    // console.log("fetching data");
-  }, []);
+    // if no user is authenticated, fetch data for the default user 
+    if (!auth.currentUser) {
+      fetchdata();
+    }
+  }, [auth.currentUser, fetchdata]);
 
   return (
     <div className="container">

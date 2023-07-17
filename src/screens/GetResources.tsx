@@ -8,13 +8,8 @@ import Resources from "../components/home/Resources";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { APIUrl } from "./Home";
 
-interface IResource {
-  attributes: {
-    category: string;
-    sub_category: string;
-    link: string;
-  };
-};
+import { IResource } from "../types";
+
 
 function GetResources(){
     const navigate = useNavigate();

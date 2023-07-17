@@ -1,13 +1,15 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
-import { db, auth } from "../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { ProgressStepperCompact3 } from "../components/home/Progressbar";
 import RegisteredSelection from "../components/login/RegisteredSelection";
+import { getAuth } from "firebase/auth";
 
 function Profile() {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
 
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");

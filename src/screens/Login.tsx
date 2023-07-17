@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import { db, auth } from "../firebase";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   browserLocalPersistence,
   setPersistence,
+  getAuth,
 } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
@@ -18,6 +18,8 @@ export interface Login {}
 //client hit Log In button
 const Login: React.FunctionComponent<Login> = (props) => {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoginErrorVisible, setIsBannerVisible] = useState(false);

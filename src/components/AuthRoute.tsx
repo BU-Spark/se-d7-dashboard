@@ -1,6 +1,5 @@
 import React, { useEffect, useState, PropsWithChildren } from 'react';
-import { auth } from "../firebase";
-import { onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 export interface IAuthRouteProps {}
@@ -8,6 +7,7 @@ export interface IAuthRouteProps {}
 const AuthRoute: React.FunctionComponent<PropsWithChildren> = (props) => {
     const { children } = props;
     const navigate = useNavigate();
+    const auth = getAuth();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {

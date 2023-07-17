@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIUrl } from "../../screens/Home";
 
-interface IResource {
-  attributes: {
-    category: string;
-    sub_category: string;
-    link: string;
-  };
-};
+import { IResource } from "../../types";
 
 function Pinned(props: {
   pinned: { title: string; links: { title: string; url: string }[] }[];

@@ -16,6 +16,11 @@ import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 
+// init firebase app
+import { initializeApp } from "firebase/app";
+import { config } from "./config/config";
+
+initializeApp(config.firebaseConfig);
 
 function App() {
   return (
