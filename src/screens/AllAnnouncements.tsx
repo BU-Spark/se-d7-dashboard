@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData, upData } from "./Home";
+import type { tweetData } from "./Home";
 import { APIUrl } from "./Home";
 import Announcements from "../components/home/announcements/Announcement";
 

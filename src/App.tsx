@@ -12,11 +12,13 @@ import Home from "./screens/Home";
 import Portal from "./screens/Portal";
 import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/GetResources';
-import { initializeApp } from "firebase/app";
-import { config } from "./config/config";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
+
+// init firebase app
+import { initializeApp } from "firebase/app";
+import { config } from "./config/config";
 
 initializeApp(config.firebaseConfig);
 
@@ -34,16 +36,7 @@ function App() {
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
           <Route path="/portal" element={<Portal/>} /> 
-          <Route path="/getresources" element={<GetResources/>} />           
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Welcome />} />
-          <Route path="/address-info" element={<AddressInfo />} />
-          <Route path="/address-entry" element={<AddressVerify />} />
-          <Route path="/profile" element={<UserProfileScreen />} />
-          <Route path="/interests" element={<Interests />} />
-          <Route path="/portal" element={<Portal />} />
+          <Route path="/getresources" element={<GetResources/>} />
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements/>} />
         </Routes>
