@@ -12,11 +12,13 @@ import Home from "./screens/Home";
 import Portal from "./screens/Portal";
 import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/GetResources';
-import { initializeApp } from "firebase/app";
-import { config } from "./config/config";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
+
+// init firebase app
+import { initializeApp } from "firebase/app";
+import { config } from "./config/config";
 
 initializeApp(config.firebaseConfig);
 

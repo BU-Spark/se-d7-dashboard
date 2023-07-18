@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { config } from "../config/config";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { ProgressStepperCompact3 } from "../components/home/Progressbar";
 import RegisteredSelection from "../components/login/RegisteredSelection";
+import { getAuth } from "firebase/auth";
+
 function Profile() {
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
+
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -51,10 +51,9 @@ function Profile() {
     } else {
       setFieldsMissing(false);
     }
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
+    if (auth.currentUser) {
       console.log("User is logged in.");
-      const userEmail = JSON.parse(loggedInUser).email;
+      const userEmail = auth.currentUser?.email || "defaultuser@email.com";
       const userProfileRef = doc(db, "user-profile", userEmail);
       setDoc(userProfileRef, {
         firstName: firstName,

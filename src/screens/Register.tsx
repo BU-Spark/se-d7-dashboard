@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import firebase auth
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import { ProgressStepperCompact2 } from "../components/home/Progressbar";
@@ -8,8 +8,8 @@ import { ProgressStepperCompact2 } from "../components/home/Progressbar";
 export interface ILoginScreenProps {}
 
 const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
-  const auth = getAuth();
   const navigate = useNavigate();
+  const auth = getAuth();
   const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -21,18 +21,9 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   };
 
   const SignUp = async () => {
-    const user = {
-      email,
-      password,
-    };
-
-    console.log(user);
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        console.log(response.user.uid);
-        // Store the user in local storage
-        localStorage.setItem("user", JSON.stringify(response.user));
+        // console.log(response.user.uid);
         navigate("/profile");
       })
       .catch((error) => {

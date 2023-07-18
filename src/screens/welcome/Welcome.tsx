@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
 import styles from "./welcome.module.css";
@@ -7,25 +7,6 @@ import WELCOME_BG from "../../assets/welcome_bg.png";
 
 function Welcome() {
   const navigate = useNavigate();
-  // const [user, setUser] = useState();
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      // Don't set user if it is undefined
-      if (foundUser != undefined) {
-        // setUser(foundUser);
-        console.log("User is logged in");
-        console.log(foundUser.email);
-        navigate("/home");
-      }else{
-        console.log("User not logged in");
-      }
-    }
-    else{
-      console.log('no exsisted user')
-    }
-  });
   
   const navigateToNext = () => {
     navigate('/login');
