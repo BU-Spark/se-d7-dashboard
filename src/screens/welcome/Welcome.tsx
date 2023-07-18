@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
-import styles from "./welcome.module.css";
 import { title } from "process";
 import WELCOME_BG from "../../assets/welcome_bg.png";
 
@@ -18,7 +17,9 @@ function Welcome() {
   
     return (
       <>
-        <div className="welcome_bg">
+        <div className="bg" style={{
+          background: `url(${WELCOME_BG}), lightgray 50% / cover no-repeat`
+        }}>
           <div className="welcome_title">Welcome to the District 7 Boston Citizen’s App</div>
           <div className="bottom_section">
             <div className="mt-5 mb-4 welcome_hint"> Please confirm you are a resident of District 7 </div>
@@ -30,7 +31,6 @@ function Welcome() {
             </Button>
           </div>  
         </div>
-        <img src={WELCOME_BG} className="welcome_bg"></img>
       </>
     );
   
