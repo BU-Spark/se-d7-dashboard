@@ -1,14 +1,12 @@
 import * as React from "react";
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { config } from "../config/config";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import Search from "../components/home/Search";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
-import linksJson from "../links.json";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
@@ -50,24 +48,14 @@ type upData = {
 
 function Home() {
   const navigate = useNavigate();
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
-  const loggedInUser = localStorage.getItem("user");
+  const auth = getAuth();
+  const db = getFirestore();
 
-  let userEmail = "";
-  if (loggedInUser) {
-    userEmail = JSON.parse(loggedInUser).email;
-  } else {
-    userEmail = "defaultuser@email.com";
-  }
-  const userProfileRef = doc(db, "user-profile", userEmail);
   //updateData array of upData type
-
   const [updateData, setUpdateData] = React.useState<upData[]>([]);
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
-
   const [InvolvedData, setInvolvedData] =  React.useState<{title: string; 
     links: {title:string, url: string}[]}[]>([]); 
 
@@ -78,25 +66,41 @@ function Home() {
   //tweetData array of tweetData type
   const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
 
-  // Get the interests from the user profile
-  const fetchdata = async () => {
+  // This function fetch user interests from user-profile
+  // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
+  const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
+    const userProfileRef = doc(db, "user-profile", userEmail);
     await getDoc(userProfileRef)
       .then((doc) => {
         if (doc.exists()) {
-          setPinned(
-            linksJson.filter((obj) =>
-              doc.data()["interests"].includes(obj.title)
-            )
-          );
+          // Gets user interest from firebase
+          const userInterests: string[] = doc.data()["interests"];
+          // then transfers the data so that can be passed to pinned
+          // pinned.tsx will do the searching for the sub categories in the database resource-lists
+          const transformedInterests = userInterests.map((userInterest: string) => ({
+            title: userInterest,
+            links: [],
+          }));
+          setPinned(transformedInterests);
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  };
+  }, [db]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.email) {
+        fetchdata(user.email);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [auth, fetchdata]);
 
   //fetch calendar data from Strapi
   useEffect(() => {
@@ -194,11 +198,13 @@ function Home() {
   const passUpdateData = {
     updates: updateData,
   };
-  // call fetchdata() only once
+
   useEffect(() => {
-    fetchdata();
-    console.log("fetching data");
-  }, []);
+    // if no user is authenticated, fetch data for the default user 
+    if (!auth.currentUser) {
+      fetchdata();
+    }
+  }, [auth.currentUser, fetchdata]);
 
   return (
     <div className="container">

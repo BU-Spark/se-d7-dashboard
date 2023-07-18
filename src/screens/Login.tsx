@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
-  getAuth,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  browserLocalPersistence,
+  setPersistence,
+  getAuth,
 } from "firebase/auth";
-// Import firebase
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { config } from "../config/config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
@@ -19,14 +17,16 @@ export interface Login {}
 
 //client hit Log In button
 const Login: React.FunctionComponent<Login> = (props) => {
-  const auth = getAuth();
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
 
-  const app = initializeApp(config.firebaseConfig);
-  const db = getFirestore(app);
+  useEffect(() => {
+    setPersistence(auth, browserLocalPersistence);
+  }, [auth]);
 
   const Login = async () => {
     const user = {
@@ -36,12 +36,10 @@ const Login: React.FunctionComponent<Login> = (props) => {
 
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(async (response) => {
-        localStorage.setItem("user", JSON.stringify(response.user));
         console.log("Getting user data");
         let userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
           console.log("Document data:", userData.data());
-          // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
             navigate("/home");
           } else {
@@ -60,7 +58,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
   const LoginGoogle = async () => {
     signInWithPopup(auth, new GoogleAuthProvider())
       .then(async (res) => {
-        localStorage.setItem("user", JSON.stringify(res.user));
+        // localStorage.setItem("user", JSON.stringify(res.user));
         console.log("Getting user data");
         let email: string;
         if (res.user.email) {
