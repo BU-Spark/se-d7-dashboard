@@ -3,7 +3,7 @@ import {render, screen} from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import App from '../App';
 import Login from '../screens/login/Login';
-import Register from '../screens/Register';
+import Register from '../screens/register/Register';
 import Home from '../screens/Home';
 import AddressInfo from '../screens/AdressInfo';
 import AddressVerify from '../screens/AddressVerify';
