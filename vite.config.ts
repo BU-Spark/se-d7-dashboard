@@ -28,5 +28,8 @@ export default defineConfig({
         './src/tests/setupTests.ts'
       ]
     }
+  },
+  build:{
+    outDir: 'build'
   }
 });
