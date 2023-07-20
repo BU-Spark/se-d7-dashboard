@@ -1,0 +1,13 @@
+.bg{
+    display: flex;
+    flex-direction: column;
+    padding: 10vh 16vw;
+    background-color: #00183d;
+    height: 100vh;
+}
+
+.page-login-line {
+    width: 122px;
+    height: 0px;
+    border: 0.7px solid #fff;
+}

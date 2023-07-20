@@ -1,0 +1,48 @@
+.bg{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding-top: 11vh;
+  padding-bottom: 8vh;
+  background: fit-content;
+}
+
+.welcome_title {
+  margin-left: 10vw;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  text-align: left;
+  color: #151515;
+  background-color: rgba(227, 184, 31, 0.5);
+  padding: 1px 16vw 4px 15px;
+}
+
+.bottom_section{
+  display: flex;
+  flex-direction: column;
+  
+  .welcome_hint{
+    background-color: rgba(227, 184, 31, 0.5);
+    font-size: 1.5rem;
+    margin-right: 20vw;
+    text-align: left;
+    padding-left: 25vw;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .welcome_button{
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-bottom: 15px;
+    padding: 6px 16px;
+  }
+}
+
+
+
+

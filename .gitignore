@@ -7,9 +7,13 @@
 
 # testing
 /coverage
+src/__snapshots__
+src/tests/__snapshots__
+test.tsx.snap
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -26,4 +30,6 @@ yarn-error.log*
 strapi/yarn.lock
 strapi/package-lock.json
 
-pnpm-lock.yaml
+# test results
+
+
