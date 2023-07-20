@@ -1,6 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
 
+/* Patternfly Variables #205F00; #123400*/
+.pf-c-button{
+  --pf-global--primary-color--100: #e3b81f;
+  --pf-global--primary-color--200: #a6881d;
+  --pf-global--danger-color--100: #D40000;
+}
+
+.selected-chip-non-clicked {
+  --pf-c-icon__content--Color: #0066CC;
+}
+
+.selected-chip-non-clicked:hover {
+  --pf-global--primary-color-100: grey;
+  --pf-global--primary-color--dark-100: grey;
+}
+
+.selected-chip-clicked {
+  --pf-global--primary-color-100: #0066CC;
+  --pf-global--primary-color--dark-100: #0066CC;
+  --pf-global--BorderColor--300 : #0066CC;
+  --pf-global--BorderColor-100: #0066CC;
+  --pf-global--BorderColor--dark-100: #0066CC;
+}
+
 /* Global Styles */
 .App {
   text-align: center;
@@ -25,7 +49,7 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding: 10vh 16vw;
+  padding: 10vh 16vw
 }
 
 .center-wrapper {
@@ -35,11 +59,7 @@
 
 
 /* Login Page Styles */
-.page-login-line {
-  width: 122px;
-  height: 0px;
-  border: 0.7px solid #000000;
-}
+
 
 /* Calendar Styles */
 
@@ -105,29 +125,6 @@
 .pinned {
   text-align: left !important;
   font-size: 18px !important;
-}
-
-/* Patternfly Variables #205F00; #123400*/
-.pf-c-button{
-  --pf-global--primary-color--100: #D40000;
-  --pf-global--primary-color--200: #0358ae;
-}
-
-.selected-chip-non-clicked {
-  --pf-c-icon__content--Color: #0066CC;
-}
-
-.selected-chip-non-clicked:hover {
-  --pf-global--primary-color-100: grey;
-  --pf-global--primary-color--dark-100: grey;
-}
-
-.selected-chip-clicked {
-  --pf-global--primary-color-100: #0066CC;
-  --pf-global--primary-color--dark-100: #0066CC;
-  --pf-global--BorderColor--300 : #0066CC;
-  --pf-global--BorderColor-100: #0066CC;
-  --pf-global--BorderColor--dark-100: #0066CC;
 }
 
 .modal-overlay {

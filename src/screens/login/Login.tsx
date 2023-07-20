@@ -55,34 +55,34 @@ const Login: React.FunctionComponent<Login> = (props) => {
       });
   };
 
-  const LoginGoogle = async () => {
-    signInWithPopup(auth, new GoogleAuthProvider())
-      .then(async (res) => {
-        // localStorage.setItem("user", JSON.stringify(res.user));
-        console.log("Getting user data");
-        let email: string;
-        if (res.user.email) {
-          email = res.user.email.toString();
-        } else {
-          throw new Error();
-        }
-        let userData = await getDoc(doc(db, "user-profile", email));
-        if (userData.exists()) {
-          console.log("Document data:", userData.data());
-          // Check if first name is set, if not, navigate to user profile
-          if (userData.data().firstName) {
-            navigate("/home");
-          } else {
-            navigate("/profile");
-          }
-        } else {
-          navigate("/profile");
-        }
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
+  // const LoginGoogle = async () => {
+  //   signInWithPopup(auth, new GoogleAuthProvider())
+  //     .then(async (res) => {
+  //       // localStorage.setItem("user", JSON.stringify(res.user));
+  //       console.log("Getting user data");
+  //       let email: string;
+  //       if (res.user.email) {
+  //         email = res.user.email.toString();
+  //       } else {
+  //         throw new Error();
+  //       }
+  //       let userData = await getDoc(doc(db, "user-profile", email));
+  //       if (userData.exists()) {
+  //         console.log("Document data:", userData.data());
+  //         // Check if first name is set, if not, navigate to user profile
+  //         if (userData.data().firstName) {
+  //           navigate("/home");
+  //         } else {
+  //           navigate("/profile");
+  //         }
+  //       } else {
+  //         navigate("/profile");
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.error(e);
+  //     });
+  // };
 
   const navigateToSignUp = () => {
     navigate("/address-info");
@@ -92,13 +92,13 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
-    <div className="container-padded">
-      <div className="mb-3 h4 text-start">Log In</div>
-      <div className="text-start">Email</div>
+    <div className="bg">
+      <div className="mb-4 h4 text-start text-white ">Log In</div>
+      <div className="text-start text-white ">Email</div>
 
       <TextInput
-        className="px-2"
-        id="textInput-basic-1"
+        className="px-2 mb-4"
+        aria-label="email"
         type="text"
         placeholder=""
         value={email}
@@ -106,10 +106,10 @@ const Login: React.FunctionComponent<Login> = (props) => {
           setEmail(e);
         }}
       />
-      <div className="text-start">Password</div>
+      <div className="text-start text-white">Password</div>
       <TextInput
         className="px-2 mb-3"
-        id="textInput-basic-1"
+        aria-label="password"
         placeholder=""
         value={password}
         onChange={(e) => {
@@ -131,9 +131,9 @@ const Login: React.FunctionComponent<Login> = (props) => {
       <Button className="px-5 py-1 mb-2" variant="primary" onClick={Login}>
         Log In
       </Button>
-      <div className="center-wrapper">
+      {/* <div className="center-wrapper">
         <GoogleButton onClick={LoginGoogle} />
-      </div>
+      </div> */}
 
       <div className="center-wrapper mt-5 mb-5">
         <div className="wrapper">
@@ -144,6 +144,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
       <Button
         className="px-5 py-1 mb-4"
         variant="secondary"
+        isDanger
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
       >
         Sign up
@@ -152,6 +153,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
       <Button
         className="px-5 py-1"
         variant="secondary"
+        isDanger
         /*onClick={SignUp}*/ onClick={navigateToHome}
       >
         See D7 Resources anyway

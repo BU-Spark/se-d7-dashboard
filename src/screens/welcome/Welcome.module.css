@@ -5,6 +5,7 @@
   height: 100vh;
   padding-top: 11vh;
   padding-bottom: 8vh;
+  background: fit-content;
 }
 
 .welcome_title {

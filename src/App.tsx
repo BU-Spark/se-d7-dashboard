@@ -5,7 +5,7 @@ import Welcome from "./screens/welcome/Welcome";
 import AddressInfo from "./screens/AdressInfo";
 import Register from "./screens/Register";
 import AddressVerify from "./screens/AddressVerify";
-import Login from "./screens/Login";
+import Login from "./screens/login/Login";
 import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";
 import Home from "./screens/Home";
