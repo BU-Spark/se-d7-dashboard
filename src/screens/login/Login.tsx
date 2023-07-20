@@ -10,8 +10,9 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert, TextInput } from "@patternfly/react-core";
+import { Button, Alert, TextInput, Tooltip } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
+import { QUESTION_CIRCLE } from "../../assets";
 
 export interface Login {}
 
@@ -94,21 +95,20 @@ const Login: React.FunctionComponent<Login> = (props) => {
   return (
     <div className="bg">
       <div className="mb-4 h4 text-start text-white ">Log In</div>
-      <div className="text-start text-white ">Email</div>
+      <div className="mb-1 text-start text-white ">Email</div>
 
       <TextInput
         className="px-2 mb-4"
-        aria-label="email"
+        aria-label="text input"
         type="text"
-        placeholder=""
         value={email}
         onChange={(e) => {
           setEmail(e);
         }}
       />
-      <div className="text-start text-white">Password</div>
+      <div className="mb-1 text-start text-white">Password</div>
       <TextInput
-        className="px-2 mb-3"
+        className="px-2 mb-1"
         aria-label="password"
         placeholder=""
         value={password}
@@ -118,17 +118,25 @@ const Login: React.FunctionComponent<Login> = (props) => {
         type="password"
       />
 
+      {/* <Alert
+          isPlain
+          isInline
+          variant="danger"
+          title="Incorect email or password"
+          className="mt-3 text-start form_alert"
+      /> */}
       {isLoginErrorVisible && (
         <Alert
           isPlain
           isInline
           variant="danger"
           title="Incorect email or password"
+          className="mt-3 text-start form_alert"
         />
       )}
       <br />
 
-      <Button className="px-5 py-1 mb-2" variant="primary" onClick={Login}>
+      <Button className="mb-2 text-black" variant="primary" onClick={Login}>
         Log In
       </Button>
       {/* <div className="center-wrapper">
@@ -140,9 +148,50 @@ const Login: React.FunctionComponent<Login> = (props) => {
           <div className="page-login-line"></div>
         </div>
       </div>
-      <div className="mb-2">Don’t have an account?</div>
+      <div className="d-flex">
+        <div className="mb-2 text-white text-start">
+          Don’t have an account?
+        </div>
+        <Tooltip
+          aria-aria-live="polite"
+          removeFindDomNode={true}
+          className="_tooltip"
+          position="top"
+          enableFlip={true}
+          isContentLeftAligned
+          maxWidth="182px"
+          content={
+            <>
+              <div style={{
+                color: "black",
+                fontSize: "16px",
+                marginBottom: "10px"
+              }}>
+                Sign-Up Optional
+              </div>
+              <div style={{
+                color: "black",
+                fontSize: "10px"
+              }}>
+                Recommended for D7 Residents
+              </div>
+            </>
+          }
+          >
+          <img 
+            src={QUESTION_CIRCLE}
+            style={{ 
+              width: "14px",
+              marginBottom: "6px",
+              marginLeft: "6px",
+              cursor: "pointer"
+            }}
+          />
+        </Tooltip>
+      </div>
+
       <Button
-        className="px-5 py-1 mb-4"
+        className="mb-4"
         variant="secondary"
         isDanger
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
@@ -151,7 +200,6 @@ const Login: React.FunctionComponent<Login> = (props) => {
       </Button>
 
       <Button
-        className="px-5 py-1"
         variant="secondary"
         isDanger
         /*onClick={SignUp}*/ onClick={navigateToHome}
