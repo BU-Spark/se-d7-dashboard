@@ -159,6 +159,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           className="_tooltip"
           position="top"
           enableFlip={true}
+          trigger="click"
           isContentLeftAligned
           maxWidth="190px"
           content={
