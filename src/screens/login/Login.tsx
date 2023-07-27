@@ -153,13 +153,15 @@ const Login: React.FunctionComponent<Login> = (props) => {
           Don’t have an account?
         </div>
         <Tooltip
-          aria-aria-live="polite"
+          aria-live="polite"
           removeFindDomNode={true}
+          distance={12}
           className="_tooltip"
           position="top"
           enableFlip={true}
+          trigger="click"
           isContentLeftAligned
-          maxWidth="182px"
+          maxWidth="190px"
           content={
             <>
               <div style={{
