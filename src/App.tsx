@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/welcome/Welcome";
-import AddressInfo from "./screens/AdressInfo";
+import AddressInfo from "./screens/adressInfo/AdressInfo";
 import Register from "./screens/register/Register";
 import AddressVerify from "./screens/AddressVerify";
 import Login from "./screens/login/Login";
@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Register/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/address-info" element={<AddressInfo/>} />

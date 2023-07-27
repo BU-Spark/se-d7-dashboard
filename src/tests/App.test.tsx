@@ -5,7 +5,7 @@ import App from '../App';
 import Login from '../screens/login/Login';
 import Register from '../screens/register/Register';
 import Home from '../screens/Home';
-import AddressInfo from '../screens/AdressInfo';
+import AddressInfo from '../screens/adressInfo/AdressInfo';
 import AddressVerify from '../screens/AddressVerify';
 import Profile from '../screens/Profile';
 import Interests from '../screens/Interests';

@@ -1,0 +1,11 @@
+.bg{
+  background-color: #00183d;
+  height: 100vh;
+  padding: 10vh 16vw;
+}
+
+.paragraph{
+  padding-right: 10vw;
+  font-size: 1.125rem;
+  margin-bottom: 43vh;
+}
