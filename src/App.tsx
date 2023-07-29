@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/welcome/Welcome";
 import AddressInfo from "./screens/adressInfo/AdressInfo";
 import Register from "./screens/register/Register";
-import AddressVerify from "./screens/AddressVerify";
+import AddressVerify from "./screens/addressVerify/AddressVerify";
 import Login from "./screens/login/Login";
 import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";

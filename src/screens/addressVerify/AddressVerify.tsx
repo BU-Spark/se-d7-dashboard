@@ -1,13 +1,13 @@
 import * as React from "react";
-import AddressCheckBox from "../components/address/AddressCheckBox";
-import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
-import AddressErrorBox from "../components/address/AddressErrorBox";
-import AddressInvalidBox from "../components/address/AddressInvalidBox";
-import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
-import StateSelection from "../components/address/StateSelection";
-import { TextInput, Button } from "@patternfly/react-core";
+import AddressCheckBox from "../../components/address/AddressCheckBox";
+import AddressCheckBoxLoading from "../../components/address/AddressCheckBoxLoading";
+import AddressErrorBox from "../../components/address/AddressErrorBox";
+import AddressInvalidBox from "../../components/address/AddressInvalidBox";
+import AddressAPIErrorBox from "../../components/address/AddressAPIErrorBox";
+import StateSelection from "../../components/address/StateSelection";
+import { TextInput, Button, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../components/home/Progressbar";
+import { ProgressStepperCompact1 } from "../../components/home/Progressbar";
 function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
@@ -115,14 +115,15 @@ function AddressVerify() {
   };
 
   return (
-    <div className="container-padded">
+    <div className="bg text-white">
       <ProgressStepperCompact1 />
-      <div className="text-start mt-5">Address</div>
+      <h4 className="text-start mt-4 mb-4 ">Address</h4>
+      <div className="text-start mb-1 ">Address</div>
       <TextInput
-        className="px-2"
+        className="px-2 mb-3"
         id="textInput-basic-1"
         type="text"
-        placeholder="Street Address"
+        placeholder="Street Address or P.O. Box"
         onChange={(e) => {
           setAddress(e.split(" ").join("+"));
         }}
@@ -137,8 +138,8 @@ function AddressVerify() {
         // }}
       />
 
-      <div className="mt-3 text-start">City</div>
-      <TextInput
+      <div className="mt-3 text-start mb-1 ">City</div>
+      {/* <TextInput
         className="mb-2"
         id="textInput-basic-1"
         type="text"
@@ -146,6 +147,15 @@ function AddressVerify() {
         onChange={(e) => {
           setCity(e.split(" ").join("+"));
         }}
+      /> */}
+      <SearchInput 
+        placeholder=""
+        value={city}
+        onChange={(_e, value) => {
+          setCity(value);
+          }
+        }
+        onClear={() => setCity("")}
       />
 
       <div className="text-start mt-3">State</div>
