@@ -118,13 +118,6 @@ const Login: React.FunctionComponent<Login> = (props) => {
         type="password"
       />
 
-      {/* <Alert
-          isPlain
-          isInline
-          variant="danger"
-          title="Incorect email or password"
-          className="mt-3 text-start form_alert"
-      /> */}
       {isLoginErrorVisible && (
         <Alert
           isPlain
