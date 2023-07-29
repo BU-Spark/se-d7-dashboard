@@ -6,6 +6,31 @@
   --pf-global--primary-color--100: #e3b81f;
   --pf-global--primary-color--200: #a6881d;
   --pf-global--danger-color--100: #D40000;
+  --pf-c-button--m-secondary--BackgroundColor: #fff !important;
+  --pf-c-button--m-secondary--m-danger--BackgroundColor: #fff !important;
+  padding: 1.5vw 2vh !important;
+}
+
+.pf-c-form-control{
+  background-color: #fff !important;
+  padding: 1.5vw 1vh !important;
+}
+
+.pf-c-alert{
+  --pf-c-alert--m-danger__title--Color: #fff;
+  > .pf-c-alert__title{
+    margin-left: 10px !important;
+    font-size: 16px !important;
+  }
+}
+
+.pf-c-tooltip{
+  --pf-c-tooltip__arrow--Width: 1rem;
+  --pf-c-tooltip__arrow--Height: 1rem;
+}
+
+.pf-c-tooltip__arrow{
+  background-color: #fff !important;
 }
 
 .selected-chip-non-clicked {
@@ -29,7 +54,6 @@
 .App {
   text-align: center;
   font-family: "Red Hat Text", sans-serif;
-  color: #151515;
   overflow-x: hidden;
 }
 
@@ -134,7 +158,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  /* background: rgba(0, 0, 0, 0.7); */
   display: flex;
   justify-content: center;
   align-items: center;
