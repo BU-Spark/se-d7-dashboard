@@ -1,27 +1,30 @@
-import * as React from "react";
+import { useState, useRef } from "react";
 import AddressCheckBox from "../../components/address/AddressCheckBox";
 import AddressCheckBoxLoading from "../../components/address/AddressCheckBoxLoading";
 import AddressErrorBox from "../../components/address/AddressErrorBox";
 import AddressInvalidBox from "../../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../../components/address/AddressAPIErrorBox";
-import StateSelection from "../../components/address/StateSelection";
 import { TextInput, Button, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../../components/home/Progressbar";
+import Select from "react-select";
 function AddressVerify() {
   const navigate = useNavigate();
-  const [showLoading, setShowLoading] = React.useState(false);
-  const [showSuccess, setShowSuccess] = React.useState(false);
-  const [showError, setShowError] = React.useState(false);
-  const [showInvalid, setShowInvalid] = React.useState(false);
-  const [showAPIError, setShowAPIError] = React.useState(false);
-
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showInvalid, setShowInvalid] = useState(false);
+  const [showAPIError, setShowAPIError] = useState(false);
   // Store the address, city, state, and zip in state
-  const [address, setAddress] = React.useState("");
-  // const [address2, setAddress2] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [zip, setZip] = React.useState("")
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("Select a state");
+  const [zip, setZip] = useState("")
+
+  const options = [
+    {value: "MA", label: "Massachusetts"},
+    {value: "Other", label: "Other"},
+  ]
 
   const navigateToNext = () => {
     setShowLoading(true);
@@ -139,15 +142,6 @@ function AddressVerify() {
       />
 
       <div className="mt-3 text-start mb-1 ">City</div>
-      {/* <TextInput
-        className="mb-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="City"
-        onChange={(e) => {
-          setCity(e.split(" ").join("+"));
-        }}
-      /> */}
       <SearchInput 
         placeholder=""
         value={city}
@@ -158,15 +152,30 @@ function AddressVerify() {
         onClear={() => setCity("")}
       />
 
-      <div className="text-start mt-3">State</div>
-      <StateSelection
-        state={state}
-        setState={setState}
+      <div className="text-start mt-3 mb-1">State</div>
+      <Select
+        options={options} 
+        className="_select" 
+        placeholder="Select a state"
+        isSearchable={false}
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          menu: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            color: state.isSelected ? "white" : "black",
+          })
+        }}
       />
-
-      <div className="text-start mt-3">Zipcode</div>
+      <div className="text-start mt-3 mb-1">Zipcode</div>
       <TextInput
-        className="mb-5 px-2"
+        className="px-2 mb-4"
         id="textInput-basic-1"
         type="text"
         placeholder="Zipcode"
@@ -175,21 +184,23 @@ function AddressVerify() {
         }}
       />
 
-      {showSuccess && <AddressCheckBox></AddressCheckBox>}
-      {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
-      {showError && <AddressErrorBox></AddressErrorBox>}
-      {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
-      {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
-      
-      <div className="text-end mt-5 pt-5">
-        <Button
-          onClick={submit}
-          className="px-3 py-1"
-          variant="primary"
-        >
-          Next
-        </Button>
-      </div>
+      {showSuccess && <AddressCheckBox/>}
+      {showLoading && <AddressCheckBoxLoading/>}
+      {showError && <AddressErrorBox />}
+      {showInvalid && <AddressInvalidBox />}
+      {showAPIError && <AddressAPIErrorBox/>}
+
+      {!showLoading && 
+        <div className="text-end">
+          <Button
+            onClick={submit}
+            className="text-black mt-4"
+            variant="primary"
+          >
+            Next
+          </Button>
+        </div>
+      }
     </div>
   );
 }

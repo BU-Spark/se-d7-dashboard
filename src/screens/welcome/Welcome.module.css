@@ -6,6 +6,7 @@
   padding-top: 11vh;
   padding-bottom: 8vh;
   background: fit-content;
+  overflow-y: scroll;
 }
 
 .welcome_title {

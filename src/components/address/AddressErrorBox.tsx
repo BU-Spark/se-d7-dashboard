@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Card,
   CardBody,
-  Text,
   Icon,
 } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
@@ -12,14 +11,15 @@ import TimesCircleIcon from "@patternfly/react-icons/dist/esm/icons/times-circle
 
 function AddressErrorBox() {
   return (
-    <div>
-      
-      <Card >
+    <>
+      <Card>
         <div style={{backgroundColor:"#c9190b",height:"3px"}}></div>
-        <CardBody className="m-3">
+        <CardBody className="p-3 bg-white">
           <div className="row">
             <div className="col-10">
-              <Text className="text-start">Sorry</Text>
+              <div className="text-start text-black fw-bold mb-2">
+                Sorry
+              </div>
             </div>
             <div className="col-1">
               <Icon isInline status="danger" className="text-end">
@@ -34,7 +34,7 @@ function AddressErrorBox() {
           </div>
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@
   background-color: #00183d;
   height: 100vh;
   padding: 10vh 16vw;
+  overflow-y: scroll;
 }
 
 .paragraph{

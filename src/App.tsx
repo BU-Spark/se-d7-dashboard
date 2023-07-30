@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/welcome/Welcome";
 import AddressInfo from "./screens/adressInfo/AdressInfo";
-import Register from "./screens/register/Register";
+import ContactInfo from "./screens/register/ContactInfo";
 import AddressVerify from "./screens/addressVerify/AddressVerify";
 import Login from "./screens/login/Login";
 import UserProfileScreen from "./screens/Profile";
@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
+          <Route path="/contact-info" element={<ContactInfo/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/address-info" element={<AddressInfo/>} />

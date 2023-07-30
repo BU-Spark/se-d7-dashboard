@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Card,
   CardBody,
-  Text,
   Icon,
   Spinner,
 } from "@patternfly/react-core";
@@ -11,14 +10,13 @@ import "bootstrap/dist/css/bootstrap.css";
 
 function AddressCheckBoxLoading() {
   return (
-    <div>
-      
+    <>
       <Card >
         <div style={{backgroundColor:"#0066CC",height:"3px"}}></div>
-        <CardBody className="m-3">
+        <CardBody className="p-3 bg-white">
           <div className="row">
             <div className="col-10">
-              <Text className="text-start">Processing...</Text>
+              <div className="text-start text-black fw-bold">Processing...</div>
             </div>
             <div className="col-1">
               <Icon isInline className="text-end">
@@ -29,7 +27,7 @@ function AddressCheckBoxLoading() {
           
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 }
 

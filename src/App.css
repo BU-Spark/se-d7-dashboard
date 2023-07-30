@@ -1,26 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
 
-/* Patternfly Variables #205F00; #123400*/
+/* Patternfly tweaks */
 .pf-c-button{
   --pf-global--primary-color--100: #e3b81f;
   --pf-global--primary-color--200: #a6881d;
   --pf-global--danger-color--100: #D40000;
   --pf-c-button--m-secondary--BackgroundColor: #fff !important;
   --pf-c-button--m-secondary--m-danger--BackgroundColor: #fff !important;
-  padding: 1.5vw 2vh !important;
+  padding: 6px 16px !important;
 }
 
 .pf-c-form-control{
   background-color: #fff !important;
-  padding: 1.5vw 1vh !important;
+  padding: 6px 8px !important;
 }
 
 .pf-c-alert{
   --pf-c-alert--m-danger__title--Color: #fff;
   > .pf-c-alert__title{
     margin-left: 10px !important;
-    font-size: 16px !important;
+    font-size: 1rem !important;
   }
 }
 
@@ -31,6 +31,18 @@
 
 .pf-c-tooltip__arrow{
   background-color: #fff !important;
+}
+
+.pf-c-text-input-group__text-input{
+  background-color: #fff !important;
+  padding-block: 6px !important;
+  padding-left: 32px !important;
+  padding-right: 8px !important;
+
+}
+
+.pf-c-text-input-group__icon{
+  z-index: 10 !important;
 }
 
 .selected-chip-non-clicked {
@@ -79,6 +91,10 @@
 .center-wrapper {
   display: flex;
   justify-content: center;
+}
+
+._select{
+  text-align: left;
 }
 
 /* Calendar Styles */

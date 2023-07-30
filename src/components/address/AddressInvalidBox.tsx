@@ -9,17 +9,19 @@ import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 // import a cross circle icon
 import TimesCircleIcon from "@patternfly/react-icons/dist/esm/icons/times-circle-icon";
-
 function AddressErrorBox() {
   return (
-    <div>
-      
-      <Card >
+    <>
+      <Card>
         <div style={{backgroundColor:"#c9190b",height:"3px"}}></div>
-        <CardBody className="m-3">
+        <CardBody className="p-3 bg-white">
           <div className="row">
             <div className="col-10">
-              <Text className="text-start">Sorry</Text>
+              <div 
+                className="text-start text-black fw-bold mb-2"
+              >
+                  Invalid Address
+              </div>
             </div>
             <div className="col-1">
               <Icon isInline status="danger" className="text-end">
@@ -28,13 +30,13 @@ function AddressErrorBox() {
             </div>
           </div>
           <div className="row">
-            <small className="text-start text-secondary">
+            <small className="text-start text-secondary ">
               Please enter a valid address
             </small>
           </div>
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 }
 

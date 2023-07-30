@@ -7,7 +7,7 @@ import { ProgressStepperCompact2 } from "../../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
 
-const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const navigate = useNavigate();
   const auth = getAuth();
   const [authing, setAuthing] = useState(false);
@@ -87,4 +87,4 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default Register;
+export default ContactInfo;
