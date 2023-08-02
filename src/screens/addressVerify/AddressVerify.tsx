@@ -120,7 +120,7 @@ function AddressVerify() {
   return (
     <div className="bg text-white">
       <ProgressStepperCompact1 />
-      <h4 className="text-start mt-4 mb-4 ">Address</h4>
+      <h4 className="text-start mt-4 mb-4 ">Enter your address</h4>
       <div className="text-start mb-1 ">Address</div>
       <TextInput
         className="px-2 mb-3"

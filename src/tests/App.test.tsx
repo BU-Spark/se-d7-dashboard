@@ -10,12 +10,12 @@ import AddressVerify from '../screens/addressVerify/AddressVerify';
 import Profile from '../screens/Profile';
 import Interests from '../screens/Interests';
 
-// describe('App', () => {
-//   it('renders all screens without compile warnings', () => {
-//     const { container } = render(<App />);
-//     expect(container).toMatchSnapshot();
-//   });
-// });
+describe('App', () => {
+  it('renders all screens without compile warnings', () => {
+    const { container } = render(<App />);
+    expect(container).toMatchSnapshot();
+  });
+});
 
 // describe('Login', () => {
 //   it('renders the login screen', () => {
@@ -56,19 +56,6 @@ describe('Address Info', () => {
   });
 });
 
-describe('Address Info', () => {
-  it('renders the address info screen', () => {
-    render(
-      <MemoryRouter initialEntries={['/address-info']}>
-        <Routes>
-          <Route path="/address-info" element={<AddressInfo />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
-  });
-});
-
 describe('Address Entry', () => {
   it('renders the address entry screen', () => {
     render(
@@ -78,7 +65,7 @@ describe('Address Entry', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Address')).toBeVisible();
+    expect(screen.getByText('Enter your address')).toBeVisible();
   });
 });
 
