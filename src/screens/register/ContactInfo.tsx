@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import { ProgressStepperCompact2 } from "../components/home/Progressbar";
+import { ProgressStepperCompact2 } from "../../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
 
-const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const navigate = useNavigate();
   const auth = getAuth();
   const [authing, setAuthing] = useState(false);
@@ -87,4 +87,4 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   );
 };
 
-export default Register;
+export default ContactInfo;

@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/welcome/Welcome";
-import AddressInfo from "./screens/AdressInfo";
-import Register from "./screens/Register";
-import AddressVerify from "./screens/AddressVerify";
+import AddressInfo from "./screens/adressInfo/AdressInfo";
+import ContactInfo from "./screens/register/ContactInfo";
+import AddressVerify from "./screens/addressVerify/AddressVerify";
 import Login from "./screens/login/Login";
 import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";
@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Register/>} />
+          <Route path="/contact-info" element={<ContactInfo/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/address-info" element={<AddressInfo/>} />

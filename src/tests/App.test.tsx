@@ -3,10 +3,10 @@ import {render, screen} from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import App from '../App';
 import Login from '../screens/login/Login';
-import Register from '../screens/Register';
+import Register from '../screens/register/ContactInfo';
 import Home from '../screens/Home';
-import AddressInfo from '../screens/AdressInfo';
-import AddressVerify from '../screens/AddressVerify';
+import AddressInfo from '../screens/adressInfo/AdressInfo';
+import AddressVerify from '../screens/addressVerify/AddressVerify';
 import Profile from '../screens/Profile';
 import Interests from '../screens/Interests';
 
@@ -56,19 +56,6 @@ describe('Address Info', () => {
   });
 });
 
-describe('Address Info', () => {
-  it('renders the address info screen', () => {
-    render(
-      <MemoryRouter initialEntries={['/address-info']}>
-        <Routes>
-          <Route path="/address-info" element={<AddressInfo />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
-  });
-});
-
 describe('Address Entry', () => {
   it('renders the address entry screen', () => {
     render(
@@ -78,7 +65,7 @@ describe('Address Entry', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Address')).toBeVisible();
+    expect(screen.getByText('Enter your address')).toBeVisible();
   });
 });
 

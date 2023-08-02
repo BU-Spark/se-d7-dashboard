@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Card,
   CardBody,
-  Text,
   Icon,
 } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
@@ -11,14 +10,13 @@ import CheckCircleIcon from "@patternfly/react-icons/dist/esm/icons/check-circle
 
 function AddressCheckBox() {
   return (
-    <div>
-      
-      <Card >
+    <>
+      <Card>
         <div style={{backgroundColor:"#3e8635",height:"3px"}}></div>
-        <CardBody className="m-3">
+        <CardBody className="p-3 bg-white">
           <div className="row">
             <div className="col-10">
-              <Text className="text-start">Success!</Text>
+              <div className="text-start text-black fw-bold mb-2">Success!</div>
             </div>
             <div className="col-1">
               <Icon isInline status="success" className="text-end">
@@ -33,7 +31,7 @@ function AddressCheckBox() {
           </div>
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 }
 
