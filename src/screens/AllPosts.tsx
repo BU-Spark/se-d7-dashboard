@@ -60,10 +60,10 @@ function AllPosts() {
         &nbsp;&nbsp;Posts
       </div>
       <div className="search-container">
-        {!searchTerm.length && <SearchIcon className="search-icon" />}
+        <SearchIcon className="search-icon" />
         <input 
           type="text" 
-          placeholder="        Search Posts" 
+          placeholder="Search Posts" 
           onChange={handleSearch}
           className="search-bar"
         />
