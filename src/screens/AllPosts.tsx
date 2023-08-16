@@ -54,7 +54,7 @@ function AllPosts() {
   });
 
   return (
-    <div className="bg">
+    <div className="bg-post">
       <div className="mt-3 ms-3 portal-nav-custom">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
         &nbsp;&nbsp;Posts

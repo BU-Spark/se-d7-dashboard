@@ -1,7 +1,7 @@
-.bg {
+.bg-post {
     display: flex;
     flex-direction: column;
-    padding: 10vh 16vw;
+    padding: 10vh 0vw;
     justify-content: flex-start;
     align-items: center;
     background-color: #00183d;
@@ -26,7 +26,7 @@
 
 .search-container {
     position: relative;
-    width: max-content;
+    min-width: 82%;
     margin-bottom: 20px;
     display: inline-block;
 }
@@ -40,6 +40,6 @@
 }
 
 .search-bar {
-    min-width: 309px;
+    width: 100%;
     padding-left: 33px;
 }

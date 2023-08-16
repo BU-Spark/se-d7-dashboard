@@ -2,7 +2,6 @@ import * as React from "react";
 import PCard from "./PCard";
 import type { postData } from "../../../screens/Home";
 function PostCards(props: { updates: postData[]; vertical: boolean }) {
-  console.log(props.updates)
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
     style={
