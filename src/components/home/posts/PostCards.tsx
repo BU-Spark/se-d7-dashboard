@@ -1,11 +1,9 @@
 import * as React from "react";
 import PCard from "./PCard";
 import type { postData } from "../../../screens/Home";
-function PostCards(props: { updates: postData[]; vertical: boolean }) {
+function PostCards(props: { updates: postData[] }) {
   return (
-    <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
-    style={
-      props.vertical ? {display: "flex", flexWrap: "wrap"} : {}} >
+    <>
       {props.updates[0] && props.updates[0].id === -1 ? (
         <PCard
           title="Uh Oh!"
@@ -16,6 +14,7 @@ function PostCards(props: { updates: postData[]; vertical: boolean }) {
         props.updates.map((update) => {
           return (
             <PCard
+              key={update.id}
               title={update.attributes.title}
               content={update.attributes.content}
               createdAt={update.attributes.createdAt}
@@ -29,7 +28,7 @@ function PostCards(props: { updates: postData[]; vertical: boolean }) {
           createdAt= ""
         ></PCard>
       )}
-    </div>
+    </>
   );
 }
 

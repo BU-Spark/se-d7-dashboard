@@ -37,40 +37,42 @@ function PCard(props: {
   }
 
   return (
-    <Card onClick={toggle} className="my-3 posts-card">
-      <div className=" mx-3 mt-3 mb-5">
-        <div className="row">
-          <div className="col-9">
-            <Text className="text-start post-title">{title}</Text>
+    <>
+      <Card onClick={toggle} className="my-3 posts-card">
+        <div className=" mx-3 mt-3 mb-5">
+          <div className="row">
+            <div className="col-9">
+              <Text className="text-start post-title">{title}</Text>
+            </div>
+            <div className="col-1">
+            </div>
           </div>
-          <div className="col-1">
+          <div className="row mt-2 ">
+            {createdAt ? 
+                <small className="text-start text-secondary">{formattedDate}</small>
+            : null}
+            {/* if there's an image, display it */}
+            {props.image ? (
+              <img
+                src={props.image}
+                alt="Event Image"
+                style={{ width: "100%", height: "100%" }}
+              />
+            ) : (
+              <div></div>
+            )}
           </div>
+          <PostModal
+            isOpen={isOpen}
+            toggle={toggle}
+            title={title}
+            date={formattedDate}
+            content={content}
+            location={location}
+          ></PostModal>
         </div>
-        <div className="row mt-2 ">
-          {createdAt ? 
-              <small className="text-start text-secondary">{formattedDate}</small>
-          : null}
-          {/* if there's an image, display it */}
-          {props.image ? (
-            <img
-              src={props.image}
-              alt="Event Image"
-              style={{ width: "100%", height: "100%" }}
-            />
-          ) : (
-            <div></div>
-          )}
-        </div>
-        <PostModal
-          isOpen={isOpen}
-          toggle={toggle}
-          title={title}
-          date={formattedDate}
-          content={content}
-          location={location}
-        ></PostModal>
-      </div>
-    </Card>
+      </Card>
+    </>
   );
 }
 
