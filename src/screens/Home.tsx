@@ -46,6 +46,15 @@ type upData = {
   };
 };
 
+type postData = {
+  id: number;
+  attributes: {
+    title: string;
+    content: string;
+    createdAt: string;
+  };
+};
+
 function Home() {
   const navigate = useNavigate();
   const auth = getAuth();
@@ -247,6 +256,7 @@ function Home() {
 export type { calData };
 export type { tweetData };
 export type { upData };
+export type { postData };
 export { APIUrl };
 
 export default Home;

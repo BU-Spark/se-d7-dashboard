@@ -1,0 +1,9 @@
+.posts-card{
+    min-width: 82%;
+    min-height: 131px;
+    width: 15vw;
+    height: 10vh;
+    border: 1px solid #D2D2D2;
+    background-color: #fff !important;
+    padding: 10px;
+}
