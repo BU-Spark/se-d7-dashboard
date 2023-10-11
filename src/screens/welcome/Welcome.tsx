@@ -18,6 +18,7 @@ function Welcome() {
       <>
         <div className="bg" style={{
           backgroundImage: `url(${WELCOME_BG})`,
+          backgroundColor: 'white'
         }}>
           <div className="welcome_title">Welcome to the District 7 Boston Citizen’s App</div>
           <div className="bottom_section">

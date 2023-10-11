@@ -1,0 +1,28 @@
+.home {
+    padding: 29px;
+}
+
+
+@media (min-width: 700px) {
+    .home {
+        width: 70%;
+    }
+}
+
+@media (min-width: 950px) {
+    .home {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .home {
+        width: 55%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .home {
+        width: 50%;
+    }
+}

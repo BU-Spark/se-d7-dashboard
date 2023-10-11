@@ -2,7 +2,7 @@ import { Button } from "@patternfly/react-core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIUrl } from "../../screens/Home";
-
+import { getAuth } from "firebase/auth";
 import { IResource } from "../../types";
 
 function Pinned(props: {
@@ -25,7 +25,12 @@ function Pinned(props: {
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
 
+  const [currentUserEmail, setCurrentUserEmail] = useState<null|string>(null);
+
   useEffect(() => {
+    const auth = getAuth();
+    setCurrentUserEmail(auth.currentUser?.email || null);
+
     interface data {
       title: string;
       links: { title: string; url: string }[];
@@ -72,20 +77,38 @@ function Pinned(props: {
     fetchResourceData();
   }, [props.pinned]);
 
+  const navigateToSignUp = () => {
+    navigate("/address-info");
+  };
+
   return (
-    <div className="container">
-      {pinned.map((pinned) => {
-        return (
+    <>
+      {currentUserEmail ? (
+        // if user is logged in, display pinned items
+        pinned.map((pinned) => (
           <Button
+            key={pinned.title}
             className="px-3 py-2 mb-2 pinned"
             variant="primary"
             onClick={() => goToPortal(pinned)}
+            style={{color:"black"}}
           >
             {pinned.title}
           </Button>
-        );
-      })}
-    </div>
+        ))
+      ) : (
+        // if user isn't logged in, display the Sign Up button
+        <Button
+          className="mb-4"
+          variant="secondary"
+          isDanger
+          onClick={navigateToSignUp}
+          style={{color:"red"}}
+        >
+          Sign Up to Pin Interests
+        </Button>
+      )}
+    </>
   );
 }
 export default Pinned;

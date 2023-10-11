@@ -20,8 +20,16 @@ function CalendarCard(props: {
   const location = props.location ? props.location : "";
   const { isOpen, toggle } = useModal();
 
+  // this lowers long content text if it's longer than 40 words
+  function truncateContent(content: string, length: number): string {
+    if (content.length > length) {
+      return content.substring(0, length) + "...";
+    }
+    return content;
+  }
+
   return (
-    <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
+    <Card onClick={toggle} className="mb-3 me-3 calendar-card" style={{background: 'white', cursor: "pointer"}}>
       <div className=" mx-3 mt-3 mb-5">
         <div className="row">
           <div className="col-9">
@@ -33,9 +41,9 @@ function CalendarCard(props: {
             </Icon>
           </div>
         </div>
-        <div className="row mt-2 ">
+        <div className="row mt-2">
           <small className="text-start text-secondary">{date}</small>
-          <small className="text-start text-secondary">{content}</small>
+          <small className="text-start text-secondary">{truncateContent(content, 40)}</small>
           {/* if there's an image, display it */}
           {props.image ? (
             <img
