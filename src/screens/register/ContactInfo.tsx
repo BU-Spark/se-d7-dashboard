@@ -52,6 +52,7 @@ const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
       <div className="text-start">Email</div>
 
       <TextInput
+        id="emailInput"
         value={email}
         onChange={(e) => {
           setEmail(e);
@@ -62,6 +63,7 @@ const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
       />
       <div className="text-start">Password</div>
       <TextInput
+        id="passwordInput"
         value={password}
         onChange={(e) => {
           setPassword(e);
