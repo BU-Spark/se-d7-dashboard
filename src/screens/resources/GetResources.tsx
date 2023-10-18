@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import * as React from "react";
 
-import Resources from "../components/home/Resources";
+import Resources from "../../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { APIUrl } from "./Home";
+import { APIUrl } from "../Home";
 
-import { IResource } from "../types";
+import { IResource } from "../../types";
+import LogoBar from "../../components/home/LogoBar";
 
 
 function GetResources(){
@@ -18,7 +19,6 @@ function GetResources(){
         React.useState<{title: string; 
                 links: {title:string, url: string}[]}[]>([]); 
                 
-
     useEffect(() =>{
       interface data {
         title: string;
@@ -58,22 +58,18 @@ function GetResources(){
       fetchResourceData();
     })
   
-
   return (
-    <div>
-        <div className="mt-4 ms-4 portal-nav">
-            <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>
-            Get Resources
-        </div>
-        <div className = "mt-5">
-          
-          <Resources resources={resources} />
-        </div>
+    <div className="home">
+      <LogoBar />
+      <div className="portal-nav" style={{color: "white", fontSize: '1.1em'}}>
+          <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>
+          Get Resources
+      </div>
+      <div className = "mt-4">
+        <Resources resources={resources} />
+      </div>
     </div>
-
-    
   )
-
 }
 
 export default GetResources;

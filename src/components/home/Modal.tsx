@@ -13,8 +13,8 @@ interface ModalType {
 }
 
 export default function Modal(props: ModalType) {
-  console.log(props.content)
-  console.log(props.date)
+  // console.log(props.content)
+  // console.log(props.date)
   return (
     <>
       {props.isOpen && (

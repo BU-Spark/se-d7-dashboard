@@ -11,7 +11,7 @@ import Interests from "./screens/Interests";
 import Home from "./screens/Home";
 import Portal from "./screens/Portal";
 import AllPosts from "./screens/AllPosts";
-import GetResources from './screens/GetResources';
+import GetResources from './screens/resources/GetResources';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";

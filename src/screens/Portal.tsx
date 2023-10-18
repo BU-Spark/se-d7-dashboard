@@ -1,7 +1,6 @@
 import { Button } from "@patternfly/react-core";
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Portal() {
     const location = useLocation();
