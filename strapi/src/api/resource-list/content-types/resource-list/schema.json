@@ -19,6 +19,9 @@
     },
     "link": {
       "type": "string"
+    },
+    "dropdown_links": {
+      "type": "json"
     }
   }
 }
