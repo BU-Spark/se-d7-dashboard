@@ -12,15 +12,16 @@ type resourcesData = {
   };
 
 function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
-    const [displayLinksIndex, setDisplayLinksIndex] = useState<number | null>(null);
+    const [displayLinks, setDisplayLinks] = useState<{ [key: number]: boolean }>({});
     const navigate = useNavigate();
 
+    // handles toggle button by object key, value
+    // copies previous state and updates one of it on click
     const toggleLinksDisplay = (index: number) => {
-        if (displayLinksIndex === index) {
-            setDisplayLinksIndex(null);
-        } else {
-            setDisplayLinksIndex(index);
-        }
+        setDisplayLinks(prevState => ({
+            ...prevState,
+            [index]: !prevState[index]
+        }));
     }
 
     const goToSpecificResource = (title: string) => {
@@ -57,7 +58,7 @@ function Resources(props: {resources: { title: string, "links": { title: string,
                             {resource.title}
                         </Button>
                         {/* checks the index of the div above and display the sub category */}
-                        {displayLinksIndex === index && (
+                        {displayLinks[index] && (
                             <div>
                                 {resource.links.map((link, linkIndex) => (
                                     <Button
