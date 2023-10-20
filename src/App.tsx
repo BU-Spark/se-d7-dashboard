@@ -12,6 +12,7 @@ import Home from "./screens/Home";
 import Portal from "./screens/Portal";
 import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/resources/GetResources';
+import SpecificResource from './screens/resources/SpecificResource';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/getresources" element={<GetResources/>} />
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements/>} />
+          <Route path="/specific-resource" element={<SpecificResource/>} />
         </Routes>
       </BrowserRouter>
     </div>

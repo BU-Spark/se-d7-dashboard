@@ -13,6 +13,7 @@ type resourcesData = {
 
 function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
     const [displayLinksIndex, setDisplayLinksIndex] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     const toggleLinksDisplay = (index: number) => {
         if (displayLinksIndex === index) {
@@ -22,14 +23,18 @@ function Resources(props: {resources: { title: string, "links": { title: string,
         }
     }
 
-    // not using atm
-    const navigate = useNavigate();
-    const goToPortal = (resource: { title: string, "links": { title: string, url: string }[] }) => {
-        // Navigate to the portal page
-        // Pass the resource as a prop
-        console.log(resource)
-        navigate("/portal", { state: {title: resource.title, links: resource.links} });
+    const goToSpecificResource = (title: string) => {
+        navigate(`/specific-resource`, { state: { title } });
     }
+
+    // not using atm and probably not later on
+    // const navigate = useNavigate();
+    // const goToPortal = (resource: { title: string, "links": { title: string, url: string }[] }) => {
+    //     // Navigate to the portal page
+    //     // Pass the resource as a prop
+    //     console.log(resource)
+    //     navigate("/portal", { state: {title: resource.title, links: resource.links} });
+    // }
 
     return (
         <>
@@ -58,7 +63,7 @@ function Resources(props: {resources: { title: string, "links": { title: string,
                                     <Button
                                         key={`link-${linkIndex}`}
                                         className="py-3 custom-button"
-                                        onClick={() => window.open(link.url, "_blank")}
+                                        onClick={() => goToSpecificResource(link.title)}
                                         style={{
                                             textAlign: 'left',
                                             color: '#00183D',
