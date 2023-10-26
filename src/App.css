@@ -1,6 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
 
+/* Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  .btn-yellow {
+    @apply px-4 py-2 bg-yellow text-navy font-normal rounded-[3px];
+  }
+  .btn-red{
+    @apply px-4 py-2 bg-red text-white font-normal rounded-[3px];
+  }
+  .btn-white{
+    @apply px-4 py-2 bg-white text-red border border-red font-normal rounded-[3px];
+  }
+}
 /* Patternfly tweaks */
 .pf-c-button{
   --pf-global--primary-color--100: #e3b81f;

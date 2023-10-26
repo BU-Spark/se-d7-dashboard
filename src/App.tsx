@@ -13,7 +13,6 @@ import AllPosts from "./screens/allPosts/AllPosts";
 import GetResources from './screens/resources/GetResources';
 import SpecificResource from './screens/resources/SpecificResource';
 import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 
 // init firebase app

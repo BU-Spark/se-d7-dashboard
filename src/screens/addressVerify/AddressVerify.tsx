@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import AddressCheckBox from "../../components/address/AddressCheckBox";
 import AddressCheckBoxLoading from "../../components/address/AddressCheckBoxLoading";
-import AddressErrorBox from "../../components/address/AddressErrorBox";
+import AddressErrorBox from '../../components/address/AddressErrorBox';
 import AddressInvalidBox from "../../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../../components/address/AddressAPIErrorBox";
 import { TextInput, Button, SearchInput } from "@patternfly/react-core";
@@ -120,10 +120,10 @@ function AddressVerify() {
   return (
     <div className="bg text-white">
       <ProgressStepperCompact1 />
-      <h4 className="text-start mt-4 mb-4 ">Enter your address</h4>
+      <p className="text-start mt-6 mb-4 text-xl ">Enter your address</p>
       <div className="text-start mb-1 ">Address</div>
       <TextInput
-        className="px-2 mb-3"
+        className="!mb-3"
         id="textInput-basic-1"
         type="text"
         placeholder="Street Address or P.O. Box"
@@ -182,7 +182,7 @@ function AddressVerify() {
       />
       <div className="text-start mt-3 mb-1">Zipcode</div>
       <TextInput
-        className="px-2 mb-4"
+        className="px-2 !mb-4"
         id="textInput-basic-1"
         type="text"
         placeholder="Zipcode"
@@ -196,16 +196,15 @@ function AddressVerify() {
       {showError && <AddressErrorBox />}
       {showInvalid && <AddressInvalidBox />}
       {showAPIError && <AddressAPIErrorBox/>}
-
+      
       {!showLoading && 
         <div className="text-end">
-          <Button
+          <button
             onClick={submit}
-            className="text-black mt-4"
-            variant="primary"
+            className="btn-yellow mt-4"
           >
             Next
-          </Button>
+          </button>
         </div>
       }
     </div>

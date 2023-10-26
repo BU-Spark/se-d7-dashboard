@@ -1,6 +1,5 @@
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from 'react-router-dom';
-import { title } from "process";
 import WELCOME_BG from "../../assets/welcome_bg.png";
 
 function Welcome() {
