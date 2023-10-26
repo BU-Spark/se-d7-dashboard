@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { SearchIcon, AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { postData } from "./Home";
-import { APIUrl } from "./Home";
-import PostCards from "../components/home/posts/PostCards";
+import type { postData } from "../home/Home";
+import { APIUrl } from "../home/Home";
+import PostCards from "../../components/home/posts/PostCards";
 
 function AllPosts() {
   const navigate = useNavigate();

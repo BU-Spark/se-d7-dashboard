@@ -6,7 +6,7 @@ import * as React from "react";
 import Resources from "../../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { APIUrl } from "../Home";
+import { APIUrl } from "../home/Home";
 
 import { IResource } from "../../types";
 import LogoBar from "../../components/home/LogoBar";

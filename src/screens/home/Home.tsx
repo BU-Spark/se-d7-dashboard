@@ -1,18 +1,18 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import Search from "../components/home/Search";
+import Search from "../../components/home/Search";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/home/calendar/Calendar";
-import Pinned from "../components/home/Pinned";
-import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
-import ViewAllPosts from "../components/home/ViewAllPosts";
-import Announcement from "../components/home/announcements/Announcement";
+import Calendar from "../../components/home/calendar/Calendar";
+import Pinned from "../../components/home/Pinned";
+import Updates from "../../components/home/Updates";
+import LogoBar from "../../components/home/LogoBar";
+import ViewAllPosts from "../../components/home/ViewAllPosts";
+import Announcement from "../../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
-import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
-import Resources from "../components/home/Resources";
+import ViewAllAnnouncements from "../../components/home/announcements/ViewAllAnnouncements";
+import Resources from "../../components/home/Resources";
 import style from "./Home.module.css"
 
 

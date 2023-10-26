@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { ProgressStepperCompact4 } from "../components/home/Progressbar";
-import { APIUrl } from "./Home";
+import { APIUrl } from "./home/Home";
 
 import { IResource } from "../types";
 import { getAuth } from "firebase/auth";

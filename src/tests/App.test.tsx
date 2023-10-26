@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import App from '../App';
 import Login from '../screens/login/Login';
 import Register from '../screens/register/ContactInfo';
-import Home from '../screens/Home';
+import Home from '../screens/home/Home';
 import AddressInfo from '../screens/adressInfo/AdressInfo';
 import AddressVerify from '../screens/addressVerify/AddressVerify';
 import Profile from '../screens/Profile';

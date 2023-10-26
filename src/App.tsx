@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/welcome/Welcome";
@@ -8,9 +7,9 @@ import AddressVerify from "./screens/addressVerify/AddressVerify";
 import Login from "./screens/login/Login";
 import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";
-import Home from "./screens/Home";
+import Home from "./screens/home/Home";
 import Portal from "./screens/Portal";
-import AllPosts from "./screens/AllPosts";
+import AllPosts from "./screens/allPosts/AllPosts";
 import GetResources from './screens/resources/GetResources';
 import SpecificResource from './screens/resources/SpecificResource';
 import "@patternfly/react-core/dist/styles/base.css";

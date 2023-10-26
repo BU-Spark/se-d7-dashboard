@@ -1,6 +1,6 @@
 import * as React from "react";
 import PCard from "./PCard";
-import type { postData } from "../../../screens/Home";
+import type { postData } from "../../../screens/home/Home";
 function PostCards(props: { updates: postData[] }) {
   return (
     <>

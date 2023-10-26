@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import {useState, useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData } from "./Home";
-import { APIUrl } from "./Home";
+import type { tweetData } from "./home/Home";
+import { APIUrl } from "./home/Home";
 import Announcements from "../components/home/announcements/Announcement";
 
 function AllAnnouncements() {
   const navigate = useNavigate();
 
-  const [announcements, setAnnouncements] = React.useState<tweetData[]>([]);
+  const [announcements, setAnnouncements] = useState<tweetData[]>([]);
 
   useEffect(() => {
     const fetchUpdates = async () => {
