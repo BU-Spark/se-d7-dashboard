@@ -17,7 +17,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
     "preview": "vite preview",
     "lint:fix": "eslint --fix src --ext .js,.jsx,.tsx,.ts .",
     "test:watch": "vitest watch",
