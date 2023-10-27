@@ -1,7 +1,7 @@
 import { Button } from "@patternfly/react-core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { APIUrl } from "../../screens/home/Home";
+import { APIUrl } from "../../screens/Home";
 import { getAuth } from "firebase/auth";
 import { IResource } from "../../types";
 
@@ -98,15 +98,12 @@ function Pinned(props: {
         ))
       ) : (
         // if user isn't logged in, display the Sign Up button
-        <Button
-          className="mb-4"
-          variant="secondary"
-          isDanger
+        <button
+          className="mb-4 btn-white w-full"
           onClick={navigateToSignUp}
-          style={{color:"red"}}
         >
           Sign Up to Pin Interests
-        </Button>
+        </button>
       )}
     </>
   );

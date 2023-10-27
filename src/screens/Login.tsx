@@ -9,7 +9,7 @@ import {
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput, Tooltip } from "@patternfly/react-core";
-import { QUESTION_CIRCLE } from "../../assets";
+import { QUESTION_CIRCLE } from "../assets";
 
 export interface Login {}
 
@@ -90,7 +90,7 @@ const Login: React.FunctionComponent<Login> = () => {
   };
 
   return (
-    <div className="bg">
+    <div className="bg-app py-[10vh] flex flex-col">
       <div className="mb-4 text-2xl text-start text-white ">Log In</div>
       <div className="mb-1 text-start text-white ">Email</div>
 
@@ -133,12 +133,8 @@ const Login: React.FunctionComponent<Login> = () => {
         <GoogleButton onClick={LoginGoogle} />
       </div> */}
 
-      <div className="center-wrapper mt-5 mb-5">
-        <div className="wrapper">
-          <div className="page-login-line"></div>
-        </div>
-      </div>
-      <div className="flex">
+      <div className="w-32 border-[0.7px] border-white my-12 mx-auto"></div>
+      <div className="flex mb-2">
         <div className="mb-2 text-white text-start">
           Don’t have an account?
         </div>
@@ -146,7 +142,7 @@ const Login: React.FunctionComponent<Login> = () => {
           aria-live="polite"
           removeFindDomNode={true}
           distance={12}
-          className="_tooltip"
+          className="!bg-white !py-4 !px-3"
           position="top"
           enableFlip={true}
           trigger="click"
@@ -156,14 +152,14 @@ const Login: React.FunctionComponent<Login> = () => {
             <>
               <div style={{
                 color: "black",
-                fontSize: "16px",
+                fontSize: "1rem",
                 marginBottom: "10px"
               }}>
                 Sign-Up Optional
               </div>
               <div style={{
                 color: "black",
-                fontSize: "10px"
+                fontSize: "0.625rem"
               }}>
                 Recommended for D7 Residents
               </div>

@@ -2,7 +2,7 @@ import * as React from "react";
 import CalendarCard from "./CalendarCard";
 import DatePicker from "./DatePicker";
 //import calData type
-import type {calData} from '../../../screens/home/Home';
+import type {calData} from '../../../screens/Home';
 
 
 function Calendar(props: {data: calData[]}) {

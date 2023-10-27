@@ -6,7 +6,7 @@ import * as React from "react";
 import Resources from "../../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { APIUrl } from "../home/Home";
+import { APIUrl } from "../Home";
 
 import { IResource } from "../../types";
 import LogoBar from "../../components/home/LogoBar";
@@ -59,7 +59,9 @@ function GetResources(){
     }, []) // stop useEffect after running once
   
   return (
-    <div className="home">
+    <div className="bg-82 py-5
+      min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
+    >
       <LogoBar />
       <div className="portal-nav" style={{color: "white", fontSize: '1.1em'}}>
           <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>

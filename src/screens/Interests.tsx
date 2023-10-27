@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { ProgressStepperCompact4 } from "../components/home/Progressbar";
-import { APIUrl } from "./home/Home";
+import { APIUrl } from "./Home";
 
 import { IResource } from "../types";
 import { getAuth } from "firebase/auth";

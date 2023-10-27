@@ -27,21 +27,20 @@ function CalendarCard(props: {
   }
 
   return (
-    <Card onClick={toggle} className="mb-3 me-3 calendar-card" style={{background: 'white', cursor: "pointer"}}>
-      <div className=" mx-3 mt-3 mb-5">
-        <div className="row">
-          <div className="col-9">
-            <Text className="text-start">{title}</Text>
-          </div>
-          <div className="col-1">
-            <Icon isInline className="text-end">
-              <EllipsisVIcon style={{ width: "15px", height: "11px" }} />
-            </Icon>
-          </div>
+    <Card 
+      onClick={toggle} 
+      className="!mb-4 !me-4 calendar-card !bg-white !cursor-pointer text-navy text-start"
+    >
+      <div className="mx-3 mt-3 mb-5">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-start font-semibold">{title}</p>
+          <Icon isInline>
+            <EllipsisVIcon className="w-4 h-3 text-gray-500" />
+          </Icon>
         </div>
         <div className="row mt-2">
-          <small className="text-start text-secondary">{date}</small>
-          <small className="text-start text-secondary">{truncateContent(content, 40)}</small>
+          <small>{date}</small>
+          <small>{truncateContent(content, 40)}</small>
           {/* if there's an image, display it */}
           {props.image ? (
             <img

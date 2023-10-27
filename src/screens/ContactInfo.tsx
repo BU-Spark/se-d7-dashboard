@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { FC, useState } from "react";
 // import firebase auth
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import { ProgressStepperCompact2 } from "../../components/home/Progressbar";
+import { ProgressStepperCompact2 } from "../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
 
-const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
+const ContactInfo: FC<ILoginScreenProps> = (props) => {
   const navigate = useNavigate();
   const auth = getAuth();
   const [authing, setAuthing] = useState(false);
@@ -46,9 +46,9 @@ const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
   };
 
   return (
-    <div className="container-padded">
+    <div className="bg-app">
       <ProgressStepperCompact2/>
-      <div className="mb-3 pf-c-title h4 text-start mt-5" >Sign Up</div>
+      <div className="mb-3 text-start mt-5" >Sign Up</div>
       <div className="text-start">Email</div>
 
       <TextInput
@@ -81,9 +81,9 @@ const ContactInfo: React.FunctionComponent<ILoginScreenProps> = (props) => {
       <br />
 
       <div className="text-end mt-5">
-        <Button onClick={SignUp} className="px-3 py-1" variant="primary">
+        <button onClick={SignUp} className="btn-yellow w-20">
           Next
-        </Button>
+        </button>
       </div>
     </div>
   );

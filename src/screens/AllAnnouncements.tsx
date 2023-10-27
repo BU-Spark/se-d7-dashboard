@@ -1,8 +1,8 @@
 import {useState, useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData } from "./home/Home";
-import { APIUrl } from "./home/Home";
+import type { tweetData } from "./Home";
+import { APIUrl } from "./Home";
 import Announcements from "../components/home/announcements/Announcement";
 
 function AllAnnouncements() {
@@ -41,7 +41,7 @@ function AllAnnouncements() {
 
   return (
     <div>
-      <div className="mt-4 ms-4 portal-nav">
+      <div className="mt-4 ms-4 text-white flex text-2xl font-bold mb-5">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
         All Announcements
       </div>

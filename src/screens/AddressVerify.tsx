@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
-import AddressCheckBox from "../../components/address/AddressCheckBox";
-import AddressCheckBoxLoading from "../../components/address/AddressCheckBoxLoading";
-import AddressErrorBox from '../../components/address/AddressErrorBox';
-import AddressInvalidBox from "../../components/address/AddressInvalidBox";
-import AddressAPIErrorBox from "../../components/address/AddressAPIErrorBox";
+import AddressCheckBox from "../components/address/AddressCheckBox";
+import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
+import AddressErrorBox from '../components/address/AddressErrorBox';
+import AddressInvalidBox from "../components/address/AddressInvalidBox";
+import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import { TextInput, Button, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../../components/home/Progressbar";
+import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 import Select from "react-select";
 function AddressVerify() {
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ function AddressVerify() {
   };
 
   return (
-    <div className="bg text-white">
+    <div className="bg-app">
       <ProgressStepperCompact1 />
       <p className="text-start mt-6 mb-4 text-xl ">Enter your address</p>
       <div className="text-start mb-1 ">Address</div>

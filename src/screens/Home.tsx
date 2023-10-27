@@ -1,19 +1,18 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import Search from "../../components/home/Search";
+import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
-import Calendar from "../../components/home/calendar/Calendar";
-import Pinned from "../../components/home/Pinned";
-import Updates from "../../components/home/Updates";
-import LogoBar from "../../components/home/LogoBar";
-import ViewAllPosts from "../../components/home/ViewAllPosts";
-import Announcement from "../../components/home/announcements/Announcement";
+import Calendar from "../components/home/calendar/Calendar";
+import Pinned from "../components/home/Pinned";
+import Updates from "../components/home/Updates";
+import LogoBar from "../components/home/LogoBar";
+import ViewAllPosts from "../components/home/ViewAllPosts";
+import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
-import ViewAllAnnouncements from "../../components/home/announcements/ViewAllAnnouncements";
-import Resources from "../../components/home/Resources";
-import style from "./Home.module.css"
+import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
+import Resources from "../components/home/Resources";
 
 
 //for dev,
@@ -218,38 +217,33 @@ function Home() {
 
   return (
     // <div className={style.container}>
-    <div className="container home">
+    <div className="bg-82 py-7 
+      min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
+    >
       <LogoBar />
       {/* <Search /> */}
 
-      <div className="my-3 text-start heading" style={{ color: 'white' }}>Upcoming Events</div>
+      <div className="my-4 text-start heading">Upcoming Events</div>
       <Announcement {...passTweetData} vertical={false}/>
       <ViewAllAnnouncements {...passTweetData}/>
 
       {/* <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} /> */}
 
-      <div className="my-3 text-start heading" style={{ color: 'white' }}>You Pinned</div>
+      <div className="mb-3 mt-7 text-start heading">You Pinned</div>
       <Pinned pinned={pinned} />
 
-      <div className="my-3 text-start heading" style={{ color: 'white' }}>Our Resources</div>
-      <Button
-        className="py-3 mb-3"
-        variant="primary"
+      <div className="mb-3 mt-7 text-start heading">Our Resources</div>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/getresources")}
-        style={{
-          color: 'white',
-          background: 'transparent',
-          border: '1px solid #E3B81F',
-          fontWeight: '700',
-        }}
         >
         Get Resources
-      </Button>
+      </button>
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="my-3 text-start heading" style={{ color: 'white' }}>Councilor News and Updates</div>
+      <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>Councilor News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
     </div>
