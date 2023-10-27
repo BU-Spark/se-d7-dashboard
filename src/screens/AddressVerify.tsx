@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import AddressCheckBox from "../components/address/AddressCheckBox";
 import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
 import AddressErrorBox from '../components/address/AddressErrorBox';
 import AddressInvalidBox from "../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
-import { TextInput, Button, SearchInput } from "@patternfly/react-core";
+import { TextInput, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 import Select from "react-select";

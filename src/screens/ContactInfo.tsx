@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 // import firebase auth
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert, TextInput } from "@patternfly/react-core";
+import { Alert, TextInput } from "@patternfly/react-core";
 import { ProgressStepperCompact2 } from "../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
@@ -29,7 +29,7 @@ const ContactInfo: FC<ILoginScreenProps> = (props) => {
       .catch((error) => {
         setIsBannerVisible(true);
         // Only get the message in the parathesis
-        let parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+        const parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
         // Match the message to the error message
         if (parsedMessage === "auth/email-already-in-use") {
           setBannerMessage("Email already in use.");

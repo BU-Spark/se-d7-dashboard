@@ -1,4 +1,4 @@
-import { Card, Text, Icon } from "@patternfly/react-core";
+import { Card, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';

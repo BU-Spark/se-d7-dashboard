@@ -32,7 +32,7 @@ function GetResources(){
           const json = await res.json();
 
           // then refactor just the data
-          let jsonData = json.data.map((resource: IResource) => resource.attributes);
+          const jsonData = json.data.map((resource: IResource) => resource.attributes);
           
           //take API response and convert to into array of objects of the type define in "data" interface
           const categoryData: data[] = Array.from(jsonData.reduce((map:any,item:any) =>{

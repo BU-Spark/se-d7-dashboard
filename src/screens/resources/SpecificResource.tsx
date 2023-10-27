@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { APIUrl } from "../Home";
 import LogoBar from "../../components/home/LogoBar";
-import { Button } from "@patternfly/react-core";
 
 interface data {
   attributes: {

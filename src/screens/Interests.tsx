@@ -12,7 +12,7 @@ import { getAuth } from "firebase/auth";
 interface IInterest {
   title: string;
   selected: boolean;
-};
+}
 
 function Interests() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Interests() {
     
     chips.interests.forEach((interest) => {
       if (interest.selected) {
-        let newSelectedChips = selectedChips;
+        const newSelectedChips = selectedChips;
         newSelectedChips.push(interest.title);
         setSelectedChips(newSelectedChips);
       }
@@ -70,7 +70,7 @@ function Interests() {
       try {
         const res = await fetch(APIUrl + "resource-lists");
         const json = await res.json();
-        let jsonData = json.data.map((resource: IResource) => resource);
+        const jsonData = json.data.map((resource: IResource) => resource);
         
         // only extract unique categories
         const categoryTitles = Array.from(

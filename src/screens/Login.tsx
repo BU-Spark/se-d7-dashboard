@@ -35,7 +35,7 @@ const Login: React.FunctionComponent<Login> = () => {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(async () => {
         // console.log("Getting user data");
-        let userData = await getDoc(doc(db, "user-profile", user.email));
+        const userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
           // console.log("Document data:", userData.data());
           if (userData.data().firstName) {

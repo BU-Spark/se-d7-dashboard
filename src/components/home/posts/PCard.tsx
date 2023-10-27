@@ -1,4 +1,4 @@
-import { Card, Text, Icon } from "@patternfly/react-core";
+import { Card } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import PostModal from "./PostModal";
 import usePostModal from "./usePostModal";

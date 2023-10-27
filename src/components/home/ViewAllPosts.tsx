@@ -1,4 +1,3 @@
-import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { upData } from "../../screens/Home";
 function ViewAllPosts(props: { updates: upData[] }) {
