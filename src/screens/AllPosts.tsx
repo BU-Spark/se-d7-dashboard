@@ -68,7 +68,9 @@ function AllPosts() {
           className="search-bar"
         />
       </div>
-      <PostCards updates={filteredUpdates} vertical={true} />
+      <div className="post-container">
+        <PostCards updates={filteredUpdates} />
+      </div>
     </div>
   );
 }
