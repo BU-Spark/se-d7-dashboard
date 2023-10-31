@@ -1,4 +1,3 @@
-import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -11,7 +10,15 @@ type resourcesData = {
     };
   };
 
-function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
+function Resources(props: 
+    {resources: 
+        { 
+            title: string, 
+            "links": { 
+                title: string, 
+                url: string 
+            }[] }[]}
+    ) {
     const [displayLinks, setDisplayLinks] = useState<{ [key: number]: boolean }>({});
     const navigate = useNavigate();
 
@@ -42,39 +49,23 @@ function Resources(props: {resources: { title: string, "links": { title: string,
             {props.resources.map((resource, index) => {
                 return (
                     <div key={`resource-${index}`} className="mb-4">
-                        <Button
-                            className="py-3"
-                            variant="primary"
+                        <button
+                            className="btn-yellow text-start w-full py-2"
                             onClick={() => toggleLinksDisplay(index)}
-                            style={{
-                                width: '90%',
-                                color: '#00183D',
-                                textAlign: 'left',
-                                background: '#E3B81F',
-                                fontWeight: '700',
-                                borderRadius: '0',
-                            }}
                         >
                             {resource.title}
-                        </Button>
+                        </button>
                         {/* checks the index of the div above and display the sub category */}
                         {displayLinks[index] && (
                             <div>
                                 {resource.links.map((link, linkIndex) => (
-                                    <Button
+                                    <button
                                         key={`link-${linkIndex}`}
-                                        className="py-3 custom-button"
+                                        className="py-2 ps-6 w-full text-navy bg-white text-start"
                                         onClick={() => goToSpecificResource(link.title)}
-                                        style={{
-                                            textAlign: 'left',
-                                            color: '#00183D',
-                                            width: '90%',
-                                            background: 'white',
-                                            borderRadius: '0',
-                                        }}
                                     >
                                         {link.title}
-                                    </Button>
+                                    </button>
                                 ))}
                             </div>
                         )}

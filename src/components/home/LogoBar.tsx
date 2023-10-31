@@ -1,4 +1,3 @@
-import LogOut from '../../screens/LogOut'
 import { CogIcon } from '@patternfly/react-icons';
 import LoginModal from "./GearModal"
 import useModal from './useModal';

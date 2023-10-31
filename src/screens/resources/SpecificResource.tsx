@@ -3,8 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { APIUrl } from "../Home";
 import LogoBar from "../../components/home/LogoBar";
-import { Button } from "@patternfly/react-core";
-import { bottom } from "@patternfly/react-core/dist/esm/helpers/Popper/thirdparty/popper-core";
 
 interface data {
   attributes: {
@@ -47,31 +45,25 @@ function SpecificResource(){
     }, []) // stop useEffect after running once
   
   return (
-    <div className="home">
+    <div className="bg-82 py-5
+      min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
+    >
       <LogoBar />
       <div className="portal-nav" style={{color: "white", fontSize: '1.1em'}}>
           <AngleLeftIcon size="md" onClick={() => navigate("/getresources")}/>
           {title}
       </div>
-      <div className = "mt-4">
+      <div className = "mt-6">
         {/* sort them by id order */}
         {resources &&
           resources.sort((a, b) => a.id - b.id).map((resource) =>(
-            <Button
+            <button
                 key={resource.id}
-                className="py-2"
+                className="btn-white bg-transparent text-white w-full mb-4 py-2"
                 onClick={() => window.open(resource.url, '_blank')}
-                style={{
-                    textAlign: 'left',
-                    color: 'white',
-                    width: '90%',
-                    marginBottom: '3%',
-                    background: 'transparent',
-                    border: '1px solid #D40000',
-                }}
             >
                 {resource.title}
-            </Button>
+            </button>
         ))}
       </div>
     </div>

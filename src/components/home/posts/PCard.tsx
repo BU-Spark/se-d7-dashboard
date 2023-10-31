@@ -1,7 +1,5 @@
-import * as React from "react";
-import { Card, Text, Icon } from "@patternfly/react-core";
+import { Card } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import PostModal from "./PostModal";
 import usePostModal from "./usePostModal";
 
@@ -38,18 +36,12 @@ function PCard(props: {
 
   return (
     <>
-      <Card onClick={toggle} className="my-3 posts-card">
-        <div className=" mx-3 mt-3 mb-5">
-          <div className="row">
-            <div className="col-9">
-              <Text className="text-start post-title">{title}</Text>
-            </div>
-            <div className="col-1">
-            </div>
-          </div>
-          <div className="row mt-2 ">
+      <Card onClick={toggle} className="!mb-5 min-h-[131px] !bg-white text-navy h-[10vh] !p-3 border border-[#d2d2d2]">
+        <div className="mx-3 mt-3 mb-5">
+          <p className="text-start text-lg font-semibold">{title}</p>
+          <div className="mt-2 text-start">
             {createdAt ? 
-                <small className="text-start text-secondary">{formattedDate}</small>
+                <small className="text-start text-sm">{formattedDate}</small>
             : null}
             {/* if there's an image, display it */}
             {props.image ? (

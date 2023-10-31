@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
@@ -11,13 +11,13 @@ function Profile() {
   const auth = getAuth();
   const db = getFirestore();
 
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [textUpdates, setTextUpdates] = React.useState(false);
-  const [optOut, setOptOut] = React.useState(false);
-  const [fieldsMissing, setFieldsMissing] = React.useState(false);
-  const [registered, setRegistered] = React.useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [textUpdates, setTextUpdates] = useState(false);
+  const [optOut, setOptOut] = useState(false);
+  const [fieldsMissing, setFieldsMissing] = useState(false);
+  const [registered, setRegistered] = useState("");
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);

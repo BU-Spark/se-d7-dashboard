@@ -32,7 +32,7 @@ function GetResources(){
           const json = await res.json();
 
           // then refactor just the data
-          let jsonData = json.data.map((resource: IResource) => resource.attributes);
+          const jsonData = json.data.map((resource: IResource) => resource.attributes);
           
           //take API response and convert to into array of objects of the type define in "data" interface
           const categoryData: data[] = Array.from(jsonData.reduce((map:any,item:any) =>{
@@ -59,7 +59,9 @@ function GetResources(){
     }, []) // stop useEffect after running once
   
   return (
-    <div className="home">
+    <div className="bg-82 py-5
+      min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
+    >
       <LogoBar />
       <div className="portal-nav" style={{color: "white", fontSize: '1.1em'}}>
           <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>

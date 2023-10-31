@@ -1,7 +1,5 @@
-import * as React from "react";
-import { Card, Text, Icon } from "@patternfly/react-core";
+import { Card, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';
 import useModal from '../useModal';
@@ -33,33 +31,27 @@ function AnnouncementCard(props: {
   }
 
   return (
-    <div onClick={toggle}>
-      <Card className="mb-3 me-3 calendar-card" style={{background: 'white', cursor: "pointer"}}>
-        <div className=" mx-3 mt-3 mb-5">
-          <div className="row">
-            <div className="col-9">
-              <Text className="text-start">{title}</Text>
-            </div>
-            <div className="col-1">
-              <Icon isInline className="text-end">
-                <EllipsisVIcon style={{ width: "15px", height: "11px" }} />
-              </Icon>
-            </div>
+    <div className="mb-4 me-4 text-navy" onClick={toggle}>
+      <Card className="calendar-card !bg-white !cursor-pointer text-start">
+        <div className="mx-3 mt-3 mb-5">
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-start font-semibold">{title}</p>
+            <Icon isInline>
+              <EllipsisVIcon className="w-4 h-3 text-gray-500" />
+            </Icon>
           </div>
-          <div className="row mt-2 ">
-            <small className="text-start text-secondary">{finalDate}</small>
-            <small className="text-start text-secondary">{truncateContent(content, 60)}</small>
+            <small>{finalDate}</small>
+            <small>{truncateContent(content, 60)}</small>
             {/* if there's an image, display it */}
             {props.image ? (
               <img
                 src={props.image}
                 alt="Event Image"
-                style={{ width: "100%", height: "100%" }}
+                className="w-full h-full"
               />
             ) : (
               <div></div>
             )}
-          </div>
         </div>
         <Modal isOpen={isOpen} toggle={toggle} title={title} date={finalDate} content={content}>
         </Modal>

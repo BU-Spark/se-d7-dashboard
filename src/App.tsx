@@ -1,11 +1,10 @@
-import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./screens/welcome/Welcome";
-import AddressInfo from "./screens/adressInfo/AdressInfo";
-import ContactInfo from "./screens/register/ContactInfo";
-import AddressVerify from "./screens/addressVerify/AddressVerify";
-import Login from "./screens/login/Login";
+import Welcome from "./screens/Welcome";
+import AddressInfo from "./screens/AdressInfo";
+import ContactInfo from "./screens/ContactInfo";
+import AddressVerify from "./screens/AddressVerify";
+import Login from "./screens/Login";
 import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";
 import Home from "./screens/Home";
@@ -14,7 +13,6 @@ import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/resources/GetResources';
 import SpecificResource from './screens/resources/SpecificResource';
 import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 
 // init firebase app

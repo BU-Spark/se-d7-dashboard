@@ -1,13 +1,13 @@
-import * as React from "react";
 import AnnouncementCard from "./AnnouncementCard";
 import type { tweetData } from "../../../screens/Home";
+import clsx from 'clsx';
 
 function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
   return (
-    <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
-    style={
-      props.vertical ? {display: "flex", flexWrap: "wrap"} : {}
-    } >
+    <div className={clsx(
+      props.vertical ? "vertical-scroll" : "horizontal-scroll",
+      props.vertical && ["flex", "flex-wrap"]
+    )}>
       {props.tweets.length > 0 ? (
         props.tweets.map((announcement) => {
           return (

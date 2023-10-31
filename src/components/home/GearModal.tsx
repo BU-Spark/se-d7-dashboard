@@ -1,6 +1,5 @@
 // GearModal only used for gear-icon click modal
-import React, { ReactNode } from "react";
-import { Button, Text } from "@patternfly/react-core";
+import { ReactNode } from "react";
 import { TimesIcon } from "@patternfly/react-icons";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -44,48 +43,41 @@ export default function Modal(props: ModalType) {
           {/* <button onClick={props.toggle} className="closeModal">X</button> */}
             <div style={{marginTop: "30px"}}>
               <div className="welcome_title">District 7 Boston Citizen's App</div>
-              <Button
-                key="settings"
-                className="py-2 mb-4"
-                variant="primary"
-                onClick={() => ("")}
-                style={{color:"black", width: "90%"}}
-              >
-                Settings
-              </Button>
-              <Button
-                key="settings"
-                className="py-2 mb-4"
-                variant="primary"
-                onClick={() => ("")}
-                style={{color:"black", width: "90%"}}
-              >
-                My Profile
-              </Button>
-              {
-                auth.currentUser?.email ? (
-                  <Button
+              <div className="mx-3">
+                <button
                   key="settings"
-                  className="py-2 mb-4"
-                  variant="primary"
-                  onClick={SignOut}
-                  style={{color:"black", width: "90%", background: "white", border: "1px solid black"}}
+                  className="btn-yellow w-full mb-4"
+                  onClick={() => ("")}
                 >
-                  Log Out
-                </Button>
-                ):(
-                  <Button
+                  Settings
+                </button>
+                <button
+                  key="settings"
+                  className="btn-yellow w-full mb-4"
+                  onClick={() => ("")}
+                >
+                  My Profile
+                </button>
+                {
+                  auth.currentUser?.email ? (
+                    <button
                     key="settings"
-                    className="py-2 mb-4"
-                    variant="primary"
-                    onClick={() => (navigate("/login"))}
-                    style={{color:"red", width: "90%", background: "white", border: "1px solid red"}}
+                    className="btn-white w-full mb-4"
+                    onClick={SignOut}
                   >
-                    Log In
-                  </Button>
-                )
-              }
-
+                    Log Out
+                  </button>
+                  ):(
+                    <button
+                      key="settings"
+                      className="btn-white w-full mb-4"
+                      onClick={() => (navigate("/login"))}
+                    >
+                      Log In
+                    </button>
+                  )
+                }
+              </div>
             </div>
           </div>
         </div>

@@ -44,7 +44,7 @@ function Pinned(props: {
       try {
         const res = await fetch(APIUrl + "resource-lists");
         const json = await res.json();
-        let jsonData = json.data.map((resource: IResource) => resource.attributes);
+        const jsonData = json.data.map((resource: IResource) => resource.attributes);
 
         //take API response and convert to into array of objects of the type define in "data" interface
         const categoryData: data[] = Array.from(
@@ -98,15 +98,12 @@ function Pinned(props: {
         ))
       ) : (
         // if user isn't logged in, display the Sign Up button
-        <Button
-          className="mb-4"
-          variant="secondary"
-          isDanger
+        <button
+          className="mb-4 btn-white w-full"
           onClick={navigateToSignUp}
-          style={{color:"red"}}
         >
           Sign Up to Pin Interests
-        </Button>
+        </button>
       )}
     </>
   );

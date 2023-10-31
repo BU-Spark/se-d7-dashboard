@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Chip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
@@ -12,7 +12,7 @@ import { getAuth } from "firebase/auth";
 interface IInterest {
   title: string;
   selected: boolean;
-};
+}
 
 function Interests() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Interests() {
     
     chips.interests.forEach((interest) => {
       if (interest.selected) {
-        let newSelectedChips = selectedChips;
+        const newSelectedChips = selectedChips;
         newSelectedChips.push(interest.title);
         setSelectedChips(newSelectedChips);
       }
@@ -70,7 +70,7 @@ function Interests() {
       try {
         const res = await fetch(APIUrl + "resource-lists");
         const json = await res.json();
-        let jsonData = json.data.map((resource: IResource) => resource);
+        const jsonData = json.data.map((resource: IResource) => resource);
         
         // only extract unique categories
         const categoryTitles = Array.from(
@@ -95,12 +95,13 @@ function Interests() {
   }, []);
 
   return (
-    <div className="container-padded">
+    <div className="text-white flex flex-col pt-10">
       <ProgressStepperCompact4/>
-      <div className="pf-c-title mb-3 h5 mt-5">
+      <div className="mt-14 font-bold">Pin Interests</div>
+      <div className="pf-c-title mb-3 mt-5">
         Help Us Understand Your Interests
       </div>
-      <div className="mb-2">You can always change this later</div>
+      <div className="mb-8">You can always change this later</div>
 
       {chips.interests.map((interest, index) => {
         return (

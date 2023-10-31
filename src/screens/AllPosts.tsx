@@ -54,21 +54,28 @@ function AllPosts() {
   });
 
   return (
-    <div className="bg-post">
-      <div className="mt-3 ms-3 portal-nav-custom">
+    <div className="bg-82">
+      <div className="mt-3 mb-4 mx-[-10px] flex flex-row font-bold text-[1.25rem]">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
         &nbsp;&nbsp;Posts
       </div>
-      <div className="search-container">
-        <SearchIcon className="search-icon" />
+      <div className="relative mb-20 text-navy text-lg">
+        <span className="absolute inset-y-0 w-10 grid place-content-center">
+          <SearchIcon />
+        </span>
         <input 
           type="text" 
           placeholder="Search Posts" 
           onChange={handleSearch}
-          className="search-bar"
+          className="ps-10 w-full h-9"
         />
       </div>
-      <div className="post-container">
+      <div className="grid 
+        min-[700px]:grid-cols-2 min-[700px]:gap-2.5 
+        min-[1200px]:grid-cols-3 min-[1200px]:gap-5
+        min-[1920px]:grid-cols-4 min-[1920px]:gap-7.5
+        " 
+      >
         <PostCards updates={filteredUpdates} />
       </div>
     </div>

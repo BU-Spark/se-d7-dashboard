@@ -6,4 +6,4 @@ export interface IResource {
       sub_category: string;
       link: string;
     };
-  };
+  }

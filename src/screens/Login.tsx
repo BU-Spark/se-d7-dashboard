@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import {
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
   browserLocalPersistence,
   setPersistence,
   getAuth,
@@ -11,13 +9,12 @@ import {
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput, Tooltip } from "@patternfly/react-core";
-import GoogleButton from "react-google-button";
-import { QUESTION_CIRCLE } from "../../assets";
+import { QUESTION_CIRCLE } from "../assets";
 
 export interface Login {}
 
 //client hit Log In button
-const Login: React.FunctionComponent<Login> = (props) => {
+const Login: React.FunctionComponent<Login> = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
@@ -36,9 +33,9 @@ const Login: React.FunctionComponent<Login> = (props) => {
     };
 
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then(async (response) => {
+      .then(async () => {
         // console.log("Getting user data");
-        let userData = await getDoc(doc(db, "user-profile", user.email));
+        const userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
           // console.log("Document data:", userData.data());
           if (userData.data().firstName) {
@@ -93,12 +90,12 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
-    <div className="bg">
-      <div className="mb-4 h4 text-start text-white ">Log In</div>
+    <div className="bg-app py-[10vh] flex flex-col">
+      <div className="mb-4 text-2xl text-start text-white ">Log In</div>
       <div className="mb-1 text-start text-white ">Email</div>
 
       <TextInput
-        className="px-2 mb-4"
+        className="px-2"
         aria-label="text input"
         type="text"
         value={email}
@@ -106,9 +103,9 @@ const Login: React.FunctionComponent<Login> = (props) => {
           setEmail(e);
         }}
       />
-      <div className="mb-1 text-start text-white">Password</div>
+      <div className="mt-4 mb-1 text-start text-white">Password</div>
       <TextInput
-        className="px-2 mb-1"
+        className="px-2"
         aria-label="password"
         placeholder=""
         value={password}
@@ -129,19 +126,15 @@ const Login: React.FunctionComponent<Login> = (props) => {
       )}
       <br />
 
-      <Button className="mb-2 text-black" variant="primary" onClick={Login}>
+      <Button className="mb-2 !text-black" variant="primary" onClick={Login}>
         Log In
       </Button>
       {/* <div className="center-wrapper">
         <GoogleButton onClick={LoginGoogle} />
       </div> */}
 
-      <div className="center-wrapper mt-5 mb-5">
-        <div className="wrapper">
-          <div className="page-login-line"></div>
-        </div>
-      </div>
-      <div className="d-flex">
+      <div className="w-32 border-[0.7px] border-white my-12 mx-auto"></div>
+      <div className="flex mb-2">
         <div className="mb-2 text-white text-start">
           Don’t have an account?
         </div>
@@ -149,7 +142,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           aria-live="polite"
           removeFindDomNode={true}
           distance={12}
-          className="_tooltip"
+          className="!bg-white !py-4 !px-3"
           position="top"
           enableFlip={true}
           trigger="click"
@@ -159,14 +152,14 @@ const Login: React.FunctionComponent<Login> = (props) => {
             <>
               <div style={{
                 color: "black",
-                fontSize: "16px",
+                fontSize: "1rem",
                 marginBottom: "10px"
               }}>
                 Sign-Up Optional
               </div>
               <div style={{
                 color: "black",
-                fontSize: "10px"
+                fontSize: "0.625rem"
               }}>
                 Recommended for D7 Residents
               </div>
@@ -186,7 +179,6 @@ const Login: React.FunctionComponent<Login> = (props) => {
       </div>
 
       <Button
-        className="mb-4"
         variant="secondary"
         isDanger
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
@@ -194,13 +186,12 @@ const Login: React.FunctionComponent<Login> = (props) => {
         Sign up
       </Button>
 
-      <Button
-        variant="secondary"
-        isDanger
+      <button
+        className="mt-4 btn-white"
         /*onClick={SignUp}*/ onClick={navigateToHome}
       >
         See D7 Resources anyway
-      </Button>
+      </button>
     </div>
   );
 };
