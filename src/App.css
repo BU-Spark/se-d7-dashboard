@@ -63,10 +63,15 @@
 }
 
 /* Global Styles */
+body {
+  background-color: #00183d !important;
+}
+
 .App {
   text-align: center;
   font-family: "Red Hat Text", sans-serif;
   overflow-x: hidden;
+  /* background-color: #00183d; */
 }
 
 .container {
@@ -102,6 +107,24 @@
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
+}
+
+@media (min-width:768px) {
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 10px;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background: #00183d;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 .vertical-scroll{
@@ -224,4 +247,20 @@
   color: #fff;
   border-radius: 5px;
   padding: 5px;
+}
+
+.welcome_title {
+  margin-left: -1rem;
+  margin-right: 2.1rem;
+  padding: 15px 8vw 15px 2.5rem;
+  margin-bottom: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  text-align: left;
+  color: #151515;
+  background-color: #D9D9D98C;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

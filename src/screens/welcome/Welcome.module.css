@@ -7,6 +7,10 @@
   padding-bottom: 8vh;
   background: fit-content;
   overflow-y: scroll;
+  /* fix this part below to fit the image differently for larger screen size
+  best way could be using different background image using media query though */
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }
 
 .welcome_title {
@@ -43,7 +47,3 @@
     padding: 6px 16px;
   }
 }
-
-
-
-

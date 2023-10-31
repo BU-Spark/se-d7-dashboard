@@ -21,20 +21,26 @@ function Resources(props: {resources: { title: string, "links": { title: string,
     
 
     return (
-        <div className="container">
+        <>
             {props.resources.map((resource) => {
                 return (
                     <Button
-                        className="px-3 py-2 mb-2 pinned"
+                        className="py-3 mb-3"
                         variant="primary"
                         onClick={() => goToPortal(resource)}
+                        style={{
+                            color: 'white',
+                            background: 'transparent',
+                            border: '1px solid #E3B81F',
+                            fontWeight: '700',
+                        }}
                     >
                         {resource.title}
                     </Button>
                     
                 );
             })}
-        </div>
+        </>
     );
 }
 export default Resources;

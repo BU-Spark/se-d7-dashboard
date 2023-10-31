@@ -10,19 +10,18 @@ function ViewAllPosts(props: { tweets: tweetData[] }) {
   };
 
   return (
-    <div className="container">
-      <Button
-        className="px-3 py-2 mb-2 pinned pf-u-text-center"
-        variant="primary"
-        onClick={() => goToPosts()}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        View All Announcements
-      </Button>
-    </div>
+    <Button
+      className="px-3 py-2 mb-2 pinned pf-u-text-center"
+      variant="primary"
+      onClick={() => goToPosts()}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        color: '#001C46',
+      }}
+    >
+      View Full Calendar
+    </Button>
   );
 }
 

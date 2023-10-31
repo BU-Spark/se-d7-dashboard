@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import Resources from "../components/home/Resources";
+import style from "./Home.module.css"
 
 
 //for dev,
@@ -216,37 +217,39 @@ function Home() {
   }, [auth.currentUser, fetchdata]);
 
   return (
-    <div className="container">
+    // <div className={style.container}>
+    <div className="container home">
       <LogoBar />
-      <Search />
+      {/* <Search /> */}
 
-      {/*
-	  this announcments component here will
-	  probably be temporary while we figure out what to do with announcements
-    */}
-
-      <div className="mt-3 text-start heading">Announcements</div>
-      <Announcement {...passTweetData} vertical={false} />
+      <div className="my-3 text-start heading" style={{ color: 'white' }}>Upcoming Events</div>
+      <Announcement {...passTweetData} vertical={false}/>
       <ViewAllAnnouncements {...passTweetData}/>
 
-      <div className="mt-3 text-start heading">Happening This Week</div>
-      <Calendar {...passCalendarData} />
+      {/* <div className="mt-3 text-start heading">Happening This Week</div>
+      <Calendar {...passCalendarData} /> */}
 
-      <div className="my-3 pf-c-title heading text-start">You Pinned</div>
+      <div className="my-3 text-start heading" style={{ color: 'white' }}>You Pinned</div>
       <Pinned pinned={pinned} />
 
-      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+      <div className="my-3 text-start heading" style={{ color: 'white' }}>Our Resources</div>
       <Button
-        className="px-3 py-2 mb-2 pinned "
+        className="py-3 mb-3"
         variant="primary"
         onClick= { () => navigate("/getresources")}
+        style={{
+          color: 'white',
+          background: 'transparent',
+          border: '1px solid #E3B81F',
+          fontWeight: '700',
+        }}
         >
         Get Resources
       </Button>
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
+      <div className="my-3 text-start heading" style={{ color: 'white' }}>Councilor News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
     </div>

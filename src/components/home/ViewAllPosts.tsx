@@ -10,7 +10,7 @@ function ViewAllPosts(props: { updates: upData[] }) {
   };
 
   return (
-    <div className="container">
+    <>
       <Button
         className="px-3 py-2 mb-2 pinned pf-u-text-center"
         variant="primary"
@@ -18,11 +18,12 @@ function ViewAllPosts(props: { updates: upData[] }) {
         style={{
           display: "flex",
           justifyContent: "center",
+          color: 'black'
         }}
       >
         View All Posts
       </Button>
-    </div>
+    </>
   );
 }
 
