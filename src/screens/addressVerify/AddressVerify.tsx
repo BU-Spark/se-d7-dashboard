@@ -31,7 +31,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup"); 
+      navigate("/contact-info"); 
     }, 1000);
   };
 
@@ -53,7 +53,7 @@ function AddressVerify() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else if (a.city !== "Boston"){
+    } else if (a.city.toLowerCase() !== "boston"){
       setShowLoading(false);
       setShowError(true);
     } 
@@ -62,7 +62,7 @@ function AddressVerify() {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
-      fetch(url)
+        fetch(url)
         .then((response) => response.json())
         .then((data) => {
           if (!data) {
@@ -77,7 +77,7 @@ function AddressVerify() {
             }
             return { lat: data[0].lat, lng: data[0].lon };
           }
-        }).then((coords) => {
+        }).then((coords) => { // issue here no coords!
           // Query ArcGIS Query API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
           if (!coords) {
@@ -158,6 +158,13 @@ function AddressVerify() {
         className="_select" 
         placeholder="Select a state"
         isSearchable={false}
+        onChange={(selectedOption) => {
+          if (selectedOption) {
+            setState(selectedOption.value);
+          } else {
+            setState("");
+          }
+        }}
         styles={{
           control: (provided) => ({
             ...provided,

@@ -1,6 +1,6 @@
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { APIUrl } from "../../screens/Home";
+import { useState } from "react";
 
 type resourcesData = {
     id: number;
@@ -12,32 +12,73 @@ type resourcesData = {
   };
 
 function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
+    const [displayLinks, setDisplayLinks] = useState<{ [key: number]: boolean }>({});
     const navigate = useNavigate();
-    const goToPortal = (resource: { title: string, "links": { title: string, url: string }[] }) => {
-        // Navigate to the portal page
-        // Pass the resource as a prop
-        navigate("/portal", { state: {title: resource.title, links: resource.links} });
+
+    // handles toggle button by object key, value
+    // copies previous state and updates one of it on click
+    const toggleLinksDisplay = (index: number) => {
+        setDisplayLinks(prevState => ({
+            ...prevState,
+            [index]: !prevState[index]
+        }));
     }
-    
+
+    const goToSpecificResource = (title: string) => {
+        navigate(`/specific-resource`, { state: { title } });
+    }
+
+    // not using atm and probably not later on
+    // const navigate = useNavigate();
+    // const goToPortal = (resource: { title: string, "links": { title: string, url: string }[] }) => {
+    //     // Navigate to the portal page
+    //     // Pass the resource as a prop
+    //     console.log(resource)
+    //     navigate("/portal", { state: {title: resource.title, links: resource.links} });
+    // }
 
     return (
         <>
-            {props.resources.map((resource) => {
+            {props.resources.map((resource, index) => {
                 return (
-                    <Button
-                        className="py-3 mb-3"
-                        variant="primary"
-                        onClick={() => goToPortal(resource)}
-                        style={{
-                            color: 'white',
-                            background: 'transparent',
-                            border: '1px solid #E3B81F',
-                            fontWeight: '700',
-                        }}
-                    >
-                        {resource.title}
-                    </Button>
-                    
+                    <div key={`resource-${index}`} className="mb-4">
+                        <Button
+                            className="py-3"
+                            variant="primary"
+                            onClick={() => toggleLinksDisplay(index)}
+                            style={{
+                                width: '90%',
+                                color: '#00183D',
+                                textAlign: 'left',
+                                background: '#E3B81F',
+                                fontWeight: '700',
+                                borderRadius: '0',
+                            }}
+                        >
+                            {resource.title}
+                        </Button>
+                        {/* checks the index of the div above and display the sub category */}
+                        {displayLinks[index] && (
+                            <div>
+                                {resource.links.map((link, linkIndex) => (
+                                    <Button
+                                        key={`link-${linkIndex}`}
+                                        className="py-3 custom-button"
+                                        onClick={() => goToSpecificResource(link.title)}
+                                        style={{
+                                            textAlign: 'left',
+                                            color: '#00183D',
+                                            width: '90%',
+                                            background: 'white',
+                                            borderRadius: '0',
+                                        }}
+                                    >
+                                        {link.title}
+                                    </Button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 );
             })}
         </>

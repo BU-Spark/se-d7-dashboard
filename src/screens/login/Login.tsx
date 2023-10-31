@@ -37,10 +37,10 @@ const Login: React.FunctionComponent<Login> = (props) => {
 
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(async (response) => {
-        console.log("Getting user data");
+        // console.log("Getting user data");
         let userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
-          console.log("Document data:", userData.data());
+          // console.log("Document data:", userData.data());
           if (userData.data().firstName) {
             navigate("/home");
           } else {

@@ -19,7 +19,7 @@ export default function Modal(props: ModalType) {
   const SignOut = () => {
       signOut(auth).then(() => {
           // Sign-out successful.
-          console.log("Logged out")
+          // console.log("Logged out")
           navigate("/")
       }).catch((error) => {
           // An error happened.

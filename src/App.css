@@ -62,6 +62,12 @@
   --pf-global--BorderColor--dark-100: #0066CC;
 }
 
+/* custom button used in Resource.tsx */
+.pf-c-button.custom-button:hover {
+  background-color: red !important;
+  color: white !important;
+}
+
 /* Global Styles */
 body {
   background-color: #00183d !important;

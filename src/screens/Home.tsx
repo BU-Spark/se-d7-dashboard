@@ -93,7 +93,7 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       })
       .catch((error) => {

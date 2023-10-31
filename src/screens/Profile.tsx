@@ -52,7 +52,7 @@ function Profile() {
       setFieldsMissing(false);
     }
     if (auth.currentUser) {
-      console.log("User is logged in.");
+      // console.log("User is logged in.");
       const userEmail = auth.currentUser?.email || "defaultuser@email.com";
       const userProfileRef = doc(db, "user-profile", userEmail);
       setDoc(userProfileRef, {
