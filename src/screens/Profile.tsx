@@ -80,9 +80,9 @@ function Profile() {
   };
 
   return (
-    <div className="container-padded">
+    <div className="bg-app">
       <ProgressStepperCompact3 />
-      <div className="pf-c-title pf-m-lg text-start mb-3 mt-5">
+      <div className="text-start mb-3 mt-8 text-xl font-bold">
         Build Your User Profile
       </div>
 
