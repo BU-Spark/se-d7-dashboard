@@ -1,12 +1,10 @@
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
+import { TextInput, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { ProgressStepperCompact3 } from "../components/home/Progressbar";
-import RegisteredSelection from "../components/login/RegisteredSelection";
 import { getAuth } from "firebase/auth";
 import Select from "react-select";
-import { is } from "date-fns/locale";
 
 function Profile() {
   const navigate = useNavigate();
