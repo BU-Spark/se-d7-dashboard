@@ -11,10 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput, Tooltip } from "@patternfly/react-core";
 import { QUESTION_CIRCLE } from "../assets";
 
-export interface Login {}
-
 //client hit Log In button
-const Login: React.FunctionComponent<Login> = () => {
+const Login: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
@@ -124,11 +122,10 @@ const Login: React.FunctionComponent<Login> = () => {
           className="mt-3 text-start form_alert"
         />
       )}
-      <br />
 
-      <Button className="mb-2 !text-black" variant="primary" onClick={Login}>
+      <button className="mt-4 btn-yellow" onClick={Login}>
         Log In
-      </Button>
+      </button>
       {/* <div className="center-wrapper">
         <GoogleButton onClick={LoginGoogle} />
       </div> */}
@@ -178,13 +175,12 @@ const Login: React.FunctionComponent<Login> = () => {
         </Tooltip>
       </div>
 
-      <Button
-        variant="secondary"
-        isDanger
+      <button
+        className="btn-white"
         /*onClick={SignUp}*/ onClick={navigateToSignUp}
       >
         Sign up
-      </Button>
+      </button>
 
       <button
         className="mt-4 btn-white"
