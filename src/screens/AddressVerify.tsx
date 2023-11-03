@@ -155,7 +155,7 @@ function AddressVerify() {
       <div className="text-start mt-3 mb-1">State</div>
       <Select
         options={options} 
-        className="_select" 
+        className="text-start" 
         placeholder="Select a state"
         isSearchable={false}
         onChange={(selectedOption) => {
@@ -176,7 +176,8 @@ function AddressVerify() {
           }),
           option: (provided, state) => ({
             ...provided,
-            color: state.isSelected ? "white" : "black",
+            backgroundColor: state.isSelected ? "#e3b81f" : "white",
+            color: "#00183d"
           })
         }}
       />
