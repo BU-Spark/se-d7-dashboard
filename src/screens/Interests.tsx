@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Chip } from "@patternfly/react-core";
+import { Button, Chip, Tooltip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
@@ -8,6 +8,7 @@ import { APIUrl } from "./Home";
 
 import { IResource } from "../types";
 import { getAuth } from "firebase/auth";
+import { QuestionIcon } from "../assets/QuestionIcon";
 
 interface IInterest {
   title: string;
@@ -95,17 +96,52 @@ function Interests() {
   }, []);
 
   return (
-    <div className="text-white flex flex-col pt-10">
+    <div className="bg-82 py-16">
       <ProgressStepperCompact4/>
-      <div className="mt-14 font-bold">Pin Interests</div>
-      <div className="pf-c-title mb-3 mt-5">
+      <div className="mt-10 font-bold text-2xl text-start px-9">
+        Pin Interests
+      </div>
+      <div className="mb-2 mt-6 text-start px-9 font-bold">
         Help Us Understand Your Interests
       </div>
-      <div className="mb-8">You can always change this later</div>
+      <div className="flex items-center px-9 mb-6">
+        <div className="text-start text-sm">
+          You can always change this later
+        </div>
+        <Tooltip
+          removeFindDomNode={true}
+          distance={12}
+          className="!bg-white !py-4 !px-3"
+          position="top"
+          enableFlip={true}
+          trigger="click"
+          isContentLeftAligned
+          maxWidth="190px"
+          content={
+            <>
+              <div style={{
+                color: "black",
+                fontSize: "1rem",
+                marginBottom: "10px"
+              }}>
+                Hehehehe
+              </div>
+              <div style={{
+                color: "black",
+                fontSize: "0.625rem"
+              }}>
+                hehehehehe
+              </div>
+            </>
+          }
+        >
+          <QuestionIcon className="w-[14px] h-[14px] ml-2 cursor-pointer"/>
+        </Tooltip>
+      </div>
 
       {chips.interests.map((interest, index) => {
         return (
-          <Chip
+          <button
             key={index}
             className={
               interest.selected
@@ -113,11 +149,9 @@ function Interests() {
                 : "px-3 m-1 selected-chip-non-clicked"
             }
             onClick={() => highlightItem(interest.title)}
-            isReadOnly
-            isOverflowChip
           >
             {interest.title}
-          </Chip>
+          </button>
         );
       })}
 
