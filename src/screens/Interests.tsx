@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Chip, Tooltip } from "@patternfly/react-core";
+import { FC, useEffect, useState } from "react";
+import { Button, TextInput, Tooltip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
@@ -9,10 +9,30 @@ import { APIUrl } from "./Home";
 import { IResource } from "../types";
 import { getAuth } from "firebase/auth";
 import { QuestionIcon } from "../assets/QuestionIcon";
+import clsx from "clsx";
 
 interface IInterest {
   title: string;
   selected: boolean;
+}
+
+const Chip: FC<{title: string}> = ({title}) => {
+  const [selected, setSelected] = useState<boolean>(false);
+  const toggleChip = () => {
+    setSelected(!selected);
+  }
+  return (
+    <button 
+      className={clsx(
+        'me-2 px-2 rounded-sm mb-4',
+        selected && 'bg-yellow',
+        !selected && 'bg-white'
+      )} 
+      onClick={toggleChip}
+    >
+      {title}
+    </button>
+  )
 }
 
 function Interests() {
@@ -138,30 +158,28 @@ function Interests() {
           <QuestionIcon className="w-[14px] h-[14px] ml-2 cursor-pointer"/>
         </Tooltip>
       </div>
-
-      {chips.interests.map((interest, index) => {
-        return (
-          <button
-            key={index}
-            className={
-              interest.selected
-                ? "px-3 m-1 selected-chip-clicked"
-                : "px-3 m-1 selected-chip-non-clicked"
-            }
-            onClick={() => highlightItem(interest.title)}
-          >
-            {interest.title}
+      
+      <div className="text-start mb-12">
+        {chips.interests.map((interest, index) => {
+          return (
+            <Chip title={interest.title} key={index}/>
+            );
+          })}
+      </div>
+      
+        <div className="px-9 text-start">
+          <p className="mb-1">
+          What resources are you looking for
+          from your councilor?
+          </p>
+          <TextInput aria-label="resource input" placeholder="Text input.."/>
+        </div>
+            
+        <div className="px-9 mt-12 top-[70px]">
+          <button className="btn-yellow w-full">
+            Finish Set Up
           </button>
-        );
-      })}
-
-      <Button
-        onClick={navigateToNext}
-        className="px-5 py-1 mt-4"
-        variant="primary"
-      >
-        Finish Set Up
-      </Button>
+        </div>
     </div>
   );
 }
