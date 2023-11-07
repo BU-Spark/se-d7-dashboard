@@ -26,18 +26,18 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login/>} />
-          <Route path="/contact-info" element={<ContactInfo/>} />
-          <Route path="/home" element={<Home/>} />
           <Route path="/" element={<Welcome/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/address-info" element={<AddressInfo/>} />
           <Route path="/address-entry" element={<AddressVerify/>} />
+          <Route path="/contact-info" element={<ContactInfo/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
-          <Route path="/portal" element={<Portal/>} /> 
-          <Route path="/getresources" element={<GetResources/>} />
+          <Route path="/home" element={<Home/>} />
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements/>} />
+          <Route path="/portal" element={<Portal/>} /> 
+          <Route path="/getresources" element={<GetResources/>} />
           <Route path="/specific-resource" element={<SpecificResource/>} />
         </Routes>
       </BrowserRouter>
