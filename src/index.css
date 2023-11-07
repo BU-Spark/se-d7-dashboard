@@ -5,6 +5,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #00183d;
+  overscroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 code {

@@ -242,7 +242,7 @@ function Home() {
       
       <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>Councilor News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
-      <ViewAllPosts {...passUpdateData} />
+      <ViewAllPosts className="btn-yellow w-full mb-8" />
     </div>
   );
 }

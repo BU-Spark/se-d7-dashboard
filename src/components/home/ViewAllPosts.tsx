@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { upData } from "../../screens/Home";
-function ViewAllPosts(props: { updates: upData[] }) {
+import { ButtonHTMLAttributes, FC } from 'react';
+
+
+const ViewAllPosts: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
   const navigate = useNavigate();
   //navigate to allPosts
   const goToPosts = () => {
@@ -8,14 +10,12 @@ function ViewAllPosts(props: { updates: upData[] }) {
   };
 
   return (
-    <>
-      <button
-        className="btn-yellow w-full"
-        onClick={() => goToPosts()}
-      >
-        View All Posts
-      </button>
-    </>
+    <button
+      onClick={() => goToPosts()}
+      {...props}
+    >
+      View All Posts
+    </button>
   );
 }
 
