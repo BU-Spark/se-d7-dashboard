@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Button, TextInput, Tooltip } from "@patternfly/react-core";
+import { TextInput, Tooltip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
