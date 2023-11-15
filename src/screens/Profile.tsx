@@ -2,7 +2,7 @@ import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
-import { ProgressStepperCompact3 } from "../components/home/Progressbar";
+import { Stepper } from "../components/home/Stepper";
 import { getAuth } from "firebase/auth";
 import Select from "react-select";
 
@@ -81,7 +81,7 @@ function Profile() {
 
   return (
     <div className="bg-app">
-      <ProgressStepperCompact3 />
+      <Stepper currentStep={2} totalStep={3} />
       <div className="text-start mb-3 mt-8 text-xl font-bold">
         Contact Information
       </div>

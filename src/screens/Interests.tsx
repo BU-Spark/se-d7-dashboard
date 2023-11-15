@@ -3,7 +3,7 @@ import { TextInput, Tooltip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
-import { ProgressStepperCompact4 } from "../components/home/Progressbar";
+import { Stepper } from "../components/home/Stepper";
 import { APIUrl } from "./Home";
 
 import { IResource } from "../types";
@@ -117,7 +117,7 @@ function Interests() {
 
   return (
     <div className="bg-82 py-16">
-      <ProgressStepperCompact4/>
+      <Stepper currentStep={3} totalStep={3}/>
       <div className="mt-10 font-bold text-2xl text-start px-9">
         Pin Interests
       </div>

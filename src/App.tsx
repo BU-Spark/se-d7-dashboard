@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./screens/Welcome";
 import AddressInfo from "./screens/AdressInfo";
-import ContactInfo from "./screens/ContactInfo";
 import AddressVerify from "./screens/AddressVerify";
 import Login from "./screens/Login";
 import UserProfileScreen from "./screens/Profile";
@@ -30,7 +29,6 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/address-info" element={<AddressInfo/>} />
           <Route path="/address-entry" element={<AddressVerify/>} />
-          <Route path="/contact-info" element={<ContactInfo/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
           <Route path="/home" element={<Home/>} />
