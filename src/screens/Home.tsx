@@ -8,8 +8,8 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import Resources from "../components/home/Resources";
+
 
 
 //for dev,
@@ -222,7 +222,12 @@ function Home() {
 
       <div className="my-4 text-start heading">Upcoming Events</div>
       <Announcement {...passTweetData} vertical={false}/>
-      <ViewAllAnnouncements {...passTweetData}/>
+      <button 
+        className="btn-yellow w-full mt-5"
+        onClick={() => navigate("/calendar")}
+      >
+        View Full Calendar
+      </button>
 
       {/* <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} /> */}
@@ -234,15 +239,17 @@ function Home() {
       <button
         className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/getresources")}
-        >
+      >
         Get Resources
       </button>
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>Councilor News and Updates</div>
+      <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>
+        Councilor News and Updates
+      </div>
       <Updates {...passUpdateData} vertical={false} />
-      <ViewAllPosts className="btn-yellow w-full mb-8" />
+      <ViewAllPosts className="btn-yellow w-full mb-8 mt-5"/>
     </div>
   );
 }

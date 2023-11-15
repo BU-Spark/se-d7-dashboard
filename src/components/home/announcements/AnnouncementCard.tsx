@@ -3,13 +3,25 @@ import "@patternfly/react-core/dist/styles/base.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';
 import useModal from '../useModal';
+import { FC } from "react";
+import { clsx } from 'clsx';
 
-function AnnouncementCard(props: {
+interface IAnnouncementCardProps {
   title: string;
   description: string;
   date?: string;
   image?: string;
-}) {
+  fullWidth?: boolean;
+}
+
+const AnnouncementCard: FC<IAnnouncementCardProps> = (props:{
+  title: string;
+  description: string;
+  date?: string;
+  image?: string;
+  fullWidth?: boolean;
+}) => {
+
   const title = props.title;
   const content = props.description;
   const date = props.date ? props.date : "";
@@ -31,32 +43,35 @@ function AnnouncementCard(props: {
   }
 
   return (
-    <div className="mb-4 me-4 text-navy" onClick={toggle}>
-      <Card className="calendar-card !bg-white !cursor-pointer text-start">
-        <div className="mx-3 mt-3 mb-5">
-          <div className="flex justify-between items-center mb-4">
-            <p className="text-start font-semibold">{title}</p>
-            <Icon isInline>
-              <EllipsisVIcon className="w-4 h-3 text-gray-500" />
-            </Icon>
-          </div>
-            <small>{finalDate}</small>
-            <small>{truncateContent(content, 60)}</small>
-            {/* if there's an image, display it */}
-            {props.image ? (
-              <img
-                src={props.image}
-                alt="Event Image"
-                className="w-full h-full"
-              />
-            ) : (
-              <div></div>
-            )}
+    <Card className={clsx(
+        props.fullWidth && '!w-full',
+        "calendar-card !bg-white !cursor-pointer text-start text-navy"
+      )}
+      onClick={toggle}
+    >
+      <div className="mx-6 mt-6 mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-start font-semibold">{title}</p>
+          <Icon isInline>
+            <EllipsisVIcon className="w-4 h-3 text-gray-500" />
+          </Icon>
         </div>
-        <Modal isOpen={isOpen} toggle={toggle} title={title} date={finalDate} content={content}>
-        </Modal>
-      </Card>
-    </div>
+          {/* <small>{finalDate}</small> */}
+          <small>{truncateContent(content, 60)}</small>
+          {/* if there's an image, display it */}
+          {props.image ? (
+            <img
+              src={props.image}
+              alt="Event Image"
+              className="w-full h-full"
+            />
+          ) : (
+            <div></div>
+          )}
+      </div>
+      <Modal isOpen={isOpen} toggle={toggle} title={title} date={finalDate} content={content}>
+      </Modal>
+    </Card>
   );
 }
 

@@ -1,12 +1,22 @@
 import AnnouncementCard from "./AnnouncementCard";
 import type { tweetData } from "../../../screens/Home";
+import { FC } from "react";
 import clsx from 'clsx';
 
-function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
+interface IAnnouncementProps {
+  tweets: tweetData[];
+  vertical: boolean;
+  fullWidth?: boolean;
+}
+
+const Announcement: FC<IAnnouncementProps> = (props: { 
+  tweets: tweetData[]; 
+  vertical: boolean;
+  fullWidth?: boolean;
+}) => {
   return (
     <div className={clsx(
       props.vertical ? "vertical-scroll" : "horizontal-scroll",
-      props.vertical && ["flex", "flex-wrap"]
     )}>
       {props.tweets.length > 0 ? (
         props.tweets.map((announcement) => {
@@ -15,6 +25,7 @@ function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
               title={announcement.attributes.title}
               description={announcement.attributes.description}
               date={announcement.attributes.date}
+              fullWidth={props.fullWidth}
             ></AnnouncementCard>
           );
         })
@@ -22,6 +33,7 @@ function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
         <AnnouncementCard
           title="No Announcements"
           description="Check back later!"
+          fullWidth={props.fullWidth}
         ></AnnouncementCard>
       )}{" "}
     </div>

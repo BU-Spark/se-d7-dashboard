@@ -6,7 +6,6 @@ function Updates(props: { updates: upData[]; vertical: boolean }) {
   return (
     <div className={clsx(
       props.vertical ? "vertical-scroll" : "horizontal-scroll",
-      props.vertical && ["flex", "flex-wrap"]
     )}>
       {props.updates[0] && props.updates[0].id === -1 ? (
         <CalendarCard

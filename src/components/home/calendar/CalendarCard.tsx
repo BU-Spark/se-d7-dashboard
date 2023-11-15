@@ -29,7 +29,7 @@ function CalendarCard(props: {
   return (
     <Card 
       onClick={toggle} 
-      className="!mb-4 !me-4 calendar-card !bg-white !cursor-pointer text-navy text-start"
+      className="calendar-card !bg-white !cursor-pointer text-navy text-start"
     >
       <div className="mx-3 mt-3 mb-5">
         <div className="flex justify-between items-center mb-4">

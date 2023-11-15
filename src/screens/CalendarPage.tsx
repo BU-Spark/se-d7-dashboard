@@ -5,7 +5,7 @@ import type { tweetData } from "./Home";
 import { APIUrl } from "./Home";
 import Announcements from "../components/home/announcements/Announcement";
 
-function AllAnnouncements() {
+function CalendarPage() {
   const navigate = useNavigate();
 
   const [announcements, setAnnouncements] = useState<tweetData[]>([]);
@@ -40,14 +40,14 @@ function AllAnnouncements() {
   }, []);
 
   return (
-    <div>
-      <div className="mt-4 ms-4 text-white flex text-2xl font-bold mb-5">
+    <div className="bg-82">
+      <div className="mt-4 ms-4 text-white flex items-center text-2xl font-bold mb-5">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        All Announcements
+        Calendar
       </div>
-      <Announcements tweets={announcements} vertical={true}/>
+      <Announcements tweets={announcements} vertical={true} fullWidth={true}/>
     </div>
   );
 }
 
-export default AllAnnouncements;
+export default CalendarPage;

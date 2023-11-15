@@ -12,7 +12,7 @@ import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/resources/GetResources';
 import SpecificResource from './screens/resources/SpecificResource';
 import "@patternfly/react-core/dist/styles/base.css";
-import AllAnnouncements from "./screens/AllAnnouncements";
+import CalendarPage from "./screens/CalendarPage";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -33,7 +33,7 @@ function App() {
           <Route path="/interests" element={<Interests/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/all-posts" element={<AllPosts />} />
-          <Route path="/all-announcements" element={<AllAnnouncements/>} />
+          <Route path="/calendar" element={<CalendarPage/>} />
           <Route path="/portal" element={<Portal/>} /> 
           <Route path="/getresources" element={<GetResources/>} />
           <Route path="/specific-resource" element={<SpecificResource/>} />
