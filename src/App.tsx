@@ -34,7 +34,7 @@ function App() {
           <Route path="/interests" element={<Interests />} />
           <Route path="/home" element={<Home />} />
           <Route path="/all-posts" element={<AllPosts />} />
-          <Route path="/all-announcements" element={<AllAnnouncements />} />
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/portal" element={<Portal />} />
           <Route path="/getresources" element={<GetResources />} />
           <Route path="/specific-resource" element={<SpecificResource />} />
