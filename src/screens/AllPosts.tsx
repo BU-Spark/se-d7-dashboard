@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { SearchIcon, AngleLeftIcon } from "@patternfly/react-icons";
+import { SearchIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { postData } from "./Home";
 import { APIUrl } from "./Home";
 import PostCards from "../components/home/posts/PostCards";
+import { HeadBar } from '../components/HeadBar';
 
 function AllPosts() {
   const navigate = useNavigate();
@@ -54,11 +55,8 @@ function AllPosts() {
   });
 
   return (
-    <div className="bg-82">
-      <div className="mt-3 mb-4 mx-[-10px] flex flex-row font-bold text-[1.25rem]">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        &nbsp;&nbsp;Posts
-      </div>
+    <div className="bg-82 py-6">
+      <HeadBar title="Posts" className="mb-4"/>
       <div className="relative mb-20 text-navy text-lg">
         <span className="absolute inset-y-0 w-10 grid place-content-center">
           <SearchIcon />

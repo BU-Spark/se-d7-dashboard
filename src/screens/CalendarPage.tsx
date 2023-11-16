@@ -1,10 +1,10 @@
 import {useState, useEffect } from "react";
-import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { tweetData } from "./Home";
 import { APIUrl } from "./Home";
 import Announcements from "../components/home/announcements/Announcement";
 import { DayPicker } from "react-day-picker";
+import { HeadBar } from "../components/HeadBar";
 
 function CalendarPage() {
   const navigate = useNavigate();
@@ -42,11 +42,8 @@ function CalendarPage() {
   }, []);
 
   return (
-    <div className="bg-82 flex flex-col">
-      <div className="mt-4 text-white flex items-center text-2xl font-bold mb-5">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        Calendar
-      </div>
+    <div className="bg-82 py-6 flex flex-col">
+      <HeadBar title="Calendar" className="mb-4"/>
       <DayPicker
         mode="single"
         className="mb-4"

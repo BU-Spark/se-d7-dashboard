@@ -1,4 +1,4 @@
-import { FC, HTMLProps, Fragment} from 'react'
+import { FC, HTMLProps} from 'react'
 import { CogIcon, HomeIcon, AngleLeftIcon } from '@patternfly/react-icons';
 import { useNavigate } from 'react-router-dom';
 import Modal from './home/GearModal';
@@ -15,7 +15,7 @@ export const HeadBar:FC<IHeadBarProps> = (props) => {
   const navigate = useNavigate();
 
   return (
-    <Fragment {...rest}>
+    <div {...rest}>
       <div className='flex justify-between ms-8 mb-6'>
         <HomeIcon
           size='md'
@@ -36,6 +36,6 @@ export const HeadBar:FC<IHeadBarProps> = (props) => {
         </p>
       </div>
       <Modal isOpen={isOpen} toggle={toggle}/>
-    </Fragment>
+    </div>
   )
 }

@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import Resources from "../components/home/Resources";
 
 
-
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 
