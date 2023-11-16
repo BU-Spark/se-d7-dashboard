@@ -67,7 +67,7 @@ function CalendarPage() {
           cell: "h-9 w-full text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
           day: "h-9 w-full p-0 font-normal aria-selected:opacity-100 text-white",
           day_outside: "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
-          day_selected: "bg-yellow !text-navy w-9 rounded-full focus:bg-yellow focus:text-navy"
+          day_selected: "bg-yellow !text-navy !w-9 rounded-full focus:bg-yellow focus:text-navy"
         }}
       />
       <div className="my-4 text-start font-bold text-xl">Upcoming Events</div>
