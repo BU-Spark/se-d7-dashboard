@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
@@ -111,7 +111,7 @@ function Profile() {
         aria-label="Phone Number input field"
         onChange={handlePhoneNumberChange}
       />
-      
+
       <div className="text-start mb-2">Are you registered to vote?</div>
       <Select
         className="text-start mb-7 "
@@ -137,25 +137,28 @@ function Profile() {
           option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected ? "#e3b81f" : "white",
-            color: "#00183d"
+            color: "#00183d",
           }),
         }}
       />
       <div className="flex mb-2">
-        <input 
-          type="checkbox" 
-          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"/>
+        <input
+          onChange={(e) => handleOptOutChange(e.target.checked)}
+          type="checkbox"
+          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
+        />
         <p className="text-start">
-          I agree to receive important updates from District 7 leadership as text messages
+          I agree to receive important updates from District 7 leadership as
+          text messages
         </p>
       </div>
       <div className="flex mb-7">
-        <input 
-          type="checkbox" 
-          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"/>
-        <p className="text-start">
-          Opt out of text updates about District 7
-        </p>
+        <input
+          type="checkbox"
+          onChange={(e) => handleTextUpdatesChange(e.target.checked)}
+          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
+        />
+        <p className="text-start">Opt out of text updates about District 7</p>
       </div>
       {fieldsMissing && (
         <Alert
@@ -167,7 +170,7 @@ function Profile() {
       )}
 
       <div className="text-end">
-        <button className="btn-yellow">
+        <button onClick={navigateToNext} className="btn-yellow">
           Next
         </button>
       </div>
