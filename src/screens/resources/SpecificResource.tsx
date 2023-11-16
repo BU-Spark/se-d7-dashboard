@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AngleLeftIcon } from "@patternfly/react-icons";
 import { APIUrl } from "../Home";
-import LogoBar from "../../components/home/LogoBar";
+import { HeadBar } from "../../components/headBar";
 
 interface data {
   attributes: {
@@ -45,21 +44,17 @@ function SpecificResource(){
     }, []) // stop useEffect after running once
   
   return (
-    <div className="bg-82 py-5
+    <div className="bg-82 py-6
       min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
     >
-      <LogoBar />
-      <div className="portal-nav" style={{color: "white", fontSize: '1.1em'}}>
-          <AngleLeftIcon size="md" onClick={() => navigate("/getresources")}/>
-          {title}
-      </div>
+      <HeadBar title={title} />
       <div className = "mt-6">
         {/* sort them by id order */}
         {resources &&
           resources.sort((a, b) => a.id - b.id).map((resource) =>(
             <button
                 key={resource.id}
-                className="btn-white bg-transparent text-white w-full mb-4 py-2"
+                className="btn-white bg-transparent text-white w-full mb-4 py-2 text-start"
                 onClick={() => window.open(resource.url, '_blank')}
             >
                 {resource.title}
