@@ -8,7 +8,8 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import Resources from "../components/home/Resources";
+import { QuestionIcon } from "../assets/QuestionIcon";
+import { Tooltip } from "@patternfly/react-core";
 
 
 //for dev,
@@ -231,7 +232,31 @@ function Home() {
       {/* <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} /> */}
 
-      <div className="mb-3 mt-7 text-start heading">You Pinned</div>
+      <div className="flex items-center mb-3 mt-7 ">
+        <div className="text-start heading">You Pinned</div>
+        <Tooltip
+            removeFindDomNode={true}
+            distance={12}
+            className="!bg-white !py-4 !px-3"
+            position="right"
+            enableFlip={true}
+            trigger="click"
+            isContentLeftAligned
+            maxWidth="190px"
+            content={
+              <>
+                <div className="text-navy mb-2 font-bold">
+                  Your Pinned Interests
+                </div>
+                <div className="text-sm text-navy">
+                  Edit in settings
+                </div>
+              </>
+            }
+          >
+          <QuestionIcon className="w-[14px] h-[14px] ml-2 cursor-pointer"/>
+        </Tooltip>
+      </div>
       <Pinned pinned={pinned} />
 
       <div className="mb-3 mt-7 text-start heading">Our Resources</div>
@@ -239,10 +264,29 @@ function Home() {
         className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/getresources")}
       >
-        Get Resources
+        GET RESOURCES
       </button>
-      <Resources resources={InvolvedData}/>
-      <Resources resources={SubmitandRequestData}/>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+      >
+        SUBMIT REQUESTS AND REPORTS
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+        onClick= { () => navigate("/address-info")}
+      >
+        GET INVLOVED
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+      >
+        SUBSCRBITE TO MAILING LIST
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+      >
+        ABOUT THE DISTRICT
+      </button>
       
       <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>
         Councilor News and Updates

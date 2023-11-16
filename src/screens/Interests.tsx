@@ -144,13 +144,13 @@ function Interests() {
                 fontSize: "1rem",
                 marginBottom: "10px"
               }}>
-                Hehehehe
+                Place holder
               </div>
               <div style={{
                 color: "black",
                 fontSize: "0.625rem"
               }}>
-                hehehehehe
+                Place holder
               </div>
             </>
           }
