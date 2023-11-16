@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Alert, TextInput } from "@patternfly/react-core";
-import { ProgressStepperCompact2 } from "../components/home/Progressbar";
+import { Stepper } from "../components/home/Stepper";
 
 export interface ILoginScreenProps {}
 
@@ -47,7 +47,7 @@ const ContactInfo: FC<ILoginScreenProps> = (props) => {
 
   return (
     <div className="bg-app">
-      <ProgressStepperCompact2/>
+      <Stepper currentStep={2} totalStep={3}/>
       <div className="mb-3 text-start mt-5" >Sign Up</div>
       <div className="text-start">Email</div>
 

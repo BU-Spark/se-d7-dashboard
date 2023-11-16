@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert, TextInput, Tooltip } from "@patternfly/react-core";
+import { Alert, TextInput, Tooltip } from "@patternfly/react-core";
 import { QUESTION_CIRCLE } from "../assets";
 
 //client hit Log In button

@@ -6,7 +6,7 @@ import AddressInvalidBox from "../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import { TextInput, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../components/home/Progressbar";
+import { Stepper } from "../components/home/Stepper";
 import Select from "react-select";
 function AddressVerify() {
   const navigate = useNavigate();
@@ -119,7 +119,7 @@ function AddressVerify() {
 
   return (
     <div className="bg-app">
-      <ProgressStepperCompact1 />
+      <Stepper currentStep={1} totalStep={3} />
       <p className="text-start mt-6 mb-4 text-xl ">Enter your address</p>
       <div className="text-start mb-1 ">Address</div>
       <TextInput
@@ -130,7 +130,7 @@ function AddressVerify() {
         onChange={(e) => {
           setAddress(e.split(" ").join("+"));
         }}
-      />
+        />
       <TextInput
         className="mb-2 px-2"
         id="textInput-basic-1"
@@ -139,7 +139,7 @@ function AddressVerify() {
         // onChange={(e) => { // We don't actually need this field, its just for appearances lol
         //   setAddress2(e);
         // }}
-      />
+        />
 
       <div className="mt-3 text-start mb-1 ">City</div>
       <SearchInput 
@@ -147,9 +147,9 @@ function AddressVerify() {
         value={city}
         onChange={(_e, value) => {
           setCity(value);
-          }
         }
-        onClear={() => setCity("")}
+      }
+      onClear={() => setCity("")}
       />
 
       <div className="text-start mt-3 mb-1">State</div>
@@ -180,7 +180,7 @@ function AddressVerify() {
             color: "#00183d"
           })
         }}
-      />
+        />
       <div className="text-start mt-3 mb-1">Zipcode</div>
       <TextInput
         className="px-2 !mb-4"
@@ -190,7 +190,7 @@ function AddressVerify() {
         onChange={(e) => {
           setZip(e.split(" ").join("+"));
         }}
-      />
+        />
 
       {showSuccess && <AddressCheckBox/>}
       {showLoading && <AddressCheckBoxLoading/>}
@@ -203,7 +203,7 @@ function AddressVerify() {
           <button
             onClick={submit}
             className="btn-yellow mt-4"
-          >
+            >
             Next
           </button>
         </div>
