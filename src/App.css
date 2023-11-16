@@ -138,6 +138,7 @@ body {
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
+  gap: 1rem;
 }
 
 @media (min-width:768px) {
@@ -161,6 +162,7 @@ body {
 .vertical-scroll{
   display: flex;
   flex-wrap: wrap;
+  gap: 1.25rem
 }
 
 @media (max-width:700px){
