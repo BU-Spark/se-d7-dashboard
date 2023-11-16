@@ -37,8 +37,8 @@ function App() {
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/portal" element={<Portal />} />
           <Route path="/getresources" element={<GetResources />} />
-          <Route path="/specific-resource" element={<SpecificResource />} />
           <Route path="/contact-info" element={<ContactInfo />} />
+          <Route path="/specific-resource" element={<SpecificResource />} />
         </Routes>
       </BrowserRouter>
     </div>
