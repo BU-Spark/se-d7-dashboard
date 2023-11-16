@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { APIUrl } from "../Home";
-import { HeadBar } from "../../components/headBar";
+import { HeadBar } from "../../components/HeadBar";
 
 interface data {
   attributes: {

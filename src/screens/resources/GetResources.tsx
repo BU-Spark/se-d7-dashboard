@@ -8,7 +8,7 @@ import Resources from "../../components/home/Resources";
 import { APIUrl } from "../Home";
 
 import { IResource } from "../../types";
-import { HeadBar } from "../../components/headBar";
+import { HeadBar } from "../../components/HeadBar";
 
 interface data {
   title: string;
