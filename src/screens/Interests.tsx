@@ -142,22 +142,18 @@ function Interests() {
           maxWidth="190px"
           content={
             <>
-              <div
-                style={{
-                  color: "black",
-                  fontSize: "1rem",
-                  marginBottom: "10px",
-                }}
-              >
-                Hehehehe
+              <div style={{
+                color: "black",
+                fontSize: "1rem",
+                marginBottom: "10px"
+              }}>
+                Place holder
               </div>
-              <div
-                style={{
-                  color: "black",
-                  fontSize: "0.625rem",
-                }}
-              >
-                hehehehehe
+              <div style={{
+                color: "black",
+                fontSize: "0.625rem"
+              }}>
+                Place holder
               </div>
             </>
           }

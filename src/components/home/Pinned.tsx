@@ -1,9 +1,9 @@
-import { Button } from "@patternfly/react-core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIUrl } from "../../screens/Home";
 import { getAuth } from "firebase/auth";
 import { IResource } from "../../types";
+
 
 function Pinned(props: {
   pinned: { title: string; links: { title: string; url: string }[] }[];
@@ -86,15 +86,13 @@ function Pinned(props: {
       {currentUserEmail ? (
         // if user is logged in, display pinned items
         pinned.map((pinned) => (
-          <Button
+          <button
             key={pinned.title}
-            className="px-3 py-2 mb-2 pinned"
-            variant="primary"
+            className="btn-yellow text-start mb-4 w-full"
             onClick={() => goToPortal(pinned)}
-            style={{color:"black"}}
           >
             {pinned.title}
-          </Button>
+          </button>
         ))
       ) : (
         // if user isn't logged in, display the Sign Up button
