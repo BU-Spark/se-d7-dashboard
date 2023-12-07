@@ -120,7 +120,7 @@ function AddressVerify() {
   return (
     <div className="bg-app">
       <Stepper currentStep={1} totalStep={3} />
-      <p className="text-start mt-6 mb-4 text-xl ">Enter your address</p>
+      <p className="text-start mt-6 mb-8 text-xl font-bold">Address</p>
       <div className="text-start mb-1 ">Address</div>
       <TextInput
         className="!mb-3"
@@ -132,7 +132,7 @@ function AddressVerify() {
         }}
         />
       <TextInput
-        className="mb-2 px-2"
+        className="!mb-8 !px-2"
         id="textInput-basic-1"
         type="text"
         placeholder="Apt, suite, unit, building, etc."
@@ -141,8 +141,9 @@ function AddressVerify() {
         // }}
         />
 
-      <div className="mt-3 text-start mb-1 ">City</div>
-      <SearchInput 
+      <div className="text-start mb-1 ">City</div>
+      <SearchInput
+        className="!mb-8"
         placeholder=""
         value={city}
         onChange={(_e, value) => {
@@ -152,7 +153,7 @@ function AddressVerify() {
       onClear={() => setCity("")}
       />
 
-      <div className="text-start mt-3 mb-1">State</div>
+      <div className="text-start mb-1">State</div>
       <Select
         options={options} 
         className="text-start" 
@@ -181,7 +182,7 @@ function AddressVerify() {
           })
         }}
         />
-      <div className="text-start mt-3 mb-1">Zipcode</div>
+      <div className="text-start mt-6 mb-1">Zipcode</div>
       <TextInput
         className="px-2 !mb-4"
         id="textInput-basic-1"

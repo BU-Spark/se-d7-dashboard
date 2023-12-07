@@ -265,23 +265,18 @@ function Home() {
         className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/getresources")}
       >
-        GET RESOURCES
-      </button>
-      <button
-        className="mb-3 btn-rsrc w-full font-bold"
-      >
-        SUBMIT REQUESTS AND REPORTS
+        ESSENTIAL SERVICES
       </button>
       <button
         className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/address-info")}
       >
-        GET INVLOVED
+        GET INVOLVED
       </button>
       <button
         className="mb-3 btn-rsrc w-full font-bold"
       >
-        SUBSCRBITE TO MAILING LIST
+        SUBSCRIBE TO MAILING LIST
       </button>
       <button
         className="mb-3 btn-rsrc w-full font-bold"
