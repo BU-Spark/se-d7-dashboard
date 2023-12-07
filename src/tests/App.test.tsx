@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {render, screen} from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import AddressInfo from '../screens/AdressInfo';
-import AddressVerify from '../screens/AddressVerify';
 
 // describe('App', () => {
 //   it('renders all screens without compile warnings', () => {
@@ -10,6 +8,12 @@ import AddressVerify from '../screens/AddressVerify';
 //     expect(container).toMatchSnapshot();
 //   });
 // });
+
+const sum = (a: number, b: number) => a + b
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3)
+})
 
 // describe('Login', () => {
 //   it('renders the login screen', () => {
