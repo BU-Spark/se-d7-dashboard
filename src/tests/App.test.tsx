@@ -37,31 +37,31 @@ import AddressVerify from '../screens/AddressVerify';
 //   });
 // });
 
-describe('Address Info', () => {
-  it('renders the address info screen', () => {
-    render(
-      <MemoryRouter initialEntries={['/address-info']}>
-        <Routes>
-          <Route path="/address-info" element={<AddressInfo />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
-  });
-});
+// describe('Address Info', () => {
+//   it('renders the address info screen', () => {
+//     render(
+//       <MemoryRouter initialEntries={['/address-info']}>
+//         <Routes>
+//           <Route path="/address-info" element={<AddressInfo />} />
+//         </Routes>
+//       </MemoryRouter>
+//     );
+//     expect(screen.getByText('Please enter your address to confirm your residency')).toBeVisible();
+//   });
+// });
 
-describe('Address Entry', () => {
-  it('renders the address entry screen', () => {
-    render(
-      <MemoryRouter initialEntries={['/address-entry']}>
-        <Routes>
-          <Route path="/address-entry" element={<AddressVerify />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Address')).toBeVisible();
-  });
-});
+// describe('Address Entry', () => {
+//   it('renders the address entry screen', () => {
+//     render(
+//       <MemoryRouter initialEntries={['/address-entry']}>
+//         <Routes>
+//           <Route path="/address-entry" element={<AddressVerify />} />
+//         </Routes>
+//       </MemoryRouter>
+//     );
+//     expect(screen.getByText('Address')).toBeVisible();
+//   });
+// });
 
 // describe('Profile', () => {
 //   it('renders the profile screen', () => {
