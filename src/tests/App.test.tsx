@@ -59,7 +59,7 @@ describe('Address Entry', () => {
         </Routes>
       </MemoryRouter>
     );
-    expect(screen.getByText('Enter your address')).toBeVisible();
+    expect(screen.getByText('Address')).toBeVisible();
   });
 });
 
