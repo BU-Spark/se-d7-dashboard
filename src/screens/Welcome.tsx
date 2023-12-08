@@ -23,7 +23,7 @@ function Welcome() {
           <div className="ml-[16vw] text-left bg-[#e3b81f] bg-opacity-50 
             pr-[16vw] pb-1 pl-4 font-bold text-[1.65rem]"
           >
-            Welcome to the District 7 Boston Citizen’s App
+            Welcome to the District 7 Boston Constitutent’s App
           </div>
           <div className="flex flex-col">
             <div className="bg-[#e3b81f] bg-opacity-50 text-left text-[1.25rem]

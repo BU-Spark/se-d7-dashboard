@@ -42,7 +42,7 @@ export default function Modal(props: ModalType) {
             ></TimesIcon>
           {/* <button onClick={props.toggle} className="closeModal">X</button> */}
             <div style={{marginTop: "30px"}}>
-              <div className="welcome_title">District 7 Boston Citizen's App</div>
+              <div className="welcome_title">District 7 Boston Constitutent's App</div>
               <div className="mx-3">
                 <button
                   key="settings"
