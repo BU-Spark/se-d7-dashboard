@@ -35,7 +35,7 @@ function Welcome() {
               I am a resident of D7
             </button>
             <button onClick={navigateToSignUp} className="btn-white mx-12">
-              Find out
+              Check D7 Constitutent Status
             </button>
           </div>  
         </div>
