@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextInput, Alert } from "@patternfly/react-core";
+import { TextInput } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { Stepper } from "../components/home/Stepper";
 import { getAuth } from "firebase/auth";
@@ -13,11 +13,14 @@ function Profile() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [textUpdates, setTextUpdates] = useState(false);
   const [optOut, setOptOut] = useState(false);
   const [fieldsMissing, setFieldsMissing] = useState(false);
   const [isToVote, setIsToVote] = useState<boolean | null>(null);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState("This is a banner.");
+  const [password, setPassword] = useState<string>("");
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);
@@ -27,8 +30,8 @@ function Profile() {
     setLastName(lastName);
   };
 
-  const handlePhoneNumberChange = (phoneNumber: string) => {
-    setPhoneNumber(phoneNumber);
+  const handleEmailChange = (email: string) => {
+    setEmail(email);
   };
 
   const handleTextUpdatesChange = (checked: boolean) => {
@@ -43,7 +46,7 @@ function Profile() {
     if (
       firstName === "" ||
       lastName === "" ||
-      phoneNumber === "" ||
+      email === "" ||
       isToVote === null
     ) {
       setFieldsMissing(true);
@@ -58,7 +61,7 @@ function Profile() {
       setDoc(userProfileRef, {
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber,
+        email: email,
         textUpdates: textUpdates,
         optOut: optOut,
         registeredVoter: isToVote,
@@ -103,13 +106,13 @@ function Profile() {
         onChange={handleLastNameChange}
       />
 
-      <div className="text-start mb-2">Phone Number</div>
+      <div className="text-start mb-2">Email</div>
       <TextInput
         className="!mb-7"
         id="textInput-basic-1"
         type="tel"
         aria-label="Phone Number input field"
-        onChange={handlePhoneNumberChange}
+        onChange={handleEmailChange}
       />
 
       <div className="text-start mb-2">Are you registered to vote?</div>
@@ -160,17 +163,17 @@ function Profile() {
         />
         <p className="text-start">Opt out of text updates about District 7</p>
       </div>
-      {fieldsMissing && (
+      {/* {fieldsMissing && (
         <Alert
           variant="danger"
           title="Above fields are required"
           isPlain
           isInline
         />
-      )}
+      )} */}
 
       <div className="text-end">
-        <button onClick={navigateToNext} className="btn-yellow">
+        <button onClick={()=>navigate('/interests')} className="btn-yellow">
           Next
         </button>
       </div>

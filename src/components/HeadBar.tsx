@@ -3,6 +3,7 @@ import { CogIcon, HomeIcon, AngleLeftIcon } from '@patternfly/react-icons';
 import { useNavigate } from 'react-router-dom';
 import Modal from './home/GearModal';
 import useModal from './home/useModal';
+import { cn } from '../utils';
 
 interface IHeadBarProps extends HTMLProps<HTMLDivElement> {
   title: string;
@@ -10,12 +11,15 @@ interface IHeadBarProps extends HTMLProps<HTMLDivElement> {
 
 export const HeadBar:FC<IHeadBarProps> = (props) => {
 
-  const {title, ...rest} = props;
+  const {title, className, ...rest} = props;
   const { isOpen, toggle } = useModal();
   const navigate = useNavigate();
 
   return (
-    <div {...rest}>
+    <div className={cn(
+      '',
+      className
+    )}>
       <div className='flex justify-between ms-8 mb-6'>
         <HomeIcon
           size='md'

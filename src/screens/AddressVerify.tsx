@@ -31,7 +31,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/contact-info"); 
+      navigate("/profile"); 
     }, 1000);
   };
 
@@ -204,7 +204,7 @@ function AddressVerify() {
           <button
             onClick={submit}
             className="btn-yellow mt-4"
-            >
+          >
             Next
           </button>
         </div>
