@@ -29,18 +29,17 @@ function CalendarCard(props: {
   return (
     <Card 
       onClick={toggle} 
-      className="calendar-card !bg-white !cursor-pointer text-navy text-start"
+      className="calendar-card !bg-white !cursor-pointer text-navy text-start !p-6"
     >
-      <div className="mx-3 mt-3 mb-5">
         <div className="flex justify-between items-center mb-4">
           <p className="text-start font-semibold">{title}</p>
           <Icon isInline>
             <EllipsisVIcon className="w-4 h-3 text-gray-500" />
           </Icon>
         </div>
-        <div className="row mt-2">
+        <div>
           <small>{date}</small>
-          <small>{truncateContent(content, 40)}</small>
+          <small>{truncateContent(content, 60)}</small>
           {/* if there's an image, display it */}
           {props.image ? (
             <img
@@ -60,7 +59,6 @@ function CalendarCard(props: {
           content={content}
           location={location}
         ></Modal>
-      </div>
     </Card>
   );
 }

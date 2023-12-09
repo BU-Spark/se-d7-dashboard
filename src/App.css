@@ -23,7 +23,7 @@
     @apply bg-navy text-white h-screen py-[7vh] px-[16vw];
   }
   .bg-82{
-    @apply bg-navy text-white h-screen py-3 mx-auto max-w-[82%];
+    @apply bg-navy text-white h-screen mx-auto max-w-[82%];
   }
 }
 /* Patternfly tweaks */
@@ -162,7 +162,8 @@ body {
 .vertical-scroll{
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem
+  gap: 1.25rem;
+
 }
 
 @media (max-width:700px){

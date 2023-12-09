@@ -1,6 +1,7 @@
 import PCard from "./PCard";
 import type { postData } from "../../../screens/Home";
 function PostCards(props: { updates: postData[] }) {
+
   return (
     <>
       {props.updates[0] && props.updates[0].id === -1 ? (

@@ -45,30 +45,28 @@ const AnnouncementCard: FC<IAnnouncementCardProps> = (props:{
   return (
     <Card className={clsx(
         props.fullWidth && '!w-full',
-        "calendar-card !bg-white !cursor-pointer text-start text-navy"
+        "calendar-card !bg-white !cursor-pointer text-start text-navy !p-6"
       )}
       onClick={toggle}
     >
-      <div className="mx-6 mt-6 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-start font-semibold">{title}</p>
-          <Icon isInline>
-            <EllipsisVIcon className="w-4 h-3 text-gray-500" />
-          </Icon>
-        </div>
-          {/* <small>{finalDate}</small> */}
-          <small>{truncateContent(content, 60)}</small>
-          {/* if there's an image, display it */}
-          {props.image ? (
-            <img
-              src={props.image}
-              alt="Event Image"
-              className="w-full h-full"
-            />
-          ) : (
-            <div></div>
-          )}
+      <div className="flex justify-between items-center mb-4">
+        <p className="text-start font-semibold">{title}</p>
+        <Icon isInline>
+          <EllipsisVIcon className="w-4 h-3 text-gray-500" />
+        </Icon>
       </div>
+        <p>{truncateContent(content, 60)}</p>
+        <small>{finalDate}</small>
+        {/* if there's an image, display it */}
+        {props.image ? (
+          <img
+            src={props.image}
+            alt="Event Image"
+            className="w-full h-full"
+          />
+        ) : (
+          <div></div>
+        )}
       <Modal isOpen={isOpen} toggle={toggle} title={title} date={finalDate} content={content}>
       </Modal>
     </Card>

@@ -3,6 +3,9 @@ import type { upData } from "../../screens/Home";
 import clsx from "clsx";
 
 function Updates(props: { updates: upData[]; vertical: boolean }) {
+
+  const updates = props.updates?.reverse();
+
   return (
     <div className={clsx(
       props.vertical ? "vertical-scroll" : "horizontal-scroll",
@@ -13,7 +16,7 @@ function Updates(props: { updates: upData[]; vertical: boolean }) {
           content="Looks like there was an issue!"
         ></CalendarCard>
       ) : props.updates && props.updates.length > 0 ? (
-        props.updates.map((update) => {
+        updates.map((update) => {
           return (
             <CalendarCard
               title={update.attributes.title}

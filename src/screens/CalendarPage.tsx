@@ -42,7 +42,7 @@ function CalendarPage() {
   }, []);
 
   return (
-    <div className="bg-82 py-6 flex flex-col">
+    <div className="bg-navy text-white px-8 py-6 flex flex-col overflow-scroll">
       <HeadBar title="Calendar" className="mb-4"/>
       <DayPicker
         mode="single"
@@ -72,7 +72,6 @@ function CalendarPage() {
       />
       <div className="my-4 text-start font-bold text-xl">Upcoming Events</div>
       <Announcements tweets={announcements} vertical={true} fullWidth={true}/>
-      <div className="self"></div>
     </div>
   );
 }
