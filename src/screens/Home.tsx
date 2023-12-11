@@ -216,7 +216,6 @@ function Home() {
     <div className="bg-82 py-7 
       min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
     >
-      <LogoBar />
       {/* <Search /> */}
 
       <div className="my-4 text-start heading">Upcoming Events</div>
@@ -231,17 +230,16 @@ function Home() {
       {/* <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} /> */}
 
-      <div className="flex items-center mb-3 mt-7 ">
+      <div className="flex items-center mb-6 mt-7 ">
         <div className="text-start heading">You Pinned</div>
         <Tooltip
             removeFindDomNode={true}
             distance={12}
-            className="!bg-white !py-4 !px-3"
+            className="!bg-white"
             position="right"
             enableFlip={true}
             trigger="click"
             isContentLeftAligned
-            maxWidth="190px"
             content={
               <>
                 <div className="text-navy mb-2 font-bold">

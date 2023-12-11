@@ -14,7 +14,7 @@ function Welcome() {
   
     return (
       <>
-        <div className="h-screen flex flex-col justify-between 
+        <div className="h-[calc(100vh-66px)] flex flex-col justify-between 
           pt-[11vh] pb-[8vh] overflow-y-scroll bg-cover bg-white" 
           style={{
             backgroundImage: `url(${WELCOME_BG})`
