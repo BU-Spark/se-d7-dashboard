@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { SearchIcon } from "@patternfly/react-icons";
-import { useNavigate } from "react-router-dom";
 import type { postData } from "./Home";
 import { APIUrl } from "./Home";
 import PostCards from "../components/home/posts/PostCards";
-import { HeadBar } from '../components/HeadBar';
+import { Backward } from '../components/Backward';
 
 function AllPosts() {
-  const navigate = useNavigate();
 
   const [updates, setUpdates] = React.useState<postData[]>([]);
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -56,7 +54,7 @@ function AllPosts() {
 
   return (
     <div className="bg-82 py-6">
-      <HeadBar title="Posts" className="mb-4"/>
+      <Backward title="Posts" className="mb-4"/>
       <div className="relative mb-20 text-navy text-lg">
         <span className="absolute inset-y-0 w-10 grid place-content-center">
           <SearchIcon />

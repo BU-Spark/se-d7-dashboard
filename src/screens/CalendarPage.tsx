@@ -4,7 +4,7 @@ import type { tweetData } from "./Home";
 import { APIUrl } from "./Home";
 import Announcements from "../components/home/announcements/Announcement";
 import { DayPicker } from "react-day-picker";
-import { HeadBar } from "../components/HeadBar";
+import { Backward } from "../components/Backward";
 
 function CalendarPage() {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ function CalendarPage() {
 
   return (
     <div className="bg-navy text-white px-8 py-6 flex flex-col overflow-scroll">
-      <HeadBar title="Calendar" className="mb-4"/>
+      <Backward title="Calendar" className="mb-4"/>
       <DayPicker
         mode="single"
         className="mb-4"

@@ -13,6 +13,7 @@ import GetResources from "./screens/resources/GetResources";
 import SpecificResource from "./screens/resources/SpecificResource";
 import "@patternfly/react-core/dist/styles/base.css";
 import CalendarPage from "./screens/CalendarPage";
+import { Backward } from "./components/Backward";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -26,7 +27,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={
+            <>
+              
+              <Welcome />
+            </>
+          } />
           <Route path="/login" element={<Login />} />
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressVerify />} />

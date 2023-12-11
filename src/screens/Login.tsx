@@ -183,7 +183,7 @@ const Login: React.FunctionComponent = () => {
       </div>
 
       <button
-        className="btn-white"
+        className="btn-white mt-4"
         onClick={navigateToSignUp}
       >
         Sign up
