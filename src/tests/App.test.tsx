@@ -1,6 +1,4 @@
-import { describe, expect, it } from 'vitest';
-import {render, screen} from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { expect } from 'vitest';
 
 // describe('App', () => {
 //   it('renders all screens without compile warnings', () => {

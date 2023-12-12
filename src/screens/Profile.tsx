@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput } from "@patternfly/react-core";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { Stepper } from "../components/home/Stepper";
 import { getAuth ,createUserWithEmailAndPassword } from "firebase/auth";
 import Select from "react-select";
@@ -96,31 +96,6 @@ function Profile() {
       console.error(error);
     })
   };
-
-  // const SignUp = async () => {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((response) => {
-  //       // console.log(response.user.uid);
-  //       navigate("/interests");
-  //     })
-  //     .catch((error) => {
-  //       setIsBannerVisible(true);
-  //       // Only get the message in the parathesis
-  //       const parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
-  //       // Match the message to the error message
-  //       if (parsedMessage === "auth/email-already-in-use") {
-  //         setBannerMessage("Email already in use.");
-  //       } else if (parsedMessage === "auth/invalid-email") {
-  //         setBannerMessage("Invalid email.");
-  //       } else if (parsedMessage === "auth/weak-password") {
-  //         setBannerMessage("Password is too weak.");
-  //       } else {
-  //         setBannerMessage("Something went wrong.");
-  //       }
-  //       console.log(error);
-  //       setAuthing(false);
-  //     });
-  // };
 
   return (
     <div className="bg-app">
