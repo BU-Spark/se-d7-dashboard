@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput } from "@patternfly/react-core";
-import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { Stepper } from "../components/home/Stepper";
-import { getAuth } from "firebase/auth";
+import { getAuth ,createUserWithEmailAndPassword } from "firebase/auth";
 import Select from "react-select";
+import { Alert } from "@patternfly/react-core";
 
 function Profile() {
   const navigate = useNavigate();
@@ -21,66 +22,105 @@ function Profile() {
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [bannerMessage, setBannerMessage] = useState("This is a banner.");
   const [password, setPassword] = useState<string>("");
+  const [authing, setAuthing] = useState<boolean>(false);
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);
+    setIsBannerVisible(false);
   };
 
   const handleLastNameChange = (lastName: string) => {
     setLastName(lastName);
+    setIsBannerVisible(false);
   };
 
   const handleEmailChange = (email: string) => {
     setEmail(email);
+    setIsBannerVisible(false);
   };
+
+  const handlePasswordChange = (password: string) => {
+    setPassword(password);
+    setIsBannerVisible(false);
+  }
 
   const handleTextUpdatesChange = (checked: boolean) => {
     setTextUpdates(checked);
+    setIsBannerVisible(false);
   };
 
   const handleOptOutChange = (checked: boolean) => {
     setOptOut(checked);
+    setIsBannerVisible(false);
   };
 
-  const navigateToNext = async () => {
+  const signUp = async () => {
     if (
       firstName === "" ||
       lastName === "" ||
       email === "" ||
+      password === "" ||
       isToVote === null
     ) {
-      setFieldsMissing(true);
+      setBannerMessage("Please fill in all fields.");
+      setIsBannerVisible(true);
       return;
     } else {
-      setFieldsMissing(false);
+      setIsBannerVisible(false);
     }
-    if (auth.currentUser) {
-      // console.log("User is logged in.");
-      const userEmail = auth.currentUser?.email || "defaultuser@email.com";
-      const userProfileRef = doc(db, "user-profile", userEmail);
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const userProfileRef = doc(db, "user-profile", email);
       setDoc(userProfileRef, {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        textUpdates: textUpdates,
+        isToVote,
         optOut: optOut,
-        registeredVoter: isToVote,
-        interests: await getDoc(doc(db, "user-profile", userEmail)).then(
-          (doc) => {
-            if (doc.exists()) {
-              return doc.data().interests;
-            } else {
-              return [];
-            }
-          },
-          (error) => {
-            console.log("Error getting document:", error);
-          }
-        ),
-      });
+        textUpdates: textUpdates
+      })
       navigate("/interests");
-    }
+    })
+    .catch((error) => {
+      setIsBannerVisible(true);
+      const parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+      if (parsedMessage === "auth/email-already-in-use") {
+        setBannerMessage("Email already in use.");
+      } else if (parsedMessage === "auth/invalid-email") {
+        setBannerMessage("Invalid email.");
+      } else if (parsedMessage === "auth/weak-password") {
+        setBannerMessage("Password is too weak.");
+      } else {
+        setBannerMessage("Something went wrong.");
+      }
+      console.error(error);
+    })
   };
+
+  // const SignUp = async () => {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((response) => {
+  //       // console.log(response.user.uid);
+  //       navigate("/interests");
+  //     })
+  //     .catch((error) => {
+  //       setIsBannerVisible(true);
+  //       // Only get the message in the parathesis
+  //       const parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+  //       // Match the message to the error message
+  //       if (parsedMessage === "auth/email-already-in-use") {
+  //         setBannerMessage("Email already in use.");
+  //       } else if (parsedMessage === "auth/invalid-email") {
+  //         setBannerMessage("Invalid email.");
+  //       } else if (parsedMessage === "auth/weak-password") {
+  //         setBannerMessage("Password is too weak.");
+  //       } else {
+  //         setBannerMessage("Something went wrong.");
+  //       }
+  //       console.log(error);
+  //       setAuthing(false);
+  //     });
+  // };
 
   return (
     <div className="bg-app">
@@ -91,7 +131,7 @@ function Profile() {
 
       <div className="text-start mb-2">First Name</div>
       <TextInput
-        className="!mb-7"
+        className="!mb-4"
         id="textInput-basic-1"
         type="text"
         aria-label="First Name input field"
@@ -99,7 +139,7 @@ function Profile() {
       />
       <div className="text-start mb-2">Last Name</div>
       <TextInput
-        className="!mb-7"
+        className="!mb-4"
         id="textInput-basic-1"
         type="text"
         aria-label="Last Name input field"
@@ -108,11 +148,20 @@ function Profile() {
 
       <div className="text-start mb-2">Email</div>
       <TextInput
-        className="!mb-7"
+        className="!mb-4"
         id="textInput-basic-1"
         type="tel"
         aria-label="Phone Number input field"
         onChange={handleEmailChange}
+      />
+
+      <div className="text-start mb-2">Password</div>
+      <TextInput
+        className="!mb-4"
+        id="textInput-basic-1"
+        type="password"
+        aria-label="Password input field"
+        onChange={handlePasswordChange}
       />
 
       <div className="text-start mb-2">Are you registered to vote?</div>
@@ -146,7 +195,7 @@ function Profile() {
       />
       <div className="flex mb-2">
         <input
-          onChange={(e) => handleOptOutChange(e.target.checked)}
+          onChange={(e) => handleTextUpdatesChange(e.target.checked)}
           type="checkbox"
           className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
         />
@@ -155,28 +204,31 @@ function Profile() {
           text messages
         </p>
       </div>
-      <div className="flex mb-7">
+      <div className="flex mb-5">
         <input
           type="checkbox"
-          onChange={(e) => handleTextUpdatesChange(e.target.checked)}
+          onChange={(e) => handleOptOutChange(e.target.checked)}
           className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
         />
         <p className="text-start">Opt out of text updates about District 7</p>
       </div>
-      {/* {fieldsMissing && (
+
+      {isBannerVisible && (
         <Alert
           variant="danger"
-          title="Above fields are required"
-          isPlain
+          title={bannerMessage}
+          className="!bg-white !p-2 !my-4"
           isInline
         />
-      )} */}
+      )}
 
-      <div className="text-end">
-        <button onClick={()=>navigate('/interests')} className="btn-yellow">
+      {!isBannerVisible &&
+       <div className="text-end">
+        <button onClick={signUp} className="btn-yellow mb-5">
           Next
         </button>
-      </div>
+        </div>
+      }
     </div>
   );
 }

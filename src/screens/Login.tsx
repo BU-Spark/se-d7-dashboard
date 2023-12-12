@@ -88,7 +88,7 @@ const Login: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-app py-[10vh] flex flex-col">
+    <div className="bg-app flex flex-col">
       <button
         className="mt-4 btn-white"
         onClick={navigateToHome}

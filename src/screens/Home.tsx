@@ -4,7 +4,6 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useCallback } from "react";
 import Pinned from "../components/home/Pinned";
 import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";

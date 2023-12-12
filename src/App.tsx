@@ -57,6 +57,7 @@ function App() {
           />
           <Route path="/profile" element={
             <>
+              <HeadBar/>
               <UserProfileScreen />
             </>
           } />
