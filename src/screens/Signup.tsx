@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { HeadBar } from "../components/HeadBar";
 import StepOne from "./AddressVerify";
-import StepTwo from "./ContactInfo";
+import StepTwo from "./Profile";
 import StepThree from "./Interests";
 
 export const Signup = () => {
@@ -25,13 +25,19 @@ export const Signup = () => {
 
   return (
     <Routes>
-      <Route path="signup/step1" element={
+      <Route index element={
         <>
           <HeadBar />
           <StepOne handleNextStep = {()=> handleNextStep(2)}/>
         </>
       } />
-      <Route path="signup/step2" element={
+      <Route path="step1" element={
+        <>
+          <HeadBar />
+          <StepOne handleNextStep = {()=> handleNextStep(2)}/>
+        </>
+      } />
+      <Route path="step2" element={
         step >= 2 ? 
           <>
             <HeadBar />
@@ -40,7 +46,7 @@ export const Signup = () => {
           : 
           <Navigate replace to="signup/step1" /> 
         } />
-      <Route path="signup/step3" element={
+      <Route path="step3" element={
         step >= 3 ? 
         <>
           <HeadBar />
