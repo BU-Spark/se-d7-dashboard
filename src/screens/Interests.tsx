@@ -11,10 +11,11 @@ import { getAuth } from "firebase/auth";
 import { QuestionIcon } from "../assets/QuestionIcon";
 import clsx from "clsx";
 
-interface IInterest {
+interface IChip {
   title: string;
   selected: boolean;
 }
+
 
 const Chip: FC<{ title: string }> = ({ title }) => {
   const [selected, setSelected] = useState<boolean>(false);
@@ -41,7 +42,7 @@ function Interests() {
   const db = getFirestore();
 
   // Store the chips in state
-  const [chips, setChips] = useState<{ interests: IInterest[] }>({
+  const [chips, setChips] = useState<{ interests: IChip[] }>({
     interests: [],
   });
 

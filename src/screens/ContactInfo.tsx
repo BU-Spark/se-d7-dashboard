@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { Alert, TextInput } from "@patternfly/react-core";
 import { Stepper } from "../components/home/Stepper";
 
-export interface ILoginScreenProps {}
+export interface ILoginScreenProps {
+  handleNextStep: () => void;
+}
 
-const ContactInfo: FC<ILoginScreenProps> = (props) => {
+const ContactInfo: FC<ILoginScreenProps> = ({handleNextStep}: ILoginScreenProps) => {
   const navigate = useNavigate();
   const auth = getAuth();
   const [authing, setAuthing] = useState(false);
@@ -16,15 +18,11 @@ const ContactInfo: FC<ILoginScreenProps> = (props) => {
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [bannerMessage, setBannerMessage] = useState<string>("");
 
-  const navigateToNext = () => {
-    navigate("/interests");
-  };
-
   const SignUp = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         // console.log(response.user.uid);
-        navigate("/profile");
+        handleNextStep();
       })
       .catch((error) => {
         setIsBannerVisible(true);
