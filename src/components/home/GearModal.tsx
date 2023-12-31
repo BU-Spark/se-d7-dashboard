@@ -44,20 +44,6 @@ export default function Modal(props: ModalType) {
             <div style={{marginTop: "30px"}}>
               <div className="welcome_title">District 7 Boston Constitutent's App</div>
               <div className="mx-3">
-                <button
-                  key="settings"
-                  className="btn-yellow w-full mb-4"
-                  onClick={() => ("")}
-                >
-                  Settings
-                </button>
-                <button
-                  key="settings"
-                  className="btn-yellow w-full mb-4"
-                  onClick={() => ("")}
-                >
-                  My Profile
-                </button>
                 {
                   auth.currentUser?.email ? (
                     <button
@@ -77,6 +63,12 @@ export default function Modal(props: ModalType) {
                     </button>
                   )
                 }
+                <div 
+                  className = "btn-white border-navy text-navy"
+                  onClick = {props.toggle}
+                >
+                  Return
+                </div>
               </div>
             </div>
           </div>
