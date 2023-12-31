@@ -35,15 +35,10 @@ const Login: React.FunctionComponent = () => {
       .then(async () => {
         const userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
-          if (userData.data().firstName) {
-            navigate("/home");
-          } else {
-            setIsBannerVisible(true);
-            setBannerMessage("Incorrect email or password.")
-          }
+          navigate("/home");
         } else {
           setIsBannerVisible(true);
-          setBannerMessage("User doesn't exist.")
+          setBannerMessage("Incorrect email or password.")
         }
       })
       .catch((e) => {

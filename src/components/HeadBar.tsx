@@ -17,7 +17,7 @@ export const HeadBar = () => {
         <div className='bg-black h-[66px] w-screen flex items-center justify-between pl-5 pr-6'>
           <img src={LOGO} alt="logo" className='h-full' onClick={()=>navigate('/home')}/>
           <section className='flex gap-3 items-center'>
-            <p className='rounded-full bg-logoYellow w-32 h-8 font-bold grid place-items-center'>
+            <p className='rounded-full bg-logoYellow px-3 h-8 font-bold grid place-items-center'>
               Submit Request
             </p>
             <CogIcon size='md' onClick={toggle} className='text-white'/>
@@ -26,7 +26,7 @@ export const HeadBar = () => {
         </div>
         :
         <div className='bg-black h-[66px] w-screen'>
-          <img src={LOGO} alt="logo" className='h-full ml-5' />
+          <img src={LOGO} alt="logo" className='h-full ml-5' onClick={()=>navigate('/')}/>
         </div>
       }
     </>

@@ -12,7 +12,6 @@ import "@patternfly/react-core/dist/styles/base.css";
 import CalendarPage from "./screens/CalendarPage";
 import { HeadBar } from "./components/HeadBar";
 import { Signup } from "./screens/Signup";
-
 // init firebase app
 import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
