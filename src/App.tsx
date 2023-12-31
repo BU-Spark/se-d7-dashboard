@@ -11,7 +11,6 @@ import SpecificResource from "./screens/resources/SpecificResource";
 import "@patternfly/react-core/dist/styles/base.css";
 import CalendarPage from "./screens/CalendarPage";
 import { HeadBar } from "./components/HeadBar";
-import { HeadBarWithBtn } from "./components/HeadBarWithBtn";
 import { Signup } from "./screens/Signup";
 
 // init firebase app
@@ -47,37 +46,37 @@ function App() {
           <Route path="/signup/*" element={<Signup />} />
           <Route path="/home" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <Home />
             </>
           } />
           <Route path="/all-posts" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <AllPosts />
             </>
           } />
           <Route path="/calendar" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <CalendarPage />
             </>
           } />
           <Route path="/portal" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <Portal />
             </>
           } />
           <Route path="/getresources" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <GetResources />
             </>
           } />
           <Route path="/specific-resource" element={
             <>
-              <HeadBarWithBtn />
+              <HeadBar />
               <SpecificResource />
             </>
           } />
