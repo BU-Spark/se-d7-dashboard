@@ -11,7 +11,7 @@ import { getAuth } from "firebase/auth";
 import { QuestionIcon } from "../assets/QuestionIcon";
 import clsx from "clsx";
 
-interface IInterest {
+interface IChip {
   title: string;
   selected: boolean;
 }
@@ -41,7 +41,7 @@ function Interests() {
   const db = getFirestore();
 
   // Store the chips in state
-  const [chips, setChips] = useState<{ interests: IInterest[] }>({
+  const [chips, setChips] = useState<{ interests: IChip[] }>({
     interests: [],
   });
 
@@ -70,7 +70,8 @@ function Interests() {
       { merge: true }
     );
     //merge existing contents with newly provided data, if merge = false, interests will override firstName, lastName
-
+    // Clear localstorage of signupStep
+    localStorage.removeItem("signupStep");
     navigate("/login");
   };
 
@@ -120,7 +121,7 @@ function Interests() {
 
   return (
     <div className="bg-82 py-16">
-      <Stepper currentStep={3} totalStep={3}/>
+      <Stepper currentStep={3} totalStep={3} />
       <div className="mt-10 font-bold text-2xl text-start px-9">
         Pin Interests
       </div>
@@ -142,17 +143,21 @@ function Interests() {
           maxWidth="190px"
           content={
             <>
-              <div style={{
-                color: "black",
-                fontSize: "1rem",
-                marginBottom: "10px"
-              }}>
+              <div
+                style={{
+                  color: "black",
+                  fontSize: "1rem",
+                  marginBottom: "10px",
+                }}
+              >
                 Place holder
               </div>
-              <div style={{
-                color: "black",
-                fontSize: "0.625rem"
-              }}>
+              <div
+                style={{
+                  color: "black",
+                  fontSize: "0.625rem",
+                }}
+              >
                 Place holder
               </div>
             </>
@@ -167,7 +172,7 @@ function Interests() {
           return <Chip title={interest.title} key={index} />;
         })}
       </div>
-      
+
       <div className="flex flex-col justify-between h-1/2">
         <div className="px-9 text-start">
           <p className="mb-1">

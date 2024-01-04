@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { TextInput } from "@patternfly/react-core";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { Stepper } from "../components/home/Stepper";
@@ -7,8 +6,11 @@ import { getAuth ,createUserWithEmailAndPassword } from "firebase/auth";
 import Select from "react-select";
 import { Alert } from "@patternfly/react-core";
 
-function Profile() {
-  const navigate = useNavigate();
+interface IProfileProps {
+  handleNextStep: () => void;
+}
+
+function Profile({ handleNextStep }: IProfileProps) {
   const auth = getAuth();
   const db = getFirestore();
 
@@ -17,12 +19,10 @@ function Profile() {
   const [email, setEmail] = useState("");
   const [textUpdates, setTextUpdates] = useState(false);
   const [optOut, setOptOut] = useState(false);
-  const [fieldsMissing, setFieldsMissing] = useState(false);
   const [isToVote, setIsToVote] = useState<boolean | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [bannerMessage, setBannerMessage] = useState("This is a banner.");
   const [password, setPassword] = useState<string>("");
-  const [authing, setAuthing] = useState<boolean>(false);
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);
@@ -79,7 +79,7 @@ function Profile() {
         optOut: optOut,
         textUpdates: textUpdates
       })
-      navigate("/interests");
+      handleNextStep();
     })
     .catch((error) => {
       setIsBannerVisible(true);

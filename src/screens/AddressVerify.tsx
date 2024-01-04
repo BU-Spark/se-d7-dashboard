@@ -8,7 +8,12 @@ import { TextInput, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { Stepper } from "../components/home/Stepper";
 import Select from "react-select";
-function AddressVerify() {
+
+interface IAddressVerifyProps {
+  handleNextStep: () => void;
+}
+
+function AddressVerify( {handleNextStep}: IAddressVerifyProps ) {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -25,15 +30,6 @@ function AddressVerify() {
     {value: "MA", label: "Massachusetts"},
     {value: "Other", label: "Other"},
   ]
-
-  const navigateToNext = () => {
-    setShowLoading(true);
-    setTimeout(() => {
-      setShowLoading(false);
-      setShowSuccess(true);
-      navigate("/profile"); 
-    }, 1000);
-  };
 
   const submit = () => {
     setShowError(false);
@@ -107,7 +103,7 @@ function AddressVerify() {
               else if (arcgisResponse === 7) {
                 setShowLoading(false);
                 setShowSuccess(true);
-                navigateToNext();
+                handleNextStep();
               } else {
                 setShowLoading(false);
                 setShowError(true);

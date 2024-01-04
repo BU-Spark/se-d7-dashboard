@@ -4,7 +4,7 @@ function AddressInfo() {
   const navigate = useNavigate();
 
   const navigateToNext = () => {
-    navigate('/address-entry');
+    navigate('/signup');
   };
 
   return (
