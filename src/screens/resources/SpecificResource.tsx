@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { APIUrl } from "../Home";
-import { HeadBar } from "../../components/HeadBar";
+import { Backward } from "../../components/Backward";
 
 interface data {
   attributes: {
@@ -47,7 +47,7 @@ function SpecificResource(){
     <div className="bg-82 py-6
       min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
     >
-      <HeadBar title={title} />
+      <Backward title={title} />
       <div className = "mt-6">
         {/* sort them by id order */}
         {resources &&

@@ -13,6 +13,9 @@ import GetResources from "./screens/resources/GetResources";
 import SpecificResource from "./screens/resources/SpecificResource";
 import "@patternfly/react-core/dist/styles/base.css";
 import CalendarPage from "./screens/CalendarPage";
+import { HeadBar } from "./components/HeadBar";
+import { HeadBarWithBtn } from "./components/HeadBarWithBtn";
+
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -26,19 +29,86 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/address-info" element={<AddressInfo />} />
-          <Route path="/address-entry" element={<AddressVerify />} />
-          <Route path="/profile" element={<UserProfileScreen />} />
-          <Route path="/interests" element={<Interests />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/all-posts" element={<AllPosts />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/portal" element={<Portal />} />
-          <Route path="/getresources" element={<GetResources />} />
-          <Route path="/contact-info" element={<ContactInfo />} />
-          <Route path="/specific-resource" element={<SpecificResource />} />
+          <Route path="/" element={
+            <>
+              <HeadBar />
+              <Welcome />
+            </>} 
+          />
+          <Route path="/login" element={
+            <>
+              <HeadBar/>
+              <Login />
+            </>} 
+          />
+          <Route path="/address-info" element={
+            <>
+              <HeadBar/>
+              <AddressInfo />
+            </>
+            } 
+          />
+          <Route path="/address-entry" element={
+            <>
+              <HeadBar/>
+              <AddressVerify />
+            </>
+            } 
+          />
+          <Route path="/profile" element={
+            <>
+              <HeadBar/>
+              <UserProfileScreen />
+            </>
+          } />
+          <Route path="/interests" element={
+            <>
+              <HeadBar/>
+              <Interests />
+            </>
+          } />
+          <Route path="/home" element={
+            <>
+              <HeadBarWithBtn />
+              <Home />
+            </>
+          } />
+          <Route path="/all-posts" element={
+            <>
+              <HeadBarWithBtn />
+              <AllPosts />
+            </>
+          } />
+          <Route path="/calendar" element={
+            <>
+              <HeadBarWithBtn />
+              <CalendarPage />
+            </>
+          } />
+          <Route path="/portal" element={
+            <>
+              <HeadBarWithBtn />
+              <Portal />
+            </>
+          } />
+          <Route path="/getresources" element={
+            <>
+              <HeadBarWithBtn />
+              <GetResources />
+            </>
+          } />
+          <Route path="/contact-info" element={
+            <>
+              <HeadBarWithBtn />
+              <ContactInfo />
+            </>
+          } />
+          <Route path="/specific-resource" element={
+            <>
+              <HeadBarWithBtn />
+              <SpecificResource />
+            </>
+          } />
         </Routes>
       </BrowserRouter>
     </div>

@@ -88,7 +88,14 @@ const Login: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-app py-[10vh] flex flex-col">
+    <div className="bg-app flex flex-col">
+      <button
+        className="mt-4 btn-white"
+        onClick={navigateToHome}
+      >
+        Browse D7 Resources
+      </button>
+      <div className="w-32 border-[0.7px] border-white mt-10 mb-6 mx-auto"></div>
       <div className="mb-4 text-2xl text-start text-white ">Log In</div>
       <div className="mb-1 text-start text-white ">Email</div>
 
@@ -176,17 +183,10 @@ const Login: React.FunctionComponent = () => {
       </div>
 
       <button
-        className="btn-white"
-        /*onClick={SignUp}*/ onClick={navigateToSignUp}
+        className="btn-white mt-4"
+        onClick={navigateToSignUp}
       >
         Sign up
-      </button>
-
-      <button
-        className="mt-4 btn-white"
-        /*onClick={SignUp}*/ onClick={navigateToHome}
-      >
-        See D7 Resources anyway
       </button>
     </div>
   );

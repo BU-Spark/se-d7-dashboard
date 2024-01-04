@@ -120,7 +120,7 @@ function Interests() {
 
   return (
     <div className="bg-82 py-16">
-      <Stepper currentStep={3} totalStep={3} />
+      <Stepper currentStep={3} totalStep={3}/>
       <div className="mt-10 font-bold text-2xl text-start px-9">
         Pin Interests
       </div>
@@ -167,18 +167,20 @@ function Interests() {
           return <Chip title={interest.title} key={index} />;
         })}
       </div>
+      
+      <div className="flex flex-col justify-between h-1/2">
+        <div className="px-9 text-start">
+          <p className="mb-1">
+            What resources are you looking for from your councilor?
+          </p>
+          <TextInput aria-label="resource input" placeholder="Text input.." />
+        </div>
 
-      <div className="px-9 text-start">
-        <p className="mb-1">
-          What resources are you looking for from your councilor?
-        </p>
-        <TextInput aria-label="resource input" placeholder="Text input.." />
-      </div>
-
-      <div className="px-9 mt-12 top-[70px]">
-        <button className="btn-yellow w-full" onClick={navigateToNext}>
-          Finish Set Up
-        </button>
+        <div className="px-9">
+          <button className="btn-yellow w-full px-9" onClick={navigateToNext}>
+            Finish Set Up
+          </button>
+        </div>
       </div>
     </div>
   );

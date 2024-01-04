@@ -8,7 +8,7 @@ import Resources from "../../components/home/Resources";
 import { APIUrl } from "../Home";
 
 import { IResource } from "../../types";
-import { HeadBar } from "../../components/HeadBar";
+import { Backward } from "../../components/Backward";
 
 interface data {
   title: string;
@@ -61,7 +61,7 @@ function GetResources(){
     <div className="bg-82 py-6
       min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
     >
-      <HeadBar title="Get Resources" />
+      <Backward title="Get Resources" />
       <div className = "mt-4">
         <Resources resources={resources} />
       </div>

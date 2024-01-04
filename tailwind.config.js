@@ -9,7 +9,8 @@ export default {
       colors: {
         'navy': '#00183d',
         'yellow': '#e3b81f',
-        'red': '#d40000'
+        'red': '#d40000',
+        'logoYellow': '#f8e07f'
       },
     },
   },

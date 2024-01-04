@@ -14,6 +14,7 @@ const Announcement: FC<IAnnouncementProps> = (props: {
   vertical: boolean;
   fullWidth?: boolean;
 }) => {
+
   return (
     <div className={clsx(
       props.vertical ? "vertical-scroll" : "horizontal-scroll",
