@@ -14,7 +14,7 @@ const ContactInfo: FC<ILoginScreenProps> = (props) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isBannerVisible, setIsBannerVisible] = useState(false);
-  const [bannerMessage, setBannerMessage] = useState("This is a banner.");
+  const [bannerMessage, setBannerMessage] = useState<string>("");
 
   const navigateToNext = () => {
     navigate("/interests");
@@ -38,7 +38,7 @@ const ContactInfo: FC<ILoginScreenProps> = (props) => {
         } else if (parsedMessage === "auth/weak-password") {
           setBannerMessage("Password is too weak.");
         } else {
-          setBannerMessage("Something went wrong.");
+          setBannerMessage("Something went wrong. Please try again.");
         }
         console.log(error);
         setAuthing(false);

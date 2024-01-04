@@ -18,7 +18,8 @@ const Login: React.FunctionComponent = () => {
   const db = getFirestore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState<string>("");
 
   useEffect(() => {
     setPersistence(auth, browserLocalPersistence);
@@ -32,53 +33,25 @@ const Login: React.FunctionComponent = () => {
 
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(async () => {
-        // console.log("Getting user data");
         const userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
-          // console.log("Document data:", userData.data());
           if (userData.data().firstName) {
             navigate("/home");
           } else {
-            navigate("/profile");
+            setIsBannerVisible(true);
+            setBannerMessage("Incorrect email or password.")
           }
         } else {
-          navigate("/profile");
+          setIsBannerVisible(true);
+          setBannerMessage("User doesn't exist.")
         }
       })
       .catch((e) => {
         console.log(e);
         setIsBannerVisible(true);
+        setBannerMessage("Something went wrong. Please try again.")
       });
   };
-
-  // const LoginGoogle = async () => {
-  //   signInWithPopup(auth, new GoogleAuthProvider())
-  //     .then(async (res) => {
-  //       // localStorage.setItem("user", JSON.stringify(res.user));
-  //       console.log("Getting user data");
-  //       let email: string;
-  //       if (res.user.email) {
-  //         email = res.user.email.toString();
-  //       } else {
-  //         throw new Error();
-  //       }
-  //       let userData = await getDoc(doc(db, "user-profile", email));
-  //       if (userData.exists()) {
-  //         console.log("Document data:", userData.data());
-  //         // Check if first name is set, if not, navigate to user profile
-  //         if (userData.data().firstName) {
-  //           navigate("/home");
-  //         } else {
-  //           navigate("/profile");
-  //         }
-  //       } else {
-  //         navigate("/profile");
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.error(e);
-  //     });
-  // };
 
   const navigateToSignUp = () => {
     navigate("/address-info");
@@ -120,22 +93,20 @@ const Login: React.FunctionComponent = () => {
         type="password"
       />
 
-      {isLoginErrorVisible && (
+
+      <button className="my-4 btn-yellow" onClick={Login}>
+        Log In
+      </button>
+
+      {isBannerVisible && (
         <Alert
           isPlain
           isInline
           variant="danger"
-          title="Incorect email or password"
-          className="mt-3 text-start form_alert"
+          title={bannerMessage}
+          className="text-start"
         />
       )}
-
-      <button className="mt-4 btn-yellow" onClick={Login}>
-        Log In
-      </button>
-      {/* <div className="center-wrapper">
-        <GoogleButton onClick={LoginGoogle} />
-      </div> */}
 
       <div className="w-32 border-[0.7px] border-white my-12 mx-auto"></div>
       <div className="flex mb-2">
