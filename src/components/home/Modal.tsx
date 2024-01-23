@@ -32,7 +32,6 @@ export default function Modal(props: ModalType) {
                 <p className="modal-text">
                   {props.content}
                 </p>
-
             </div>
           </div>
         </div>
