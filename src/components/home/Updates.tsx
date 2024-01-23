@@ -1,18 +1,22 @@
-import * as React from "react";
 import CalendarCard from "./calendar/CalendarCard";
 import type { upData } from "../../screens/Home";
+import clsx from "clsx";
+
 function Updates(props: { updates: upData[]; vertical: boolean }) {
+
+  const updates = props.updates?.reverse();
+
   return (
-    <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
-    style={
-      props.vertical ? {display: "flex", flexWrap: "wrap"} : {}} >
+    <div className={clsx(
+      props.vertical ? "vertical-scroll" : "horizontal-scroll",
+    )}>
       {props.updates[0] && props.updates[0].id === -1 ? (
         <CalendarCard
           title="Uh Oh!"
           content="Looks like there was an issue!"
         ></CalendarCard>
       ) : props.updates && props.updates.length > 0 ? (
-        props.updates.map((update) => {
+        updates.map((update) => {
           return (
             <CalendarCard
               title={update.attributes.title}

@@ -1,9 +1,9 @@
-import { Button } from "@patternfly/react-core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIUrl } from "../../screens/Home";
-
+import { getAuth } from "firebase/auth";
 import { IResource } from "../../types";
+
 
 function Pinned(props: {
   pinned: { title: string; links: { title: string; url: string }[] }[];
@@ -25,7 +25,12 @@ function Pinned(props: {
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
 
+  const [currentUserEmail, setCurrentUserEmail] = useState<null|string>(null);
+
   useEffect(() => {
+    const auth = getAuth();
+    setCurrentUserEmail(auth.currentUser?.email || null);
+
     interface data {
       title: string;
       links: { title: string; url: string }[];
@@ -39,7 +44,7 @@ function Pinned(props: {
       try {
         const res = await fetch(APIUrl + "resource-lists");
         const json = await res.json();
-        let jsonData = json.data.map((resource: IResource) => resource.attributes);
+        const jsonData = json.data.map((resource: IResource) => resource.attributes);
 
         //take API response and convert to into array of objects of the type define in "data" interface
         const categoryData: data[] = Array.from(
@@ -72,20 +77,33 @@ function Pinned(props: {
     fetchResourceData();
   }, [props.pinned]);
 
+  const navigateToSignUp = () => {
+    navigate("/address-info");
+  };
+
   return (
-    <div className="container">
-      {pinned.map((pinned) => {
-        return (
-          <Button
-            className="px-3 py-2 mb-2 pinned"
-            variant="primary"
+    <>
+      {currentUserEmail ? (
+        // if user is logged in, display pinned items
+        pinned.map((pinned) => (
+          <button
+            key={pinned.title}
+            className="btn-yellow text-start mb-4 w-full"
             onClick={() => goToPortal(pinned)}
           >
             {pinned.title}
-          </Button>
-        );
-      })}
-    </div>
+          </button>
+        ))
+      ) : (
+        // if user isn't logged in, display the Sign Up button
+        <button
+          className="mb-4 btn-white w-full"
+          onClick={navigateToSignUp}
+        >
+          Sign Up to Pin Interests
+        </button>
+      )}
+    </>
   );
 }
 export default Pinned;

@@ -1,36 +1,35 @@
-import * as React from "react";
+import { useState } from "react";
 import AddressCheckBox from "../components/address/AddressCheckBox";
 import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
-import AddressErrorBox from "../components/address/AddressErrorBox";
+import AddressErrorBox from '../components/address/AddressErrorBox';
 import AddressInvalidBox from "../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
-import StateSelection from "../components/address/StateSelection";
-import { TextInput, Button } from "@patternfly/react-core";
+import { TextInput, SearchInput } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../components/home/Progressbar";
-function AddressVerify() {
+import { Stepper } from "../components/home/Stepper";
+import Select from "react-select";
+
+interface IAddressVerifyProps {
+  handleNextStep: () => void;
+}
+
+function AddressVerify( {handleNextStep}: IAddressVerifyProps ) {
   const navigate = useNavigate();
-  const [showLoading, setShowLoading] = React.useState(false);
-  const [showSuccess, setShowSuccess] = React.useState(false);
-  const [showError, setShowError] = React.useState(false);
-  const [showInvalid, setShowInvalid] = React.useState(false);
-  const [showAPIError, setShowAPIError] = React.useState(false);
-
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showInvalid, setShowInvalid] = useState(false);
+  const [showAPIError, setShowAPIError] = useState(false);
   // Store the address, city, state, and zip in state
-  const [address, setAddress] = React.useState("");
-  // const [address2, setAddress2] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [zip, setZip] = React.useState("")
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("Select a state");
+  const [zip, setZip] = useState("")
 
-  const navigateToNext = () => {
-    setShowLoading(true);
-    setTimeout(() => {
-      setShowLoading(false);
-      setShowSuccess(true);
-      navigate("/signup"); 
-    }, 1000);
-  };
+  const options = [
+    {value: "MA", label: "Massachusetts"},
+    {value: "Other", label: "Other"},
+  ]
 
   const submit = () => {
     setShowError(false);
@@ -50,7 +49,7 @@ function AddressVerify() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else if (a.city !== "Boston"){
+    } else if (a.city.toLowerCase() !== "boston"){
       setShowLoading(false);
       setShowError(true);
     } 
@@ -59,7 +58,7 @@ function AddressVerify() {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
         + "street=" + a.address + "&city=" + a.city + "&state=" + a.state + "&postalcode=" + a.zip + "&format=json";
-      fetch(url)
+        fetch(url)
         .then((response) => response.json())
         .then((data) => {
           if (!data) {
@@ -74,7 +73,7 @@ function AddressVerify() {
             }
             return { lat: data[0].lat, lng: data[0].lon };
           }
-        }).then((coords) => {
+        }).then((coords) => { // issue here no coords!
           // Query ArcGIS Query API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
           if (!coords) {
@@ -104,7 +103,7 @@ function AddressVerify() {
               else if (arcgisResponse === 7) {
                 setShowLoading(false);
                 setShowSuccess(true);
-                navigateToNext();
+                handleNextStep();
               } else {
                 setShowLoading(false);
                 setShowError(true);
@@ -115,71 +114,97 @@ function AddressVerify() {
   };
 
   return (
-    <div className="container-padded">
-      <ProgressStepperCompact1 />
-      <div className="text-start mt-5">Address</div>
+    <div className="bg-app">
+      <Stepper currentStep={1} totalStep={3} />
+      <p className="text-start mt-6 mb-8 text-xl font-bold">Address</p>
+      <div className="text-start mb-1 ">Address</div>
       <TextInput
-        className="px-2"
+        className="!mb-3"
         id="textInput-basic-1"
         type="text"
-        placeholder="Street Address"
+        placeholder="Street Address or P.O. Box"
         onChange={(e) => {
           setAddress(e.split(" ").join("+"));
         }}
-      />
+        />
       <TextInput
-        className="mb-2 px-2"
+        className="!mb-8 !px-2"
         id="textInput-basic-1"
         type="text"
         placeholder="Apt, suite, unit, building, etc."
         // onChange={(e) => { // We don't actually need this field, its just for appearances lol
         //   setAddress2(e);
         // }}
+        />
+
+      <div className="text-start mb-1 ">City</div>
+      <SearchInput
+        className="!mb-8"
+        placeholder=""
+        value={city}
+        onChange={(_e, value) => {
+          setCity(value);
+        }
+      }
+      onClear={() => setCity("")}
       />
 
-      <div className="mt-3 text-start">City</div>
-      <TextInput
-        className="mb-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="City"
-        onChange={(e) => {
-          setCity(e.split(" ").join("+"));
+      <div className="text-start mb-1">State</div>
+      <Select
+        options={options} 
+        className="text-start" 
+        placeholder="Select a state"
+        isSearchable={false}
+        onChange={(selectedOption) => {
+          if (selectedOption) {
+            setState(selectedOption.value);
+          } else {
+            setState("");
+          }
         }}
-      />
-
-      <div className="text-start mt-3">State</div>
-      <StateSelection
-        state={state}
-        setState={setState}
-      />
-
-      <div className="text-start mt-3">Zipcode</div>
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          menu: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? "#e3b81f" : "white",
+            color: "#00183d"
+          })
+        }}
+        />
+      <div className="text-start mt-6 mb-1">Zipcode</div>
       <TextInput
-        className="mb-5 px-2"
+        className="px-2 !mb-4"
         id="textInput-basic-1"
         type="text"
         placeholder="Zipcode"
         onChange={(e) => {
           setZip(e.split(" ").join("+"));
         }}
-      />
+        />
 
-      {showSuccess && <AddressCheckBox></AddressCheckBox>}
-      {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
-      {showError && <AddressErrorBox></AddressErrorBox>}
-      {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
-      {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
+      {showSuccess && <AddressCheckBox/>}
+      {showLoading && <AddressCheckBoxLoading/>}
+      {showError && <AddressErrorBox />}
+      {showInvalid && <AddressInvalidBox />}
+      {showAPIError && <AddressAPIErrorBox/>}
       
-      <div className="text-end mt-5 pt-5">
-        <Button
-          onClick={submit}
-          className="px-3 py-1"
-          variant="primary"
-        >
-          Next
-        </Button>
-      </div>
+      {!showLoading && 
+        <div className="text-end">
+          <button
+            onClick={submit}
+            className="btn-yellow mt-4"
+          >
+            Next
+          </button>
+        </div>
+      }
     </div>
   );
 }

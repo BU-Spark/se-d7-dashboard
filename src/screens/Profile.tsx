@@ -1,154 +1,209 @@
-import * as React from "react";
-import { useNavigate } from "react-router-dom";
-import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
-import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
-import { ProgressStepperCompact3 } from "../components/home/Progressbar";
-import RegisteredSelection from "../components/login/RegisteredSelection";
-import { getAuth } from "firebase/auth";
+import { useState } from "react";
+import { TextInput } from "@patternfly/react-core";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { Stepper } from "../components/home/Stepper";
+import { getAuth ,createUserWithEmailAndPassword } from "firebase/auth";
+import Select from "react-select";
+import { Alert } from "@patternfly/react-core";
 
-function Profile() {
-  const navigate = useNavigate();
+interface IProfileProps {
+  handleNextStep: () => void;
+}
+
+function Profile({ handleNextStep }: IProfileProps) {
   const auth = getAuth();
   const db = getFirestore();
 
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [textUpdates, setTextUpdates] = React.useState(false);
-  const [optOut, setOptOut] = React.useState(false);
-  const [fieldsMissing, setFieldsMissing] = React.useState(false);
-  const [registered, setRegistered] = React.useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [textUpdates, setTextUpdates] = useState(false);
+  const [optOut, setOptOut] = useState(false);
+  const [isToVote, setIsToVote] = useState<boolean | null>(null);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState("This is a banner.");
+  const [password, setPassword] = useState<string>("");
 
   const handleFirstNameChange = (firstName: string) => {
     setFirstName(firstName);
+    setIsBannerVisible(false);
   };
 
   const handleLastNameChange = (lastName: string) => {
     setLastName(lastName);
+    setIsBannerVisible(false);
   };
 
-  const handlePhoneNumberChange = (phoneNumber: string) => {
-    setPhoneNumber(phoneNumber);
+  const handleEmailChange = (email: string) => {
+    setEmail(email);
+    setIsBannerVisible(false);
   };
+
+  const handlePasswordChange = (password: string) => {
+    setPassword(password);
+    setIsBannerVisible(false);
+  }
 
   const handleTextUpdatesChange = (checked: boolean) => {
     setTextUpdates(checked);
+    setIsBannerVisible(false);
   };
 
   const handleOptOutChange = (checked: boolean) => {
     setOptOut(checked);
+    setIsBannerVisible(false);
   };
 
-  const navigateToNext = async () => {
+  const signUp = async () => {
     if (
       firstName === "" ||
       lastName === "" ||
-      phoneNumber === "" ||
-      registered === ""
+      email === "" ||
+      password === "" ||
+      isToVote === null
     ) {
-      setFieldsMissing(true);
+      setBannerMessage("Please fill in all fields.");
+      setIsBannerVisible(true);
       return;
     } else {
-      setFieldsMissing(false);
+      setIsBannerVisible(false);
     }
-    if (auth.currentUser) {
-      console.log("User is logged in.");
-      const userEmail = auth.currentUser?.email || "defaultuser@email.com";
-      const userProfileRef = doc(db, "user-profile", userEmail);
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const userProfileRef = doc(db, "user-profile", email);
       setDoc(userProfileRef, {
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber,
-        textUpdates: textUpdates,
+        email: email,
+        isToVote,
         optOut: optOut,
-        registeredVoter: registered,
-        interests: await getDoc(doc(db, "user-profile", userEmail)).then(
-          (doc) => {
-            if (doc.exists()) {
-              return doc.data().interests;
-            } else {
-              return [];
-            }
-          },
-          (error) => {
-            console.log("Error getting document:", error);
-          }
-        ),
-      });
-      navigate("/interests");
-    }
+        textUpdates: textUpdates
+      })
+      handleNextStep();
+    })
+    .catch((error) => {
+      setIsBannerVisible(true);
+      const parsedMessage = error.message.match(/\(([^)]+)\)/)[1];
+      if (parsedMessage === "auth/email-already-in-use") {
+        setBannerMessage("Email already in use.");
+      } else if (parsedMessage === "auth/invalid-email") {
+        setBannerMessage("Invalid email.");
+      } else if (parsedMessage === "auth/weak-password") {
+        setBannerMessage("Password is too weak.");
+      } else {
+        setBannerMessage("Something went wrong.");
+      }
+      console.error(error);
+    })
   };
 
   return (
-    <div className="container-padded">
-      <ProgressStepperCompact3 />
-      <div className="pf-c-title pf-m-lg text-start mb-3 mt-5">
-        Build Your User Profile
+    <div className="bg-app">
+      <Stepper currentStep={2} totalStep={3} />
+      <div className="text-start mb-3 mt-8 text-xl font-bold">
+        Contact Information
       </div>
 
-      <div className="text-start">First Name</div>
+      <div className="text-start mb-2">First Name</div>
       <TextInput
-        className="mb-2"
+        className="!mb-4"
         id="textInput-basic-1"
         type="text"
         aria-label="First Name input field"
         onChange={handleFirstNameChange}
       />
-      <div className="text-start">Last Name</div>
+      <div className="text-start mb-2">Last Name</div>
       <TextInput
-        className="mb-2"
+        className="!mb-4"
         id="textInput-basic-1"
         type="text"
         aria-label="Last Name input field"
         onChange={handleLastNameChange}
       />
 
-      <div className="text-start">Phone Number</div>
+      <div className="text-start mb-2">Email</div>
       <TextInput
-        className="mb-2"
+        className="!mb-4"
         id="textInput-basic-1"
         type="tel"
         aria-label="Phone Number input field"
-        onChange={handlePhoneNumberChange}
-      />
-      <div className="text-start">Are you registered to vote?</div>
-      <RegisteredSelection
-        registered={registered}
-        setRegistered={setRegistered}
+        onChange={handleEmailChange}
       />
 
-      {fieldsMissing && (
+      <div className="text-start mb-2">Password</div>
+      <TextInput
+        className="!mb-4"
+        id="textInput-basic-1"
+        type="password"
+        aria-label="Password input field"
+        onChange={handlePasswordChange}
+      />
+
+      <div className="text-start mb-2">Are you registered to vote?</div>
+      <Select
+        className="text-start mb-7 "
+        options={[
+          { value: true, label: "Yes" },
+          { value: false, label: "No" },
+        ]}
+        isSearchable={false}
+        onChange={(selectedOption) => {
+          if (selectedOption) {
+            setIsToVote(selectedOption.value);
+          }
+        }}
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          menu: (provided) => ({
+            ...provided,
+            borderRadius: 0,
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? "#e3b81f" : "white",
+            color: "#00183d",
+          }),
+        }}
+      />
+      <div className="flex mb-2">
+        <input
+          onChange={(e) => handleTextUpdatesChange(e.target.checked)}
+          type="checkbox"
+          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
+        />
+        <p className="text-start">
+          I agree to receive important updates from District 7 leadership as
+          text messages
+        </p>
+      </div>
+      <div className="flex mb-5">
+        <input
+          type="checkbox"
+          onChange={(e) => handleOptOutChange(e.target.checked)}
+          className="scale-150 translate-x-1 translate-y-2 mr-6 self-start accent-yellow"
+        />
+        <p className="text-start">Opt out of text updates about District 7</p>
+      </div>
+
+      {isBannerVisible && (
         <Alert
           variant="danger"
-          title="Above fields are required"
-          isPlain
+          title={bannerMessage}
+          className="!bg-white !p-2 !my-4"
           isInline
         />
       )}
 
-      <Checkbox
-        className="mt-4"
-        label="I agree to recieve important updates from District 7 leadership as text messages"
-        id="uncontrolled-check-1"
-        onChange={handleTextUpdatesChange}
-        isChecked={textUpdates}
-      />
-      <Checkbox
-        className="mt-2 mb-5"
-        label="Opt out of text updates about District 7"
-        id="uncontrolled-check-2"
-        onChange={handleOptOutChange}
-        isChecked={optOut}
-      />
-      <div className="text-end ">
-        <Button
-          className="px-3 py-1"
-          variant="primary"
-          onClick={navigateToNext}
-        >
+      {!isBannerVisible &&
+       <div className="text-end">
+        <button onClick={signUp} className="btn-yellow mb-5">
           Next
-        </Button>
-      </div>
+        </button>
+        </div>
+      }
     </div>
   );
 }

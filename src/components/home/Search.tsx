@@ -14,7 +14,7 @@ function Search() {
                 className="ps-1"
                 placeholder="Search D7 Resources"
                 value={search}
-                onChange={onChange}
+                onChange={(_event,value)=>onChange(value)}
                 onClear={() => onChange("")}
             />
         </div>

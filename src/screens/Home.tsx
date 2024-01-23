@@ -1,19 +1,14 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/home/calendar/Calendar";
 import Pinned from "../components/home/Pinned";
 import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@patternfly/react-core";
-import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
-import Resources from "../components/home/Resources";
-
+import { QuestionIcon } from "../assets/QuestionIcon";
+import { Tooltip } from "@patternfly/react-core";
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
@@ -43,6 +38,15 @@ type upData = {
   attributes: {
     title: string;
     content: string;
+  };
+};
+
+type postData = {
+  id: number;
+  attributes: {
+    title: string;
+    content: string;
+    createdAt: string;
   };
 };
 
@@ -83,7 +87,7 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       })
       .catch((error) => {
@@ -207,39 +211,79 @@ function Home() {
   }, [auth.currentUser, fetchdata]);
 
   return (
-    <div className="container">
-      <LogoBar />
-      <Search />
+    // <div className={style.container}>
+    <div className="bg-82 py-7 
+      min-[700px]:w-[70%] min-[950px]:w-[60%] min-[1200px]:w-[55%] min-[1920px]:w-1/2"
+    >
+      {/* <Search /> */}
 
-      {/*
-	  this announcments component here will
-	  probably be temporary while we figure out what to do with announcements
-    */}
+      <div className="my-4 text-start heading">Upcoming Events</div>
+      <Announcement {...passTweetData} vertical={false}/>
+      <button 
+        className="btn-yellow w-full mt-5"
+        onClick={() => navigate("/calendar")}
+      >
+        View Full Calendar
+      </button>
 
-      <div className="mt-3 text-start heading">Announcements</div>
-      <Announcement {...passTweetData} vertical={false} />
-      <ViewAllAnnouncements {...passTweetData}/>
+      {/* <div className="mt-3 text-start heading">Happening This Week</div>
+      <Calendar {...passCalendarData} /> */}
 
-      <div className="mt-3 text-start heading">Happening This Week</div>
-      <Calendar {...passCalendarData} />
-
-      <div className="my-3 pf-c-title heading text-start">You Pinned</div>
+      <div className="flex items-center mb-6 mt-7 ">
+        <div className="text-start heading">You Pinned</div>
+        <Tooltip
+            removeFindDomNode={true}
+            distance={12}
+            className="!bg-white"
+            position="right"
+            enableFlip={true}
+            trigger="click"
+            isContentLeftAligned
+            content={
+              <>
+                <div className="text-navy mb-2 font-bold">
+                  Your Pinned Interests
+                </div>
+                <div className="text-sm text-navy">
+                  Edit in settings
+                </div>
+              </>
+            }
+          >
+          <QuestionIcon className="w-[14px] h-[14px] ml-2 cursor-pointer"/>
+        </Tooltip>
+      </div>
       <Pinned pinned={pinned} />
 
-      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
-      <Button
-        className="px-3 py-2 mb-2 pinned "
-        variant="primary"
+      <div className="mb-3 mt-7 text-start heading">Our Resources</div>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
         onClick= { () => navigate("/getresources")}
-        >
-        Get Resources
-      </Button>
-      <Resources resources={InvolvedData}/>
-      <Resources resources={SubmitandRequestData}/>
+      >
+        ESSENTIAL SERVICES
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+        onClick= { () => navigate("/address-info")}
+      >
+        GET INVOLVED
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+      >
+        SUBSCRIBE TO MAILING LIST
+      </button>
+      <button
+        className="mb-3 btn-rsrc w-full font-bold"
+      >
+        ABOUT THE DISTRICT
+      </button>
       
-      <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
+      <div className="mb-3 mt-7 text-start heading" style={{ color: 'white' }}>
+        Councilor News and Updates
+      </div>
       <Updates {...passUpdateData} vertical={false} />
-      <ViewAllPosts {...passUpdateData} />
+      <ViewAllPosts className="btn-yellow w-full mb-8 mt-5"/>
     </div>
   );
 }
@@ -247,6 +291,7 @@ function Home() {
 export type { calData };
 export type { tweetData };
 export type { upData };
+export type { postData };
 export { APIUrl };
 
 export default Home;

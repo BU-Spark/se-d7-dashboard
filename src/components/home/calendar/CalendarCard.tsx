@@ -1,7 +1,5 @@
-import * as React from "react";
-import { Card, Text, Icon } from "@patternfly/react-core";
+import { Card, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from "../Modal";
 import useModal from "../useModal";
@@ -20,22 +18,28 @@ function CalendarCard(props: {
   const location = props.location ? props.location : "";
   const { isOpen, toggle } = useModal();
 
+  // this lowers long content text if it's longer than 40 words
+  function truncateContent(content: string, length: number): string {
+    if (content.length > length) {
+      return content.substring(0, length) + "...";
+    }
+    return content;
+  }
+
   return (
-    <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
-      <div className=" mx-3 mt-3 mb-5">
-        <div className="row">
-          <div className="col-9">
-            <Text className="text-start">{title}</Text>
-          </div>
-          <div className="col-1">
-            <Icon isInline className="text-end">
-              <EllipsisVIcon style={{ width: "15px", height: "11px" }} />
-            </Icon>
-          </div>
+    <Card 
+      onClick={toggle} 
+      className="calendar-card !bg-white !cursor-pointer text-navy text-start !p-6"
+    >
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-start font-semibold">{title}</p>
+          <Icon isInline>
+            <EllipsisVIcon className="w-4 h-3 text-gray-500" />
+          </Icon>
         </div>
-        <div className="row mt-2 ">
-          <small className="text-start text-secondary">{date}</small>
-          <small className="text-start text-secondary">{content}</small>
+        <div>
+          <small>{date}</small>
+          <small>{truncateContent(content, 60)}</small>
           {/* if there's an image, display it */}
           {props.image ? (
             <img
@@ -55,7 +59,6 @@ function CalendarCard(props: {
           content={content}
           location={location}
         ></Modal>
-      </div>
     </Card>
   );
 }

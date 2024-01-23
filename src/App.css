@@ -1,12 +1,108 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
 
+/* Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  .btn-yellow {
+    @apply px-4 py-2 bg-yellow text-navy font-normal rounded-[3px];
+  }
+  .btn-red{
+    @apply px-4 py-2 bg-red text-white font-normal rounded-[3px];
+  }
+  .btn-white{
+    @apply px-4 py-2 bg-white text-red border border-red font-normal rounded-[3px];
+  }
+  .btn-rsrc{
+    @apply px-4 py-2 bg-navy text-white border border-yellow text-base rounded-[3px] h-14;
+  }
+  .bg-app{
+    @apply bg-navy text-white h-[calc(100vh-66px)] py-7 px-[16vw];
+  }
+  .bg-82{
+    @apply bg-navy text-white h-[calc(100vh-66px)] mx-auto max-w-[82%];
+  }
+}
+/* Patternfly tweaks */
+.pf-c-button{
+  --pf-global--primary-color--100: #e3b81f;
+  --pf-global--primary-color--200: #a6881d;
+  --pf-global--danger-color--100: #D40000;
+  --pf-c-button--m-secondary--BackgroundColor: #fff !important;
+  --pf-c-button--m-secondary--m-danger--BackgroundColor: #fff !important;
+  padding: 6px 16px !important;
+}
+
+.pf-c-form-control{
+  background-color: #fff !important;
+  padding: 6px 8px !important;
+}
+
+.pf-c-alert{
+  --pf-c-alert--m-danger__title--Color: #fff;
+  > .pf-c-alert__title{
+    margin-left: 10px !important;
+    font-size: 1rem !important;
+  }
+}
+
+.pf-c-tooltip{
+  --pf-c-tooltip__arrow--Width: 1rem;
+  --pf-c-tooltip__arrow--Height: 1rem;
+}
+
+.pf-c-tooltip__arrow{
+  background-color: #fff !important;
+}
+
+.pf-c-text-input-group__text-input{
+  background-color: #fff !important;
+  padding-block: 6px !important;
+  padding-left: 32px !important;
+  padding-right: 8px !important;
+
+}
+
+.pf-c-text-input-group__icon{
+  z-index: 10 !important;
+}
+
+.selected-chip-non-clicked {
+  --pf-c-icon__content--Color: #0066CC;
+}
+
+.selected-chip-non-clicked:hover {
+  --pf-global--primary-color-100: grey;
+  --pf-global--primary-color--dark-100: grey;
+}
+
+.selected-chip-clicked {
+  --pf-global--primary-color-100: #0066CC;
+  --pf-global--primary-color--dark-100: #0066CC;
+  --pf-global--BorderColor--300 : #0066CC;
+  --pf-global--BorderColor-100: #0066CC;
+  --pf-global--BorderColor--dark-100: #0066CC;
+}
+
+/* custom button used in Resource.tsx */
+.pf-c-button.custom-button:hover {
+  background-color: red !important;
+  color: white !important;
+}
+
 /* Global Styles */
+body {
+  background-color: #00183d !important;
+}
+
 .App {
   text-align: center;
   font-family: "Red Hat Text", sans-serif;
-  color: #151515;
   overflow-x: hidden;
+  /* background-color: #00183d; */
 }
 
 .container {
@@ -25,7 +121,7 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding: 10vh 16vw;
+  padding: 10vh 16vw
 }
 
 .center-wrapper {
@@ -33,21 +129,8 @@
   justify-content: center;
 }
 
-/* Welcome Page Styles */
-.welcome-title {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 40px;
+._select{
   text-align: left;
-  color: #151515;
-}  
-
-/* Login Page Styles */
-.page-login-line {
-  width: 122px;
-  height: 0px;
-  border: 0.7px solid #000000;
 }
 
 /* Calendar Styles */
@@ -55,11 +138,32 @@
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
+  gap: 1rem;
+}
+
+@media (min-width:768px) {
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 10px;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background: #00183d;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 .vertical-scroll{
   display: flex;
   flex-wrap: wrap;
+  gap: 1.25rem;
+
 }
 
 @media (max-width:700px){
@@ -99,7 +203,6 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 22px;
-  color: #123400;
 }
 
 .logo{
@@ -116,29 +219,6 @@
   font-size: 18px !important;
 }
 
-/* Patternfly Variables #205F00; #123400*/
-.pf-c-button{
-  --pf-global--primary-color--100: #0066CC;
-  --pf-global--primary-color--200: #0358ae;
-}
-
-.selected-chip-non-clicked {
-  --pf-c-icon__content--Color: #0066CC;
-}
-
-.selected-chip-non-clicked:hover {
-  --pf-global--primary-color-100: grey;
-  --pf-global--primary-color--dark-100: grey;
-}
-
-.selected-chip-clicked {
-  --pf-global--primary-color-100: #0066CC;
-  --pf-global--primary-color--dark-100: #0066CC;
-  --pf-global--BorderColor--300 : #0066CC;
-  --pf-global--BorderColor-100: #0066CC;
-  --pf-global--BorderColor--dark-100: #0066CC;
-}
-
 .modal-overlay {
   z-index: 9999;
   position: fixed;
@@ -146,7 +226,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,9 +234,11 @@
 .modal-box {
   position: relative;
   background: white;
-  width: 80%;
-  height: 60%;
-  padding: 1rem;
+  width: 82%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (min-width:800px){
@@ -185,6 +267,7 @@
 }
 
 .modal-text{
+  text-align: left;
   margin-top: 20px;
 }
 
@@ -199,4 +282,20 @@
   color: #fff;
   border-radius: 5px;
   padding: 5px;
+}
+
+.welcome_title {
+  margin-left: -1rem;
+  margin-right: 2.1rem;
+  padding: 15px 8vw 15px 2.5rem;
+  margin-bottom: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  text-align: left;
+  color: #151515;
+  background-color: #D9D9D98C;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

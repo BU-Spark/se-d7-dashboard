@@ -2,27 +2,24 @@ import React, { useState, useEffect } from "react";
 
 import {
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
   browserLocalPersistence,
   setPersistence,
   getAuth,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Button, Alert, TextInput } from "@patternfly/react-core";
-import GoogleButton from "react-google-button";
-
-export interface Login {}
+import { Alert, TextInput, Tooltip } from "@patternfly/react-core";
+import { QUESTION_CIRCLE } from "../assets";
 
 //client hit Log In button
-const Login: React.FunctionComponent<Login> = (props) => {
+const Login: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoginErrorVisible, setIsBannerVisible] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState<string>("");
 
   useEffect(() => {
     setPersistence(auth, browserLocalPersistence);
@@ -35,52 +32,19 @@ const Login: React.FunctionComponent<Login> = (props) => {
     };
 
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then(async (response) => {
-        console.log("Getting user data");
-        let userData = await getDoc(doc(db, "user-profile", user.email));
+      .then(async () => {
+        const userData = await getDoc(doc(db, "user-profile", user.email));
         if (userData.exists()) {
-          console.log("Document data:", userData.data());
-          if (userData.data().firstName) {
-            navigate("/home");
-          } else {
-            navigate("/profile");
-          }
+          navigate("/home");
         } else {
-          navigate("/profile");
+          setIsBannerVisible(true);
+          setBannerMessage("Incorrect email or password.")
         }
       })
       .catch((e) => {
         console.log(e);
         setIsBannerVisible(true);
-      });
-  };
-
-  const LoginGoogle = async () => {
-    signInWithPopup(auth, new GoogleAuthProvider())
-      .then(async (res) => {
-        // localStorage.setItem("user", JSON.stringify(res.user));
-        console.log("Getting user data");
-        let email: string;
-        if (res.user.email) {
-          email = res.user.email.toString();
-        } else {
-          throw new Error();
-        }
-        let userData = await getDoc(doc(db, "user-profile", email));
-        if (userData.exists()) {
-          console.log("Document data:", userData.data());
-          // Check if first name is set, if not, navigate to user profile
-          if (userData.data().firstName) {
-            navigate("/home");
-          } else {
-            navigate("/profile");
-          }
-        } else {
-          navigate("/profile");
-        }
-      })
-      .catch((e) => {
-        console.error(e);
+        setBannerMessage("Something went wrong. Please try again.")
       });
   };
 
@@ -92,24 +56,30 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
-    <div className="container-padded">
-      <div className="mb-3 h4 text-start">Log In</div>
-      <div className="text-start">Email</div>
+    <div className="bg-app flex flex-col">
+      <button
+        className="mt-4 btn-white"
+        onClick={navigateToHome}
+      >
+        Browse D7 Resources
+      </button>
+      <div className="w-32 border-[0.7px] border-white mt-10 mb-6 mx-auto"></div>
+      <div className="mb-4 text-2xl text-start text-white ">Log In</div>
+      <div className="mb-1 text-start text-white ">Email</div>
 
       <TextInput
         className="px-2"
-        id="textInput-basic-1"
+        aria-label="text input"
         type="text"
-        placeholder=""
         value={email}
         onChange={(e) => {
           setEmail(e);
         }}
       />
-      <div className="text-start">Password</div>
+      <div className="mt-4 mb-1 text-start text-white">Password</div>
       <TextInput
-        className="px-2 mb-3"
-        id="textInput-basic-1"
+        className="px-2"
+        aria-label="password"
         placeholder=""
         value={password}
         onChange={(e) => {
@@ -118,44 +88,72 @@ const Login: React.FunctionComponent<Login> = (props) => {
         type="password"
       />
 
-      {isLoginErrorVisible && (
+
+      <button className="my-4 btn-yellow" onClick={Login}>
+        Log In
+      </button>
+
+      {isBannerVisible && (
         <Alert
           isPlain
           isInline
           variant="danger"
-          title="Incorect email or password"
+          title={bannerMessage}
+          className="text-start"
         />
       )}
-      <br />
 
-      <Button className="px-5 py-1 mb-2" variant="primary" onClick={Login}>
-        Log In
-      </Button>
-      <div className="center-wrapper">
-        <GoogleButton onClick={LoginGoogle} />
-      </div>
-
-      <div className="center-wrapper mt-5 mb-5">
-        <div className="wrapper">
-          <div className="page-login-line"></div>
+      <div className="w-32 border-[0.7px] border-white my-12 mx-auto"></div>
+      <div className="flex mb-2">
+        <div className="mb-2 text-white text-start">
+          Don’t have an account?
         </div>
+        <Tooltip
+          aria-live="polite"
+          removeFindDomNode={true}
+          distance={12}
+          className="!bg-white !py-4 !px-3"
+          position="top"
+          enableFlip={true}
+          trigger="click"
+          isContentLeftAligned
+          maxWidth="190px"
+          content={
+            <>
+              <div style={{
+                color: "black",
+                fontSize: "1rem",
+                marginBottom: "10px"
+              }}>
+                Sign-Up Optional
+              </div>
+              <div style={{
+                color: "black",
+                fontSize: "0.625rem"
+              }}>
+                Recommended for D7 Residents
+              </div>
+            </>
+          }
+          >
+          <img 
+            src={QUESTION_CIRCLE}
+            style={{ 
+              width: "14px",
+              marginBottom: "6px",
+              marginLeft: "6px",
+              cursor: "pointer"
+            }}
+          />
+        </Tooltip>
       </div>
-      <div className="mb-2">Don’t have an account?</div>
-      <Button
-        className="px-5 py-1 mb-4"
-        variant="secondary"
-        /*onClick={SignUp}*/ onClick={navigateToSignUp}
+
+      <button
+        className="btn-white mt-4"
+        onClick={navigateToSignUp}
       >
         Sign up
-      </Button>
-
-      <Button
-        className="px-5 py-1"
-        variant="secondary"
-        /*onClick={SignUp}*/ onClick={navigateToHome}
-      >
-        See D7 Resources anyway
-      </Button>
+      </button>
     </div>
   );
 };

@@ -64,7 +64,7 @@ function DatePicker() {
   const renderDays = () => {
     const dateFormat = "EEE";
     const days = [];
-    let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
+    const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     for (let i = 0; i < 7; i++) {
       days.push(
         <div className="col text-muted" key={i}>
@@ -140,6 +140,6 @@ function DatePicker() {
       </div>
     </div>
   );
-};
+}
 
 export default DatePicker;
